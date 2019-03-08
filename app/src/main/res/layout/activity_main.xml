@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="167dp"
+        android:layout_height="134dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        app:srcCompat="@drawable/kaffee" />
+
+    <TextView
+        android:id="@+id/viewEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:inputType="textPersonName"
+        android:text="@string/view_mail" />
+
+    <EditText
+        android:id="@+id/inMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:id="@+id/viewPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/view_pass" />
+
+    <EditText
+        android:id="@+id/inPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/buttonSign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/sign_in" />
+
+    <Button
+        android:id="@+id/buttonReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register" />
+
+</LinearLayout>
