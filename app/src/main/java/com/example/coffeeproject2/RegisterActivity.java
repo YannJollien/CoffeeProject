@@ -24,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity{
     EditText editState;
     RadioButton radioUser;
     RadioButton radioAdmin;
-    int id = 1;
+    int id = 3;
     String lastName;
     String firstName;
     String email;
