@@ -4,24 +4,24 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity (tableName = "Users")
+@Entity(tableName = "users")
 public class User {
     @PrimaryKey
     public int UserId;
 
-    @ColumnInfo(name = "FirstName")
+    @ColumnInfo(name = "first_name")
     public String firstName;
 
-    @ColumnInfo(name = "LastName")
+    @ColumnInfo(name = "last_name")
     public String lastName;
 
-    @ColumnInfo(name = "Email")
+    @ColumnInfo(name = "email")
     public String email;
 
-    @ColumnInfo(name = "Password")
+    @ColumnInfo(name = "password")
     public String password;
 
-    @ColumnInfo(name = "State")
+    @ColumnInfo(name = "state")
     public String state;
 
     public int getUserId() {

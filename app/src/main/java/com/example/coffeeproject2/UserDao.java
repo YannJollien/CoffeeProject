@@ -10,8 +10,8 @@ public interface UserDao {
     @Insert
     void insertUser(User users);
 
-    @Query("SELECT * FROM Users WHERE email like :email")
-    public User [] loadAllUsersWithMail(String email);
+    @Query("SELECT * FROM users WHERE :email")
+     User[] loadAllUsersWithMail(String email);
 
 
 

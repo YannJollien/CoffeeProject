@@ -24,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity{
     EditText editState;
     RadioButton radioUser;
     RadioButton radioAdmin;
-    int id = 3;
+    int id = 19;
     String lastName;
     String firstName;
     String email;
@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity{
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-        myAppDatabase = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Users").allowMainThreadQueries().build();
+        myAppDatabase = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"users").allowMainThreadQueries().build();
 
         bSave = (Button) findViewById(R.id.button_save);
 
