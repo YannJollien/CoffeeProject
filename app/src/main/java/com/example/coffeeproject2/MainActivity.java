@@ -46,13 +46,13 @@ public class MainActivity extends AppCompatActivity {
         bLogin.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 //startActivity(new Intent(MainActivity.this, MenuActivity.class));
-                myAppDatabase.userDao().loadAllUsersWithMail(mail);
-                User user[] = myAppDatabase.userDao().loadAllUsersWithMail(mail);
+                myAppDatabase.userDao().loadAllUsersWithMail();
+                User user[] = myAppDatabase.userDao().loadAllUsersWithMail();
                 int size = user.length;
                 Log.d("User", user[1].email);
                 Log.d("Uses lend",String.valueOf(size));
-                for (int i = 0; i < myAppDatabase.userDao().loadAllUsersWithMail(mail).length;i++){
-                    if ( myAppDatabase.userDao().loadAllUsersWithMail(mail)[i].equals(mail)){
+                for (int i = 0; i < myAppDatabase.userDao().loadAllUsersWithMail().length;i++){
+                    if ( myAppDatabase.userDao().loadAllUsersWithMail()[i].equals(mail)){
                         System.out.println("Exists");
                     } else {
                         System.out.println("Nop");
