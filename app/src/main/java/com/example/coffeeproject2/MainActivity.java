@@ -9,16 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     Button bLogin;
     Button bRegister;
-    AppDatabase myAppDatabase;
     EditText email;
     EditText password;
     String mail;
     String pass;
-    String users [];
+    ArrayList<String> list = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +32,9 @@ public class MainActivity extends AppCompatActivity {
         email = (EditText)findViewById(R.id.inMail);
         password = (EditText)findViewById(R.id.inPass);
 
-        mail = email.getText().toString();
+
         pass = password.getText().toString();
 
-        myAppDatabase = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"users").allowMainThreadQueries().build();
 
         bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,20 +45,15 @@ public class MainActivity extends AppCompatActivity {
 
         bLogin.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                //startActivity(new Intent(MainActivity.this, MenuActivity.class));
-                myAppDatabase.userDao().loadAllUsersWithMail();
-                User user[] = myAppDatabase.userDao().loadAllUsersWithMail();
-                int size = user.length;
-                Log.d("User", user[1].email);
-                Log.d("Uses lend",String.valueOf(size));
-                for (int i = 0; i < myAppDatabase.userDao().loadAllUsersWithMail().length;i++){
-                    if ( myAppDatabase.userDao().loadAllUsersWithMail()[i].equals(mail)){
-                        System.out.println("Exists");
-                    } else {
-                        System.out.println("Nop");
-                    }
+                AppDatabase myAppDatabase = Room.databaseBuilder(getApplicationContext(),
+                        AppDatabase.class, "users").allowMainThreadQueries().build();
+                mail = email.getText().toString();
+                list.add(myAppDatabase.userDao().loadUsersName(mail).toString());
+                for (int i = 0;i < list.size();i++){
+                    System.out.println(list.get(i));
                 }
-            }
+                }
+
         });
     }
 
