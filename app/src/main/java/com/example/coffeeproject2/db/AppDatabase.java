@@ -1,4 +1,4 @@
-package com.example.coffeeproject2;
+package com.example.coffeeproject2.db;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;

@@ -2,7 +2,6 @@ package com.example.coffeeproject2;
 
 
 import android.arch.persistence.room.Room;
-import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
+import com.example.coffeeproject2.db.AppDatabase;
+import com.example.coffeeproject2.db.User;
 
 
 public class RegisterActivity extends AppCompatActivity{
@@ -24,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity{
     EditText editState;
     RadioButton radioUser;
     RadioButton radioAdmin;
-    int id = 2;
+    int id = 3;
     String lastName;
     String firstName;
     String email;
@@ -49,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity{
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-        myAppDatabase = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"users").allowMainThreadQueries().build();
+        myAppDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,"users").allowMainThreadQueries().build();
 
         bSave = (Button) findViewById(R.id.button_save);
 

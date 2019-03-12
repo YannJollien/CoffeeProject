@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.coffeeproject2.db.AppDatabase;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,33 +29,37 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bLogin = (Button) findViewById(R.id.buttonSign);
-        bRegister = (Button)findViewById(R.id.buttonReg);
+        bRegister = (Button) findViewById(R.id.buttonReg);
 
-        email = (EditText)findViewById(R.id.inMail);
-        password = (EditText)findViewById(R.id.inPass);
-
-
-        pass = password.getText().toString();
+        email = (EditText) findViewById(R.id.inMail);
+        password = (EditText) findViewById(R.id.inPass);
 
 
         bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,RegisterActivity.class));
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
             }
         });
 
-        bLogin.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                startActivity(new Intent(MainActivity.this,MenuActivity.class));
-                /*AppDatabase myAppDatabase = Room.databaseBuilder(getApplicationContext(),
+        bLogin.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //startActivity(new Intent(MainActivity.this,MenuActivity.class));
+                AppDatabase myAppDatabase = Room.databaseBuilder(getApplicationContext(),
                         AppDatabase.class, "users").allowMainThreadQueries().build();
                 mail = email.getText().toString();
-                list.add(myAppDatabase.userDao().loadUsersName(mail).toString());
-                for (int i = 0;i < list.size();i++){
-                    System.out.println(list.get(i));
-                }*/
+                pass = password.getText().toString();
+                list.add(myAppDatabase.userDao().loadUsersName(mail, pass).toString());
+                for (int i = 0; i < list.size(); i++) {
+                    if(list.get(i).contains(mail)){
+                        startActivity(new Intent(MainActivity.this,MenuActivity.class));
+                        System.out.println(list.get(i));
+                    } else {
+                        System.out.println("nein");
+                    }
+
                 }
+            }
 
         });
     }
