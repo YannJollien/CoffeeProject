@@ -74,6 +74,8 @@ public class RegisterActivity extends AppCompatActivity{
             state = "Admin";
         }
 
+
+
         bSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

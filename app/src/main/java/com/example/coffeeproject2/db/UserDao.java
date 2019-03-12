@@ -16,6 +16,6 @@ public interface UserDao {
     List<String> loadUsersName(String email);*/
 
     @Query("SELECT Email from users where Email = :email and Password = :pass")
-    List<String> loadUsersName(String email,String pass);
+    List<String> loadUsersName (String email,String pass);
 
 }

@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.coffeeproject2.db.AppDatabase;
+
+import org.apache.log4j.chainsaw.Main;
 
 import java.util.ArrayList;
 
@@ -54,7 +57,11 @@ public class MainActivity extends AppCompatActivity {
                     if(list.get(i).contains(mail)){
                         startActivity(new Intent(MainActivity.this,MenuActivity.class));
                         System.out.println(list.get(i));
+                        Toast.makeText(MainActivity.this, "Welcome",
+                                Toast.LENGTH_LONG).show();
                     } else {
+                        Toast.makeText(MainActivity.this, "Check mail or password",
+                                Toast.LENGTH_LONG).show();
                         System.out.println("nein");
                     }
 
