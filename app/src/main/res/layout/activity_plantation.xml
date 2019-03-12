@@ -34,7 +34,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="70dp"
         android:layout_marginRight="20dp"
-        android:text="@string/button_storage_show" />
+        android:text="@string/button_plantation_show" />
 
     <Button
         android:id="@+id/button_plantation_add"
@@ -43,7 +43,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="70dp"
         android:layout_marginRight="20dp"
-        android:text="@string/button_storage_add" />
+        android:text="@string/button_plantation_add" />
 
     <Button
         android:id="@+id/button_plantation_edit"
@@ -52,6 +52,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="70dp"
         android:layout_marginRight="20dp"
-        android:text="@string/button_storage_edit" />
+        android:text="@string/button_plantation_edit" />
 
 </LinearLayout>
