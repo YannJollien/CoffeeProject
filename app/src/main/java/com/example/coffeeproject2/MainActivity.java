@@ -45,13 +45,14 @@ public class MainActivity extends AppCompatActivity {
 
         bLogin.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                AppDatabase myAppDatabase = Room.databaseBuilder(getApplicationContext(),
+                startActivity(new Intent(MainActivity.this,MenuActivity.class));
+                /*AppDatabase myAppDatabase = Room.databaseBuilder(getApplicationContext(),
                         AppDatabase.class, "users").allowMainThreadQueries().build();
                 mail = email.getText().toString();
                 list.add(myAppDatabase.userDao().loadUsersName(mail).toString());
                 for (int i = 0;i < list.size();i++){
                     System.out.println(list.get(i));
-                }
+                }*/
                 }
 
         });

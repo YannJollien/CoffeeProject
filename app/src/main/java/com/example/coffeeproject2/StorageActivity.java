@@ -41,6 +41,13 @@ public class StorageActivity extends AppCompatActivity {
             }
         });
 
+        bView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StorageActivity.this,StorageViewActivity.class));
+            }
+        });
+
 
 
     }
