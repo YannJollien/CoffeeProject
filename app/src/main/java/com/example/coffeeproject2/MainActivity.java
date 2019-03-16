@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Welcome",
                                 Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(MainActivity.this, "Check mail or password",
+                        Toast.makeText(MainActivity.this, "Invalid mail or password",
                                 Toast.LENGTH_LONG).show();
                         System.out.println("nein");
                     }

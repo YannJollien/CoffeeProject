@@ -1,80 +1,74 @@
 package com.example.coffeeproject2;
 
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MenuActivity extends AppCompatActivity {
 
-    Button bOut;
-    Button bStorage;
-    Button bPlantation;
+    private DrawerLayout drawerLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-        ActionBar actionBar = getSupportActionBar();
 
-        bOut = (Button)findViewById(R.id.bLogOut);
-        bStorage = (Button)findViewById(R.id.button_storage);
-        bPlantation = (Button)findViewById(R.id.button_plantation);
+        //Display the drawer
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        //Log out back to Login screen
-        bOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this,MainActivity.class));
-                Toast.makeText(MenuActivity.this,
-                        "Logged out", Toast.LENGTH_LONG).show();
-            }
-        });
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
 
-        //Go to Storage
-        bStorage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this,StorageActivity.class));
-            }
-        });
+        drawerLayout = findViewById(R.id.drawer_layout);
 
-        //Go to Plantation
-        bPlantation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this,PlantationActivity.class));
-            }
-        });
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        int id = menuItem.getItemId();
+                        switch (id) {
+                            case R.id.nav_storage:
+                                Intent i1 = new Intent(MenuActivity.this, StorageActivity.class);
+                                startActivity(i1);
+                                break;
+                            case R.id.nav_plantation:
+                                Intent i2 = new Intent(MenuActivity.this, PlantationActivity.class);
+                                startActivity(i2);
+                                break;
+                            /*case R.id.nav_profile:
+                                Intent i3 = new Intent(MenuActivity.this, Activity.class);
+                                startActivity(i3);
+                                break;
+                            case R.id.nav_settings:
+                                Intent i4 = new Intent(MenuActivity.this, StorageActivity.class);
+                                startActivity(i4);
+                                break;*/
+                        }
+                        return true;
+                    }
+                });
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        MenuInflater inflater=getMenuInflater ();
-        inflater.inflate ( R.menu.menu_main,menu );
-        return true;
-    }
-
+    //Open the drawer
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_profile:
-                // User chose the "Settings" item, show the app settings UI...
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
                 return true;
-
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-
         }
+        return super.onOptionsItemSelected(item);
     }
 }
