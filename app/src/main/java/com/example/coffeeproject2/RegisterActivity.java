@@ -26,7 +26,6 @@ public class RegisterActivity extends AppCompatActivity{
     EditText editState;
     RadioButton radioUser;
     RadioButton radioAdmin;
-    int id = 3;
     String lastName;
     String firstName;
     String email;
@@ -85,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity{
                 password = editPassword.getText().toString();
 
                 User user = new User();
-                user.setUserId(id);
+                //user.setUserId(id);
                 user.setFirstName(firstName);
                 user.setLastName(lastName);
                 user.setEmail(email);
@@ -99,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity{
                         editName.setText("");
                         editEmail.setText("");
                         editPassword.setText("");
-                        id++;
+
 
 
             }
