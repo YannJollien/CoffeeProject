@@ -46,14 +46,14 @@ public class MenuActivity extends AppCompatActivity {
                                 Intent i2 = new Intent(MenuActivity.this, PlantationActivity.class);
                                 startActivity(i2);
                                 break;
-                            /*case R.id.nav_profile:
-                                Intent i3 = new Intent(MenuActivity.this, Activity.class);
+                            case R.id.nav_settings:
+                                Intent i3 = new Intent(MenuActivity.this, SettingsActivity.class);
                                 startActivity(i3);
                                 break;
-                            case R.id.nav_settings:
-                                Intent i4 = new Intent(MenuActivity.this, StorageActivity.class);
+                            case R.id.nav_profile:
+                                Intent i4 = new Intent(MenuActivity.this, ProfileActivity.class);
                                 startActivity(i4);
-                                break;*/
+                                break;
                         }
                         return true;
                     }

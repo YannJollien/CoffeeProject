@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MenuActivity"></activity>
+
+        <activity android:name=".MenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,8 +36,13 @@
             android:name=".PlantationActivity"
             android:parentActivityName=".MenuActivity" />
         <activity
-            android:name=".StorageViewActivity"
-            android:parentActivityName=".StorageActivity" />
+            android:name=".SettingsActivity"
+            android:parentActivityName=".MenuActivity">
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:parentActivityName=".MenuActivity">
+        </activity>
     </application>
 
 </manifest>
