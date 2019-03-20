@@ -20,4 +20,7 @@ public interface UserDao {
     @Query("SELECT Email from users where Email = :email and Password = :pass")
     List<String> loadUsersName (String email,String pass);
 
+    @Query("DELETE FROM users")
+    void deleteAll();
+
 }

@@ -1,18 +1,17 @@
-package com.example.coffeeproject2;
+package com.example.coffeeproject2.ui.login;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.coffeeproject2.ui.menu.MenuActivity;
+import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.AppDatabase;
-
-import org.apache.log4j.chainsaw.Main;
 
 import java.util.ArrayList;
 
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 list.add(myAppDatabase.userDao().loadUsersName(mail, pass).toString());
                 for (int i = 0; i < list.size(); i++) {
                     if(list.get(i).contains(mail)){
-                        startActivity(new Intent(MainActivity.this,MenuActivity.class));
+                        startActivity(new Intent(MainActivity.this, MenuActivity.class));
                         System.out.println(list.get(i));
                         Toast.makeText(MainActivity.this, "Welcome",
                                 Toast.LENGTH_LONG).show();

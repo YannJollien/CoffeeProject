@@ -1,4 +1,4 @@
-package com.example.coffeeproject2;
+package com.example.coffeeproject2.ui.login;
 
 
 import android.arch.persistence.room.Room;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.AppDatabase;
 import com.example.coffeeproject2.database.entity.User;
 

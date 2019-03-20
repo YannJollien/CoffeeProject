@@ -1,4 +1,4 @@
-package com.example.coffeeproject2;
+package com.example.coffeeproject2.ui.menu;
 
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
@@ -9,7 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Button;
+
+import com.example.coffeeproject2.ui.plantation.PlantationActivity;
+import com.example.coffeeproject2.ProfileActivity;
+import com.example.coffeeproject2.R;
+import com.example.coffeeproject2.SettingsActivity;
+import com.example.coffeeproject2.ui.storage.StorageActivity;
 
 public class MenuActivity extends AppCompatActivity {
 

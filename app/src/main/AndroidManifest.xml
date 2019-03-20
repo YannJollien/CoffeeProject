@@ -15,8 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <activity android:name=".MenuActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.menu.MenuActivity" />
+        <activity android:name=".ui.login.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,24 +24,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".ui.login.RegisterActivity"
+            android:parentActivityName=".ui.login.MainActivity" />
         <activity
-            android:name=".StorageActivity"
-            android:parentActivityName=".MenuActivity" />
+            android:name=".ui.storage.StorageActivity"
+            android:parentActivityName=".ui.menu.MenuActivity" />
         <activity
-            android:name=".StorageAddActivity"
-            android:parentActivityName=".StorageActivity" />
+            android:name=".ui.storage.StorageAddActivity"
+            android:parentActivityName=".ui.storage.StorageActivity" />
         <activity
-            android:name=".PlantationActivity"
-            android:parentActivityName=".MenuActivity" />
+            android:name=".ui.plantation.PlantationActivity"
+            android:parentActivityName=".ui.menu.MenuActivity" />
         <activity
             android:name=".SettingsActivity"
-            android:parentActivityName=".MenuActivity">
+            android:parentActivityName=".ui.menu.MenuActivity">
         </activity>
         <activity
             android:name=".ProfileActivity"
-            android:parentActivityName=".MenuActivity">
+            android:parentActivityName=".ui.menu.MenuActivity">
         </activity>
     </application>
 

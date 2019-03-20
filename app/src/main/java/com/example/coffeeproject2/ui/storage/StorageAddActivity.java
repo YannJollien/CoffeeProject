@@ -1,4 +1,4 @@
-package com.example.coffeeproject2;
+package com.example.coffeeproject2.ui.storage;
 
 import android.arch.persistence.room.Room;
 import android.support.v7.app.ActionBar;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.StorageDatabase;
 import com.example.coffeeproject2.database.entity.Storage;
 
