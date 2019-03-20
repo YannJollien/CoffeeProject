@@ -1,7 +1,10 @@
-package com.example.coffeeproject2.dbStorage;
+package com.example.coffeeproject2.database;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
+
+import com.example.coffeeproject2.database.dao.StorageDao;
+import com.example.coffeeproject2.database.entity.Storage;
 
 
 @Database(entities = {Storage.class}, version = 1)

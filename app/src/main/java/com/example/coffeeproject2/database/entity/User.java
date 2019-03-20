@@ -1,4 +1,4 @@
-package com.example.coffeeproject2.db;
+package com.example.coffeeproject2.database.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

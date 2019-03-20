@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.coffeeproject2.db.AppDatabase;
+import com.example.coffeeproject2.database.AppDatabase;
 
 import org.apache.log4j.chainsaw.Main;
 

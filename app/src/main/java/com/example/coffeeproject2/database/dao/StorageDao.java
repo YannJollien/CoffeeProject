@@ -1,7 +1,10 @@
-package com.example.coffeeproject2.dbStorage;
+package com.example.coffeeproject2.database.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
+
+import com.example.coffeeproject2.database.entity.Storage;
+
 
 @Dao
 public interface StorageDao {

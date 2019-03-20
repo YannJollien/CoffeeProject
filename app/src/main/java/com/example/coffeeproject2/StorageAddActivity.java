@@ -12,9 +12,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.coffeeproject2.db.AppDatabase;
-import com.example.coffeeproject2.dbStorage.Storage;
-import com.example.coffeeproject2.dbStorage.StorageDatabase;
+import com.example.coffeeproject2.database.StorageDatabase;
+import com.example.coffeeproject2.database.entity.Storage;
+
 
 public class StorageAddActivity extends AppCompatActivity {
 

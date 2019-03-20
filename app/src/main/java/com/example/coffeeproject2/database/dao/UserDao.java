@@ -1,8 +1,10 @@
-package com.example.coffeeproject2.db;
+package com.example.coffeeproject2.database.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+
+import com.example.coffeeproject2.database.entity.User;
 
 import java.util.List;
 

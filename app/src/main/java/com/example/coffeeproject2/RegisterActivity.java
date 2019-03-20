@@ -12,8 +12,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.example.coffeeproject2.db.AppDatabase;
-import com.example.coffeeproject2.db.User;
+import com.example.coffeeproject2.database.AppDatabase;
+import com.example.coffeeproject2.database.entity.User;
+
 
 
 public class RegisterActivity extends AppCompatActivity{
