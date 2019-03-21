@@ -27,11 +27,13 @@
     <string name="storage_amount">Enter amount</string>
     <string name="storage_date">Enter date</string>
     <string name="storage_save">Save</string>
+    <string name="storage_qr">Qr Scanner</string>
 
     <!-- Strings related to storage -->
     <string name="button_plantation_edit">Edit Plantation</string>
     <string name="button_plantation_add">Add Plantation</string>
     <string name="button_plantation_show">Show Plantation</string>
+
 
     <!-- Strings related to type -->
     <string-array name="types_array">

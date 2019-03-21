@@ -1,35 +1,44 @@
 package com.example.coffeeproject2.ui.storage;
 
 import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
+import com.example.coffeeproject2.ScanActivity;
 import com.example.coffeeproject2.database.StorageDatabase;
 import com.example.coffeeproject2.database.entity.Storage;
+
+import org.w3c.dom.Text;
 
 
 public class StorageAddActivity extends AppCompatActivity {
 
-    String type;
-    double amount;
-    String date;
-    Spinner spinner;
+    static String type;
+    static double amount;
+    static String date;
+    public static Spinner spinner;
 
-    EditText amountEdit;
-    EditText dateEdit;
+    public static EditText amountEdit;
+    public static EditText dateEdit;
 
     Button save;
 
     StorageDatabase storageDatabase;
+
+    public static TextView result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +94,31 @@ public class StorageAddActivity extends AppCompatActivity {
                 dateEdit.setText("");
             }
         });
+
+    }
+
+    //set the camera item in Actionbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.scanner_button, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    //When camera icon clicked open qr scanner
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_qr:
+                //Show scanner
+                startActivity(new Intent(getApplicationContext(), ScanActivity.class));
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
 }
