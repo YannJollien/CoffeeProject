@@ -5,7 +5,7 @@ import android.app.Application;
 import com.example.coffeeproject2.database.AppDatabase;
 
 /**
- * Android Application class. Used for accessing singletons.
+ * Android Application class. Used for accessing singletons................
  */
 public class BaseApp extends Application {
 
