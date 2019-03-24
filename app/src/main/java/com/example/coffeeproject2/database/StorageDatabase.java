@@ -21,7 +21,7 @@ public abstract class StorageDatabase extends RoomDatabase {
 
     public static synchronized StorageDatabase getInstance(Context context){
         if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(),StorageDatabase.class,"storage_database")
+            instance = Room.databaseBuilder(context.getApplicationContext(),StorageDatabase.class,"storage")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();

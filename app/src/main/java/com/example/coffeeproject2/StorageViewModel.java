@@ -25,6 +25,18 @@ public class StorageViewModel extends AndroidViewModel {
         repository.insert(storage);
     }
 
+    public void update(Storage storage){
+        repository.update(storage);
+    }
+
+    public void delete(Storage storage){
+        repository.delete(storage);
+    }
+
+    public void deleteAllStorage(){
+        repository.deleteAllStorage();
+    }
+
     public LiveData<List<Storage>> getAllStorage(){
         return allStorage;
     }

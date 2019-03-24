@@ -25,6 +25,18 @@ public class StorageRepository {
         new InsertStorageAsyncTask(storageDao).execute(storage);
     }
 
+    public void delete(Storage storage){
+        new DeleteStorageAsyncTask(storageDao).execute(storage);
+    }
+
+    public void update(Storage storage){
+        new UpdateStorageAsyncTask(storageDao).execute(storage);
+    }
+
+    public void deleteAllStorage(){
+        new DeleteAllStorageAsyncTask(storageDao).execute();
+    }
+
     public LiveData<List<Storage>> getAllStorage(){
         return allStorage;
     }
@@ -39,6 +51,48 @@ public class StorageRepository {
         @Override
         protected Void doInBackground(Storage... storages){
             storageDao.insertStorage(storages[0]);
+            return null;
+        }
+    }
+
+    private static class UpdateStorageAsyncTask extends AsyncTask<Storage,Void,Void>{
+        private StorageDao storageDao;
+
+        private UpdateStorageAsyncTask(StorageDao storageDao){
+            this.storageDao=storageDao;
+        }
+
+        @Override
+        protected Void doInBackground(Storage... storages){
+            storageDao.updateStorage(storages[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteStorageAsyncTask extends AsyncTask<Storage,Void,Void>{
+        private StorageDao storageDao;
+
+        private DeleteStorageAsyncTask(StorageDao storageDao){
+            this.storageDao=storageDao;
+        }
+
+        @Override
+        protected Void doInBackground(Storage... storages){
+            storageDao.deleteStorage(storages[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteAllStorageAsyncTask extends AsyncTask<Void,Void,Void>{
+        private StorageDao storageDao;
+
+        private DeleteAllStorageAsyncTask(StorageDao storageDao){
+            this.storageDao=storageDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids){
+            storageDao.deleteAllStorage();
             return null;
         }
     }
