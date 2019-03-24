@@ -1,7 +1,11 @@
 package com.example.coffeeproject2.ui.storage;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,21 +22,24 @@ import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.ScanActivity;
+import com.example.coffeeproject2.StorageViewModel;
 import com.example.coffeeproject2.database.StorageDatabase;
 import com.example.coffeeproject2.database.entity.Storage;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 
 public class StorageAddActivity extends AppCompatActivity {
 
-    static String type;
-    static double amount;
-    static String date;
+
     public static Spinner spinner;
 
     public static EditText amountEdit;
     public static EditText dateEdit;
+
+    private StorageViewModel storageViewModel;
 
     Button save;
 
@@ -44,6 +51,14 @@ public class StorageAddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage_add);
+
+        storageViewModel = ViewModelProviders.of(this).get(StorageViewModel.class);
+        storageViewModel.getAllStorage().observe(this, new Observer<List<Storage>>() {
+            @Override
+            public void onChanged(@Nullable List<Storage> storages) {
+                //update RecyclerView
+            }
+        });
 
         // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
@@ -76,25 +91,22 @@ public class StorageAddActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                type = spinner.getSelectedItem().toString();
-
-                amount = Double.parseDouble(amountEdit.getText().toString());
-                date = dateEdit.getText().toString();
-
-                Storage storage = new Storage();
-                storage.setType(type);
-                storage.setAmount(amount);
-                storage.setDate(date);
-
-                storageDatabase.storageDao().insertStorage(storage);
-
-                Toast.makeText(StorageAddActivity.this, "Saved",
-                        Toast.LENGTH_LONG).show();
-                amountEdit.setText("");
-                dateEdit.setText("");
+                saveStorage();
             }
         });
 
+    }
+
+    private void saveStorage(){
+        String type = spinner.getSelectedItem().toString();
+        double amount = Double.parseDouble(amountEdit.getText().toString());
+        String date = dateEdit.getText().toString();
+        Storage storage = new Storage(type,amount,date);
+        storageViewModel.insert(storage);
+        Toast.makeText(StorageAddActivity.this, "Saved",
+                Toast.LENGTH_LONG).show();
+        amountEdit.setText("");
+        dateEdit.setText("");
     }
 
     //set the camera item in Actionbar

@@ -30,6 +30,12 @@
     <string name="storage_qr">Qr Scanner</string>
 
     <!-- Strings related to storage -->
+    <string name="plantation_type">Chose type</string>
+    <string name="plantation_hectare">Enter hectare</string>
+    <string name="plantation_date">Enter date</string>
+    <string name="plantation_add">Save</string>
+
+    <!-- Strings related to storage -->
     <string name="button_plantation_edit">Edit Plantation</string>
     <string name="button_plantation_add">Add Plantation</string>
     <string name="button_plantation_show">Show Plantation</string>

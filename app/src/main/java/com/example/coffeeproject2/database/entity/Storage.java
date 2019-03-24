@@ -20,6 +20,12 @@ public class Storage {
     @ColumnInfo(name = "date")
     private String date;
 
+    public Storage(String type, double amount, String date) {
+        this.type = type;
+        this.amount = amount;
+        this.date = date;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

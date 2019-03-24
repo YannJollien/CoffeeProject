@@ -1,13 +1,18 @@
 package com.example.coffeeproject2.ui.plantation;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.coffeeproject2.R;
 
 public class PlantationActivity extends AppCompatActivity {
+
+    Button add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,5 +29,14 @@ public class PlantationActivity extends AppCompatActivity {
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
+
+        add = (Button)findViewById(R.id.button_plantation_add);
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PlantationActivity.this, PlantationAddActivity.class));
+            }
+        });
     }
 }
