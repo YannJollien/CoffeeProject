@@ -11,6 +11,8 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -52,6 +54,9 @@
         <activity
             android:name=".ui.storage.StorageViewActivity"
             android:parentActivityName=".ui.storage.StorageActivity"/>
+
     </application>
+
+
 
 </manifest>
