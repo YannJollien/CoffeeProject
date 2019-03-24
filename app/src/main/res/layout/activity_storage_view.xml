@@ -18,67 +18,12 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="10dp"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:textSize="20sp"
-                    android:fontFamily="serif"
-                    android:text="Coffee Storage"
-                    android:gravity="center"/>
-
-                <TableLayout
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/table_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TableRow
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:id="@+id/table_row1"
-                        android:padding="10dp">
-
-                        <TextView
-                            android:id="@+id/name"
-                            android:fontFamily="serif"
-                            android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
-                            android:layout_weight="1"
-                            android:textColor="#000"
-                            android:text="Type"/>
-                        <TextView
-                            android:id="@+id/age"
-                            android:textColor="#000"
-                            android:fontFamily="serif"
-                            android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
-                            android:layout_weight="1"
-                            android:text="Amount"/>
-                    </TableRow>
-                    <View
-                        android:layout_height="3dip"
-                        android:layout_width="match_parent"
-                        android:background="#000000"/>
-                </TableLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>

@@ -31,5 +31,4 @@ public interface StorageDao {
     @Query("Select * from storage")
     LiveData<List<Storage>> getAllStorage();
 
-
 }

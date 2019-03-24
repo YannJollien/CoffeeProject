@@ -49,6 +49,9 @@
         <activity
             android:name=".ui.plantation.PlantationAddActivity"
             android:parentActivityName=".ui.plantation.PlantationActivity"/>
+        <activity
+            android:name=".ui.storage.StorageViewActivity"
+            android:parentActivityName=".ui.storage.StorageActivity"/>
     </application>
 
 </manifest>
