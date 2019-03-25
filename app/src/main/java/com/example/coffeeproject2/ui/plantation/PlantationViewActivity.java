@@ -1,7 +1,6 @@
-package com.example.coffeeproject2.ui.storage;
+package com.example.coffeeproject2.ui.plantation;
 
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -10,47 +9,42 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
+import com.example.coffeeproject2.PlantationViewModel;
 import com.example.coffeeproject2.R;
-import com.example.coffeeproject2.StorageViewModel;
-import com.example.coffeeproject2.adapter.StorageAdapter;
-import com.example.coffeeproject2.database.entity.Storage;
+import com.example.coffeeproject2.adapter.PlantationAdapter;
+import com.example.coffeeproject2.database.entity.Plantation;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
-public class StorageViewActivity extends AppCompatActivity {
+public class PlantationViewActivity extends AppCompatActivity {
 
-    private StorageViewModel storageViewModel;
+    private PlantationViewModel plantationViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_storage_view);
+        setContentView(R.layout.activity_plantation_view);
 
-        RecyclerView recyclerView = findViewById(R.id.recycler_view_storage);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_plantation);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        final StorageAdapter adapter = new StorageAdapter();
+        final PlantationAdapter adapter = new PlantationAdapter();
         recyclerView.setAdapter(adapter);
 
         //Views
-        storageViewModel = ViewModelProviders.of(this).get(StorageViewModel.class);
-        storageViewModel.getAllStorage().observe(this, new Observer<List<Storage>>() {
+        plantationViewModel = ViewModelProviders.of(this).get(PlantationViewModel.class);
+        plantationViewModel.getAllPlantation().observe(this, new Observer<List<Plantation>>() {
             @Override
-            public void onChanged(@Nullable List<Storage> storages) {
-                adapter.setStorage(storages);
+            public void onChanged(@Nullable List<Plantation> plantations) {
+                adapter.setPlantation(plantations);
             }
         });
 
         // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
-                (Toolbar) findViewById(R.id.storage_toolbar);
+                (Toolbar) findViewById(R.id.plantation_toolbar);
         setSupportActionBar(myChildToolbar);
 
         // Get a support ActionBar corresponding to this toolbar
@@ -58,7 +52,5 @@ public class StorageViewActivity extends AppCompatActivity {
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
-
     }
-
 }

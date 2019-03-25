@@ -49,8 +49,5 @@ public class StorageActivity extends AppCompatActivity {
                 startActivity(new Intent(StorageActivity.this, StorageViewActivity.class));
             }
         });
-
-
-
     }
 }

@@ -13,6 +13,7 @@ import com.example.coffeeproject2.R;
 public class PlantationActivity extends AppCompatActivity {
 
     Button add;
+    Button view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +32,19 @@ public class PlantationActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         add = (Button)findViewById(R.id.button_plantation_add);
+        view = (Button)findViewById(R.id.button_plantation_show);
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(PlantationActivity.this, PlantationAddActivity.class));
+            }
+        });
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PlantationActivity.this, PlantationViewActivity.class));
             }
         });
     }
