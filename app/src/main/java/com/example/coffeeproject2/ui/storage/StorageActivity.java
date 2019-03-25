@@ -15,6 +15,7 @@ public class StorageActivity extends AppCompatActivity {
     Button bAdd;
     Button bView;
     Button bEdit;
+    Button test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class StorageActivity extends AppCompatActivity {
         bAdd = (Button)findViewById(R.id.button_storage_add);
         bView = (Button)findViewById(R.id.button_storage_show);
         bEdit = (Button)findViewById(R.id.button_storage_edit);
+        test = (Button)findViewById(R.id.button_test);
 
         bAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +49,13 @@ public class StorageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(StorageActivity.this, StorageViewActivity.class));
+            }
+        });
+
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StorageActivity.this, StorageViewTest.class));
             }
         });
     }

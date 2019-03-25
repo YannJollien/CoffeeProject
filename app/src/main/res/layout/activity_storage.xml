@@ -54,4 +54,11 @@
         android:layout_marginRight="20dp"
         android:text="@string/button_storage_edit" />
 
+    <Button
+        android:id="@+id/button_test"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Test"/>
+
+
 </LinearLayout>
