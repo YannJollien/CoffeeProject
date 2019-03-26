@@ -23,6 +23,7 @@ public class StorageViewModel extends AndroidViewModel {
 
     public void insert(Storage storage){
         repository.insert(storage);
+
     }
 
     public void update(Storage storage){

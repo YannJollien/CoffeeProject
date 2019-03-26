@@ -15,7 +15,7 @@ public class StorageRepository {
     private StorageDao storageDao;
     private LiveData<List<Storage>> allStorage;
 
-    public  StorageRepository(Application application){
+    public StorageRepository(Application application){
         StorageDatabase database = StorageDatabase.getInstance(application);
         storageDao = database.storageDao();
         allStorage = storageDao.getAllStorage();

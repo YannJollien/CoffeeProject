@@ -6,6 +6,9 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.coffeeproject2.R;
@@ -19,6 +22,16 @@ import java.util.List;
 public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageHolder> {
 
     private List<Storage> storageList = new ArrayList<>();
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+        void onDeleteClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
 
     @NonNull
     @Override
@@ -47,16 +60,36 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageH
         notifyDataSetChanged();
     }
 
+    public Storage getStorageAt(int position){
+        return storageList.get(position);
+    }
+
     class StorageHolder extends RecyclerView.ViewHolder{
         private TextView textViewType;
         private TextView textViewAmount;
         private TextView textViewDate;
+        public ImageView editView;
+
 
         public StorageHolder(@NonNull View itemView) {
             super(itemView);
             textViewType = itemView.findViewById(R.id.text_view_type);
             textViewAmount = itemView.findViewById(R.id.text_view_amount);
             textViewDate = itemView.findViewById(R.id.text_view_date);
+            editView = itemView.findViewById(R.id.image_edit);
+
+            editView.setOnClickListener(new View.OnClickListener(){
+
+                public void onClick(View v){
+                    if(mListener != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            mListener.onDeleteClick(position);
+                        }
+                    }
+                }
+            });
+
         }
     }
 

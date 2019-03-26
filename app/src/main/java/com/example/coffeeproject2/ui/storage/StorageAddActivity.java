@@ -32,17 +32,12 @@ import java.util.List;
 
 
 public class StorageAddActivity extends AppCompatActivity {
-
-
     public static Spinner spinner;
-
     public static EditText amountEdit;
     public static EditText dateEdit;
-
     private StorageViewModel storageViewModel;
 
     Button save;
-
     StorageDatabase storageDatabase;
 
     public static TextView result;
