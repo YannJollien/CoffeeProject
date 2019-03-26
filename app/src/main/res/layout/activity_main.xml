@@ -5,21 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#d2a56d"
     tools:context=".ui.login.MainActivity">
+
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="167dp"
-        android:layout_height="134dp"
+        android:layout_width="204dp"
+        android:layout_height="219dp"
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
-        app:srcCompat="@drawable/kaffee" />
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/viewEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -63,12 +65,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:background="#5d442a"
+        android:textColor="#ffffff"
         android:text="@string/sign_in" />
 
     <Button
         android:id="@+id/buttonReg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/register" />
+        android:background="#5d442a"
+        android:textColor="#ffffff"
+        android:text="@string/register"
+        android:layout_marginTop="10dp"/>
+
 
 </LinearLayout>
