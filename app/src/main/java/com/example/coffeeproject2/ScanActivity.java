@@ -1,6 +1,5 @@
 package com.example.coffeeproject2;
 
-import android.Manifest;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -9,18 +8,14 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.AlteredCharSequence;
 import android.widget.Toast;
 
-import com.example.coffeeproject2.ui.storage.StorageAddActivity;
+import com.example.coffeeproject2.ui.storage.StorageAddEditActivity;
 import com.google.zxing.Result;
-
-import java.util.ArrayList;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 import static android.Manifest.permission.CAMERA;
-import static android.Manifest.permission.PACKAGE_USAGE_STATS;
 
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
@@ -95,14 +90,14 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         data = result.toString();
         String array [] = data.split(",");
         if (array[0].equals("Arabica")){
-            StorageAddActivity.spinner.setSelection(0);
+            StorageAddEditActivity.spinner.setSelection(0);
         } else if (array[0].equals("Robusta")){
-            StorageAddActivity.spinner.setSelection(1);
+            StorageAddEditActivity.spinner.setSelection(1);
         }else if (array[0].equals("Liberica")) {
-            StorageAddActivity.spinner.setSelection(2);
+            StorageAddEditActivity.spinner.setSelection(2);
         }
-        StorageAddActivity.amountEdit.setText(array[1]);
-        StorageAddActivity.dateEdit.setText(array[2]);
+        StorageAddEditActivity.amountEdit.setText(array[1]);
+        StorageAddEditActivity.dateEdit.setText(array[2]);
         for (int i = 0; i < array.length; i++) {
             System.out.println(array[i]);
         }

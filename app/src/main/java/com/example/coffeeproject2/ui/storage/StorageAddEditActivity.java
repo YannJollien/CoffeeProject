@@ -1,7 +1,6 @@
 package com.example.coffeeproject2.ui.storage;
 
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
@@ -26,12 +25,11 @@ import com.example.coffeeproject2.StorageViewModel;
 import com.example.coffeeproject2.database.StorageDatabase;
 import com.example.coffeeproject2.database.entity.Storage;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 
-public class StorageAddActivity extends AppCompatActivity {
+public class StorageAddEditActivity extends AppCompatActivity {
+
     public static Spinner spinner;
     public static EditText amountEdit;
     public static EditText dateEdit;
@@ -98,7 +96,7 @@ public class StorageAddActivity extends AppCompatActivity {
         String date = dateEdit.getText().toString();
         Storage storage = new Storage(type,amount,date);
         storageViewModel.insert(storage);
-        Toast.makeText(StorageAddActivity.this, "Saved",
+        Toast.makeText(StorageAddEditActivity.this, "Saved",
                 Toast.LENGTH_LONG).show();
         amountEdit.setText("");
         dateEdit.setText("");

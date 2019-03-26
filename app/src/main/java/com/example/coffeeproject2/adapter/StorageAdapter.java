@@ -22,22 +22,14 @@ import java.util.List;
 public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageHolder> {
 
     private List<Storage> storageList = new ArrayList<>();
-    private OnItemClickListener mListener;
+    private OnItemClickListener listener;
 
-    public interface OnItemClickListener{
-        void onItemClick(int position);
-        void onDeleteClick(int position);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener){
-        mListener = listener;
-    }
 
     @NonNull
     @Override
     public StorageHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.storage_view,viewGroup,false);
+                .inflate(R.layout.storage_view, viewGroup, false);
         return new StorageHolder(itemView);
     }
 
@@ -55,16 +47,16 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageH
         return storageList.size();
     }
 
-    public void setStorage(List<Storage> storages){
+    public void setStorage(List<Storage> storages) {
         this.storageList = storages;
         notifyDataSetChanged();
     }
 
-    public Storage getStorageAt(int position){
+    public Storage getStorageAt(int position) {
         return storageList.get(position);
     }
 
-    class StorageHolder extends RecyclerView.ViewHolder{
+    class StorageHolder extends RecyclerView.ViewHolder {
         private TextView textViewType;
         private TextView textViewAmount;
         private TextView textViewDate;
@@ -78,19 +70,28 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageH
             textViewDate = itemView.findViewById(R.id.text_view_date);
             editView = itemView.findViewById(R.id.image_edit);
 
-            editView.setOnClickListener(new View.OnClickListener(){
-
-                public void onClick(View v){
-                    if(mListener != null){
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
-                            mListener.onDeleteClick(position);
-                        }
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(storageList.get(position));
                     }
                 }
             });
 
         }
+
+
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Storage storage);
+
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
 }

@@ -1,8 +1,8 @@
 package com.example.coffeeproject2.ui.storage;
 
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,17 +10,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.StorageViewModel;
 import com.example.coffeeproject2.adapter.StorageAdapter;
 import com.example.coffeeproject2.database.entity.Storage;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 public class StorageViewActivity extends AppCompatActivity {
@@ -58,6 +53,14 @@ public class StorageViewActivity extends AppCompatActivity {
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
+
+        adapter.setOnItemClickListener(new StorageAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Storage storage) {
+                Intent intent = new Intent(StorageViewActivity.this, StorageAddEditActivity.class);
+
+            }
+        });
 
     }
 

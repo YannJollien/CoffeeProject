@@ -34,7 +34,7 @@
             android:name=".ui.storage.StorageActivity"
             android:parentActivityName=".ui.menu.MenuActivity" />
         <activity
-            android:name=".ui.storage.StorageAddActivity"
+            android:name=".ui.storage.StorageAddEditActivity"
             android:parentActivityName=".ui.storage.StorageActivity" />
         <activity
             android:name=".ui.plantation.PlantationActivity"

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.coffeeproject2.adapter.StorageAdapter;
 import com.example.coffeeproject2.ui.menu.MenuActivity;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.AppDatabase;
@@ -35,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
         email = (EditText) findViewById(R.id.inMail);
         password = (EditText) findViewById(R.id.inPass);
-
 
         bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,12 +65,14 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }
+
+
             }
 
         });
 
-
     }
+
 
 
 }
