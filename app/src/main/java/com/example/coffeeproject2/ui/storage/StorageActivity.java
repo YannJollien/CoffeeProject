@@ -41,7 +41,7 @@ public class StorageActivity extends AppCompatActivity {
         bAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StorageActivity.this, StorageAddEditActivity.class));
+                startActivity(new Intent(StorageActivity.this, StorageAddActivity.class));
             }
         });
 

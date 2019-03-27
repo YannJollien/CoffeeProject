@@ -34,7 +34,7 @@
             android:name=".ui.storage.StorageActivity"
             android:parentActivityName=".ui.menu.MenuActivity" />
         <activity
-            android:name=".ui.storage.StorageAddEditActivity"
+            android:name=".ui.storage.StorageAddActivity"
             android:parentActivityName=".ui.storage.StorageActivity" />
         <activity
             android:name=".ui.plantation.PlantationActivity"
@@ -61,6 +61,10 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.storage.StorageEditActivity"
+            android:parentActivityName=".ui.storage.StorageViewActivity">
         </activity>
     </application>
 

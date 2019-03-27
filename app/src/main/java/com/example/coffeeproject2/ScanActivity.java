@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.coffeeproject2.ui.storage.StorageAddEditActivity;
+import com.example.coffeeproject2.ui.storage.StorageAddActivity;
 import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -90,14 +90,14 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         data = result.toString();
         String array [] = data.split(",");
         if (array[0].equals("Arabica")){
-            StorageAddEditActivity.spinner.setSelection(0);
+            StorageAddActivity.spinner.setSelection(0);
         } else if (array[0].equals("Robusta")){
-            StorageAddEditActivity.spinner.setSelection(1);
+            StorageAddActivity.spinner.setSelection(1);
         }else if (array[0].equals("Liberica")) {
-            StorageAddEditActivity.spinner.setSelection(2);
+            StorageAddActivity.spinner.setSelection(2);
         }
-        StorageAddEditActivity.amountEdit.setText(array[1]);
-        StorageAddEditActivity.dateEdit.setText(array[2]);
+        StorageAddActivity.amountEdit.setText(array[1]);
+        StorageAddActivity.dateEdit.setText(array[2]);
         for (int i = 0; i < array.length; i++) {
             System.out.println(array[i]);
         }

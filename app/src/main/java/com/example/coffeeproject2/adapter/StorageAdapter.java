@@ -74,15 +74,26 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageH
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
+                    //if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(storageList.get(position));
+                   // }
+                }
+            });
+/**
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
                     if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(storageList.get(position));
                     }
                 }
+
+
             });
+*/
 
         }
-
-
     }
 
     public interface OnItemClickListener {
@@ -93,5 +104,4 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageH
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
-
 }

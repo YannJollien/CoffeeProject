@@ -28,7 +28,7 @@ import com.example.coffeeproject2.database.entity.Storage;
 import java.util.List;
 
 
-public class StorageAddEditActivity extends AppCompatActivity {
+public class StorageAddActivity extends AppCompatActivity {
 
     public static Spinner spinner;
     public static EditText amountEdit;
@@ -96,7 +96,7 @@ public class StorageAddEditActivity extends AppCompatActivity {
         String date = dateEdit.getText().toString();
         Storage storage = new Storage(type,amount,date);
         storageViewModel.insert(storage);
-        Toast.makeText(StorageAddEditActivity.this, "Saved",
+        Toast.makeText(StorageAddActivity.this, "Saved",
                 Toast.LENGTH_LONG).show();
         amountEdit.setText("");
         dateEdit.setText("");
