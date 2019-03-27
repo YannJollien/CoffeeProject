@@ -36,20 +36,19 @@ public class SettingsActivity extends PreferenceActivity {
         System.out.println(index);
 
         if (index==2) {
-            changeLang("de");
+            changeLang( "de");
         }
 
     }
 
     public void changeLang(String lang) {
         Configuration config = getBaseContext().getResources().getConfiguration();
-        if (!"".equals(lang) && !config.locale.getLanguage().equals(lang)) {
 
-            Locale locale = new Locale(lang);
-            Locale.setDefault(locale);
-            Configuration conf = new Configuration(config);
-            conf.locale = locale;
-            getBaseContext().getResources().updateConfiguration(conf, getBaseContext().getResources().getDisplayMetrics());
+        switch (lang) {
+            case "de":
+                config.locale = Locale.GERMAN;
+                break;
         }
+        getResources().updateConfiguration(config,getResources().getDisplayMetrics());
     }
 }
