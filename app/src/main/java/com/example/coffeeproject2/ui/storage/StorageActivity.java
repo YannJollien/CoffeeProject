@@ -52,13 +52,5 @@ public class StorageActivity extends AppCompatActivity {
             }
         });
 
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(StorageActivity.this, StorageViewTest.class));
-            }
-        });
-
-
     }
 }

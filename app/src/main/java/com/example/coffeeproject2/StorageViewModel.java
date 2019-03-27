@@ -41,4 +41,5 @@ public class StorageViewModel extends AndroidViewModel {
     public LiveData<List<Storage>> getAllStorage(){
         return allStorage;
     }
+
 }

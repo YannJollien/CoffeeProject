@@ -41,6 +41,7 @@ public class StorageRepository {
         return allStorage;
     }
 
+
     private static class InsertStorageAsyncTask extends AsyncTask<Storage,Void,Void>{
         private StorageDao storageDao;
 

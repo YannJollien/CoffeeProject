@@ -50,17 +50,10 @@
             android:parentActivityName=".ui.plantation.PlantationActivity" />
         <activity
             android:name=".ui.storage.StorageViewActivity"
-            android:parentActivityName=".ui.storage.StorageActivity" />
+            android:parentActivityName=".ui.menu.MenuActivity" />
         <activity
             android:name=".ui.plantation.PlantationViewActivity"
             android:parentActivityName=".ui.plantation.PlantationActivity">
-        </activity>
-        <activity android:name=".ui.storage.StorageViewTest"
-            android:parentActivityName=".ui.storage.StorageActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.storage.StorageEditActivity"

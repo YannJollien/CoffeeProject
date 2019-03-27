@@ -31,4 +31,7 @@ public interface StorageDao {
     @Query("Select * from storage")
     LiveData<List<Storage>> getAllStorage();
 
+    @Query("Select sum(amount) as sum from storage")
+    double getSumStorage();
+
 }

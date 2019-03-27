@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Qr code scanner  -->
+    <item
+        android:id="@+id/action_add"
+        android:icon="@drawable/ic_add_circle_outline_black_24dp"
+        android:title="@string/add_storage_button"
+        app:showAsAction="ifRoom"/>
+
+</menu>

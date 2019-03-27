@@ -28,6 +28,7 @@
     <string name="storage_date">Enter date</string>
     <string name="storage_save">Save</string>
     <string name="storage_qr">Qr Scanner</string>
+    <string name="add_storage_button">Add Storage</string>
 
     <!-- Strings related to storage -->
     <string name="plantation_type">Chose type</string>
@@ -55,14 +56,16 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_settings">SettingsActivity</string>
 
-    <!-- Strings related to Settings -->
 
-    <string name="settings">Settings</string>
-    <string name="title_activity_storage__view__test">Storage_View_Test</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <!--settings-->
+    <string-array name="listArray">
+        <item>Englisch</item>
+        <item>Deutsch</item>
+    </string-array>
+    <string-array name="listValues">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
 
 </resources>

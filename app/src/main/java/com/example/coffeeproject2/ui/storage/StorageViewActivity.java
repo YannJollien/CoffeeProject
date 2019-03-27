@@ -12,6 +12,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
@@ -125,6 +127,30 @@ public class StorageViewActivity extends AppCompatActivity {
             Storage storage = new Storage(spinner,Double.parseDouble(amount) , date);
             storage.setId(id);
             storageViewModel.update(storage);
+        }
+    }
+
+    //set the camera item in Actionbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.add_button, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    //When camera icon clicked open qr scanner
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                //Show scanner
+                startActivity(new Intent(getApplicationContext(), StorageAddActivity.class));
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
         }
     }
 

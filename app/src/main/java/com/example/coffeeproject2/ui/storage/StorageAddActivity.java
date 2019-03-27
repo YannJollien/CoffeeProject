@@ -24,6 +24,7 @@ import com.example.coffeeproject2.ScanActivity;
 import com.example.coffeeproject2.StorageViewModel;
 import com.example.coffeeproject2.database.StorageDatabase;
 import com.example.coffeeproject2.database.entity.Storage;
+import com.example.coffeeproject2.ui.menu.MenuActivity;
 
 import java.util.List;
 
@@ -100,6 +101,7 @@ public class StorageAddActivity extends AppCompatActivity {
                 Toast.LENGTH_LONG).show();
         amountEdit.setText("");
         dateEdit.setText("");
+        startActivity(new Intent(getApplicationContext(), StorageViewActivity.class));
     }
 
     //set the camera item in Actionbar
