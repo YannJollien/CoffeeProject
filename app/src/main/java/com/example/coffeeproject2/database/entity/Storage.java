@@ -20,6 +20,8 @@ public class Storage {
     @ColumnInfo(name = "date")
     private String date;
 
+
+    //Constructor
     public Storage(String type, double amount, String date) {
         this.type = type;
         this.amount = amount;
