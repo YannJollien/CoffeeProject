@@ -61,8 +61,13 @@
         </activity>
         <activity
             android:name=".ui.plantation.PlantationEditActivity"
-            android:parentActivityName=".ui.plantation.StorageViewActivity">
+            android:parentActivityName=".ui.plantation.PlantationViewActivity">
         </activity>
+        <activity
+            android:name=".ui.storage.StorageViewList"
+            android:parentActivityName=".ui.storage.StorageViewList">
+        </activity>
+
     </application>
 
 </manifest>
