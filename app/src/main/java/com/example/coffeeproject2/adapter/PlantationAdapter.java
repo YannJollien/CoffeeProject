@@ -81,7 +81,8 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
 
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
+    public void setOnItemClickListener(OnItemClickListener listener)
+    {
         this.listener = listener;
     }
 }

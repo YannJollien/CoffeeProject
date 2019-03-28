@@ -12,22 +12,30 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.coffeeproject2.PlantationViewModel;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.adapter.PlantationAdapter;
+import com.example.coffeeproject2.adapter.PlantationAdapterView;
 import com.example.coffeeproject2.adapter.StorageAdapter;
 import com.example.coffeeproject2.database.entity.Plantation;
 import com.example.coffeeproject2.database.entity.Storage;
+import com.example.coffeeproject2.ui.storage.StorageAddActivity;
 import com.example.coffeeproject2.ui.storage.StorageEditActivity;
 import com.example.coffeeproject2.ui.storage.StorageViewActivity;
+import com.example.coffeeproject2.ui.storage.StorageViewList;
 
 import java.util.List;
 
 public class PlantationViewActivity extends AppCompatActivity {
     public final static int ADD_NOTE_REQUEST = 1;
     public final static int EDIT_NOTE_REQUEST = 2;
+
+    Button bEdit;
+    Button bAdd;
 
     private PlantationViewModel plantationViewModel;
 
@@ -40,8 +48,25 @@ public class PlantationViewActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        final PlantationAdapter adapter = new PlantationAdapter();
+        final PlantationAdapterView adapter = new PlantationAdapterView();
         recyclerView.setAdapter(adapter);
+
+        bEdit = (Button)findViewById(R.id.btn_edit_plantation);
+        bAdd = (Button)findViewById(R.id.btn_add_plantation);
+
+        bEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PlantationViewActivity.this,  PlantationViewList.class));
+            }
+        });
+
+        bAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PlantationViewActivity.this,  PlantationAddActivity.class));
+            }
+        });
 
         //Views
         plantationViewModel = ViewModelProviders.of(this).get(PlantationViewModel.class);
@@ -62,7 +87,7 @@ public class PlantationViewActivity extends AppCompatActivity {
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
-
+/*
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
@@ -118,5 +143,7 @@ public class PlantationViewActivity extends AppCompatActivity {
             plantation.setId(id);
             plantationViewModel.update(plantation);
         }
+        */
     }
+
 }

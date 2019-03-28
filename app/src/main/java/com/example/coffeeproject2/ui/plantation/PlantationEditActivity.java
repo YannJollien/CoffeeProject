@@ -41,10 +41,9 @@ public class PlantationEditActivity extends AppCompatActivity {
     public static final String EXTRA_DATE =
             "com.example.coffeeproject2.ui.storage.EXTRA_DATE;";
 
-    public static Spinner spinner;
-
-    public static EditText hectareEdit;
-    public static EditText dateEdit;
+    public Spinner spinner;
+    public EditText hectareEdit;
+    public EditText dateEdit;
 
     private PlantationViewModel plantationViewModel;
 
@@ -118,7 +117,7 @@ public class PlantationEditActivity extends AppCompatActivity {
 
     private void savePlantation(){
         String type = spinner.getSelectedItem().toString();
-        double hectare = Double.parseDouble(hectareEdit.getText().toString());
+        String hectare = hectareEdit.getText().toString();
         String date = dateEdit.getText().toString();
 
         Intent data = new Intent();
@@ -137,7 +136,6 @@ public class PlantationEditActivity extends AppCompatActivity {
 
     //index finder
     private int getIndex(Spinner spinner, String myString){
-
         int index = 0;
 
         for (int i=0;i<spinner.getCount();i++){

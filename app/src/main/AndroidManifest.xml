@@ -67,6 +67,10 @@
             android:name=".ui.storage.StorageViewList"
             android:parentActivityName=".ui.storage.StorageViewList">
         </activity>
+        <activity
+            android:name=".ui.plantation.PlantationViewList"
+            android:parentActivityName=".ui.plantation.PlantationViewList">
+        </activity>
 
     </application>
 

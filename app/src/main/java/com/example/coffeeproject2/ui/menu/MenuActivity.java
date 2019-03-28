@@ -29,6 +29,7 @@ import com.example.coffeeproject2.ui.plantation.PlantationActivity;
 import com.example.coffeeproject2.ProfileActivity;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.SettingsActivity;
+import com.example.coffeeproject2.ui.plantation.PlantationViewActivity;
 import com.example.coffeeproject2.ui.storage.StorageActivity;
 import com.example.coffeeproject2.ui.storage.StorageViewActivity;
 
@@ -75,7 +76,7 @@ public class MenuActivity extends AppCompatActivity {
                                 startActivity(i1);
                                 break;
                             case R.id.nav_plantation:
-                                Intent i2 = new Intent(MenuActivity.this, PlantationActivity.class);
+                                Intent i2 = new Intent(MenuActivity.this, PlantationViewActivity.class);
                                 startActivity(i2);
                                 break;
                             case R.id.nav_settings:
