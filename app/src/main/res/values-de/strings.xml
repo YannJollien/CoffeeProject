@@ -67,5 +67,7 @@
         <item>2</item>
     </string-array>
 
+    <string name="about">Info</string>
+
 
 </resources>
