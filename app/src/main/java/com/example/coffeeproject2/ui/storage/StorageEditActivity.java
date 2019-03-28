@@ -46,6 +46,8 @@ public class StorageEditActivity extends AppCompatActivity {
     private StorageViewModel storageViewModel;
 
     Button save;
+    Button cancel;
+
     StorageDatabase storageDatabase;
 
     public static TextView result;
@@ -103,6 +105,7 @@ public class StorageEditActivity extends AppCompatActivity {
 
         //Get the info by id
         save = (Button)findViewById(R.id.save_add_storage);
+        cancel = (Button)findViewById(R.id.btn_cancel);
 
         amountEdit = (EditText)findViewById(R.id.add_amount);
         dateEdit = (EditText)findViewById(R.id.add_date);
@@ -111,6 +114,13 @@ public class StorageEditActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveStorage();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     spinner.setSelection(getIndex(spinner, intent.getStringExtra(EXTRA_TYPE)));
