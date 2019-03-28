@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.coffeeproject2.R;
@@ -54,12 +55,14 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
         private TextView textViewType;
         private TextView textViewHectare;
         private TextView textViewDate;
+        public ImageView editView;
 
         public PlantationHolder(@NonNull View itemView) {
             super(itemView);
             textViewType = itemView.findViewById(R.id.text_view_type);
             textViewHectare = itemView.findViewById(R.id.text_view_hectare);
             textViewDate = itemView.findViewById(R.id.text_view_date);
+            editView = itemView.findViewById(R.id.image_delete);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

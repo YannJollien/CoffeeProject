@@ -68,7 +68,7 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageH
             textViewType = itemView.findViewById(R.id.text_view_type);
             textViewAmount = itemView.findViewById(R.id.text_view_amount);
             textViewDate = itemView.findViewById(R.id.text_view_date);
-            editView = itemView.findViewById(R.id.image_edit);
+            editView = itemView.findViewById(R.id.image_delete);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
