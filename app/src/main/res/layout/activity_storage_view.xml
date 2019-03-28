@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_image">
+    android:background="#b70f0f">
     <android.support.v7.widget.Toolbar
         android:id="@+id/storage_toolbar"
         android:layout_width="match_parent"
@@ -33,9 +33,9 @@
         android:layout_marginTop="0dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
 
-
+        >
 
 
         <Button
@@ -43,13 +43,15 @@
             android:layout_width="202dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button_white"
-            android:text="Add" />
+            android:drawableTop="@drawable/add_ic" />
 
         <Button
             android:id="@+id/btn_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edit" />
+            android:background="@drawable/button_white"
+            android:drawableTop="@drawable/edit_ic"
+/>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
