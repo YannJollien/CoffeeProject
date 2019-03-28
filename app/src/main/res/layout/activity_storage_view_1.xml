@@ -52,5 +52,4 @@
         tools:listitem="@layout/storage_view"></android.support.v7.widget.RecyclerView>
 
 
-
 </LinearLayout>
