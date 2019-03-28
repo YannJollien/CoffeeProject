@@ -18,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         <activity android:name=".ScanActivity" />
         <activity android:name=".ui.menu.MenuActivity" />
         <activity android:name=".ui.login.MainActivity">
@@ -40,10 +41,10 @@
             android:name=".ui.plantation.PlantationActivity"
             android:parentActivityName=".ui.menu.MenuActivity" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".settings.SettingsActivity"
             android:parentActivityName=".ui.menu.MenuActivity" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".settings.ProfileActivity"
             android:parentActivityName=".ui.menu.MenuActivity" />
         <activity
             android:name=".ui.plantation.PlantationAddActivity"
@@ -53,25 +54,27 @@
             android:parentActivityName=".ui.menu.MenuActivity" />
         <activity
             android:name=".ui.plantation.PlantationViewActivity"
-            android:parentActivityName=".ui.plantation.PlantationActivity">
-        </activity>
+            android:parentActivityName=".ui.plantation.PlantationActivity"></activity>
         <activity
             android:name=".ui.storage.StorageEditActivity"
-            android:parentActivityName=".ui.storage.StorageViewActivity">
-        </activity>
+            android:parentActivityName=".ui.storage.StorageViewActivity"></activity>
         <activity
             android:name=".ui.plantation.PlantationEditActivity"
-            android:parentActivityName=".ui.plantation.PlantationViewActivity">
-        </activity>
+            android:parentActivityName=".ui.plantation.PlantationViewActivity"></activity>
         <activity
             android:name=".ui.storage.StorageViewList"
-            android:parentActivityName=".ui.storage.StorageViewList">
-        </activity>
+            android:parentActivityName=".ui.storage.StorageViewList"></activity>
         <activity
             android:name=".ui.plantation.PlantationViewList"
-            android:parentActivityName=".ui.plantation.PlantationViewList">
+            android:parentActivityName=".ui.plantation.PlantationViewList"></activity>
+        <activity
+            android:name=".settings.SettingsAboutActivity"
+            android:parentActivityName=".settings.SettingsActivity">
+            <intent-filter>
+                <action android:name="com.example.coffeestorage2.settings.StorageAboutActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

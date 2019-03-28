@@ -68,6 +68,7 @@
     </string-array>
 
     <string name="about">Info</string>
+    <string name="info">Diese App wurde von Agron Asani und Yann Jollien erstellt ©</string>
 
 
 </resources>

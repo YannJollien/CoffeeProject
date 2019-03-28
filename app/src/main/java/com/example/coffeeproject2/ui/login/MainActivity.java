@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     Button bRegister;
     EditText email;
     EditText password;
-    String mail;
+    public String mail;
     String pass;
     ArrayList<String> list = new ArrayList<String>();
 

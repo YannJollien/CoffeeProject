@@ -1,4 +1,4 @@
-package com.example.coffeeproject2;
+package com.example.coffeeproject2.settings;
 
 import android.os.Build;
 import android.support.v7.app.ActionBar;
@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+
+import com.example.coffeeproject2.R;
+import com.example.coffeeproject2.ui.login.MainActivity;
 
 import org.w3c.dom.Text;
 
@@ -15,6 +18,8 @@ public class ProfileActivity extends AppCompatActivity {
     TextView mail;
     TextView state;
     TextView version;
+
+    MainActivity main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
         version = (TextView)findViewById(R.id.text_version);
         state = (TextView)findViewById(R.id.text_state);
 
-        name.setText("Yann");
+        name.setText(main.mail);
         mail.setText("jollienyann@yahoo.fr");
         state.setText("User");
         version.setText(Build.VERSION.RELEASE);

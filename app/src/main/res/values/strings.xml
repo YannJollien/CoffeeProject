@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CoffeeStorage</string>
     <!-- Strings related to login -->
-    <string name="view_mail">Enter E-Mail</string>
+    <string name="view_mail">Enter E-Mail or Username</string>
     <string name="view_pass">Enter the password</string>
     <string name="sign_in">Sign in</string>
     <string name="register">Register</string>
@@ -10,7 +10,7 @@
     <string name="title_activity_login">Sign in</string>
     <string name="view_name">Enter first name</string>
     <string name="view_lastname">Enter last name</string>
-    <string name="mail_register">E-mail</string>
+    <string name="mail_register">E-mail or username</string>
     <string name="button_saveRegister">Save</string>
     <!-- Strings related to menu -->
     <string name="button_storage">Storage</string>
@@ -68,6 +68,7 @@
     </string-array>
 
     <string name="about">About</string>
+    <string name="info">This app has been created from Agron Asani and Yann Jollien ©</string>
 
 
 </resources>

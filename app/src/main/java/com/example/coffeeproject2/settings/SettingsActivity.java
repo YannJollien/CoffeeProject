@@ -1,4 +1,4 @@
-package com.example.coffeeproject2;
+package com.example.coffeeproject2.settings;
 
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -9,13 +9,18 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.preference.ListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.view.View;
 
+import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.ui.login.MainActivity;
+import com.example.coffeeproject2.ui.menu.MenuActivity;
+import com.example.coffeeproject2.ui.plantation.PlantationViewActivity;
 
 import java.util.Locale;
 
@@ -23,6 +28,7 @@ public class SettingsActivity extends PreferenceActivity {
 
     ListPreference list;
     ListPreference listPreference = (ListPreference) findPreference("");
+    Preference preference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,8 @@ public class SettingsActivity extends PreferenceActivity {
         addPreferencesFromResource(R.xml.preferences);
 
         list = (ListPreference) findPreference("languageType");
+
+        preference = (Preference)findPreference("about");
 
         int index = Integer.parseInt(list.getValue());
 

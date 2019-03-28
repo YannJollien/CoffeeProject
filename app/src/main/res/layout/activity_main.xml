@@ -39,7 +39,7 @@
         android:layout_marginRight="5dp"
         android:textColorHint="#ffffff"
         android:ems="10"
-        android:hint="E-mail"
+        android:hint="E-mail or username"
         android:inputType="textEmailAddress" />
 
     <TextView
