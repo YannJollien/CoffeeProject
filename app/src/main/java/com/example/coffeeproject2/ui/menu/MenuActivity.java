@@ -45,6 +45,7 @@ public class MenuActivity extends AppCompatActivity {
 
     Button profile;
 
+    int notif = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
