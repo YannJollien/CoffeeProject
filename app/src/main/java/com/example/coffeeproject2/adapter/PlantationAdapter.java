@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.entity.Plantation;
+import com.example.coffeeproject2.database.entity.Storage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.PlantationHolder>  {
 
     private List<Plantation> plantationList = new ArrayList<>();
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -23,6 +25,10 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
         View itemView = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.plantation_view,viewGroup,false);
         return new PlantationHolder(itemView);
+    }
+
+    public Plantation getStorageAt(int position) {
+        return plantationList.get(position);
     }
 
     @Override
@@ -54,6 +60,25 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
             textViewType = itemView.findViewById(R.id.text_view_type);
             textViewHectare = itemView.findViewById(R.id.text_view_hectare);
             textViewDate = itemView.findViewById(R.id.text_view_date);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(plantationList.get(position));
+                    }
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Plantation plantation);
+
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 }

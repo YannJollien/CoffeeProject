@@ -1,4 +1,4 @@
-package com.example.coffeeproject2.ui.storage;
+package com.example.coffeeproject2.ui.plantation;
 
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.Observer;
@@ -20,57 +20,58 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.coffeeproject2.PlantationViewModel;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.ScanActivity;
 import com.example.coffeeproject2.StorageViewModel;
+import com.example.coffeeproject2.database.PlantationDatabase;
 import com.example.coffeeproject2.database.StorageDatabase;
+import com.example.coffeeproject2.database.entity.Plantation;
 import com.example.coffeeproject2.database.entity.Storage;
 
 import java.util.List;
 
-
-public class StorageEditActivity extends AppCompatActivity {
+public class PlantationEditActivity extends AppCompatActivity {
     public static final String EXTRA_ID =
             "com.example.coffeeproject2.ui.storage.EXTRA_ID";
     public static final String EXTRA_TYPE =
             "com.example.coffeeproject2.ui.storage.EXTRA_TYPE";
-    public static final String EXTRA_AMOUNT =
-            "com.example.coffeeproject2.ui.storage.EXTRA_AMOUNT";
+    public static final String EXTRA_HECTARE =
+            "com.example.coffeeproject2.ui.storage.EXTRA_HECTARE";
     public static final String EXTRA_DATE =
             "com.example.coffeeproject2.ui.storage.EXTRA_DATE;";
 
-    public  Spinner spinner;
-    public  EditText amountEdit;
-    public  EditText dateEdit;
+    public static Spinner spinner;
 
-    private StorageViewModel storageViewModel;
+    public static EditText hectareEdit;
+    public static EditText dateEdit;
+
+    private PlantationViewModel plantationViewModel;
 
     Button save;
-    StorageDatabase storageDatabase;
 
-    public static TextView result;
+    PlantationDatabase plantationDatabase;
 
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_storage_edit);
+        setContentView(R.layout.activity_plantation_edit);
 
         dateEdit = findViewById(R.id.add_date);
-        amountEdit = findViewById(R.id.add_amount);
+        hectareEdit = findViewById(R.id.add_hectare);
         spinner = findViewById(R.id.spinner);
 
-        storageViewModel = ViewModelProviders.of(this).get(StorageViewModel.class);
-        storageViewModel.getAllStorage().observe(this, new Observer<List<Storage>>() {
+        plantationViewModel = ViewModelProviders.of(this).get(PlantationViewModel.class);
+        plantationViewModel.getAllPlantation().observe(this, new Observer<List<Plantation>>() {
             @Override
-            public void onChanged(@Nullable List<Storage> storages) {
+            public void onChanged(@Nullable List<Plantation> plantations) {
                 //update RecyclerView
             }
         });
 
         // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
-                (Toolbar) findViewById(R.id.storage_toolbar);
+                (Toolbar) findViewById(R.id.plantation_toolbar);
         setSupportActionBar(myChildToolbar);
 
         // Get a support ActionBar corresponding to this toolbar
@@ -81,49 +82,48 @@ public class StorageEditActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        setTitle("EDIT Storage");
+        setTitle("Edit Plantation");
 
         dateEdit.setText(intent.getStringExtra(EXTRA_DATE));
-        amountEdit.setText(intent.getStringExtra(EXTRA_AMOUNT));
+        hectareEdit.setText(intent.getStringExtra(EXTRA_HECTARE));
         spinner.setSelection(2);
 
 
-        storageDatabase = Room.databaseBuilder(getApplicationContext(), StorageDatabase.class,"storage").allowMainThreadQueries().build();
+        plantationDatabase = Room.databaseBuilder(getApplicationContext(), PlantationDatabase.class,"plantation").allowMainThreadQueries().build();
 
-
+        spinner = (Spinner) findViewById(R.id.spinner);
         // Create  an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.types_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-
-
         spinner.setAdapter(adapter);
 
         //Get the info by id
-        save = (Button)findViewById(R.id.save_add_storage);
+        save = (Button)findViewById(R.id.save_add_plantation);
 
-        amountEdit = (EditText)findViewById(R.id.add_amount);
+        hectareEdit = (EditText)findViewById(R.id.add_hectare);
         dateEdit = (EditText)findViewById(R.id.add_date);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveStorage();
+                savePlantation();
             }
         });
-    spinner.setSelection(getIndex(spinner, intent.getStringExtra(EXTRA_TYPE)));
+        spinner.setSelection(getIndex(spinner, intent.getStringExtra(EXTRA_TYPE)));
+
     }
 
-    private void saveStorage(){
+    private void savePlantation(){
         String type = spinner.getSelectedItem().toString();
-        String amount = amountEdit.getText().toString();
+        double hectare = Double.parseDouble(hectareEdit.getText().toString());
         String date = dateEdit.getText().toString();
 
         Intent data = new Intent();
         data.putExtra(EXTRA_TYPE, type);
-        data.putExtra(EXTRA_AMOUNT, amount);
+        data.putExtra(EXTRA_HECTARE, hectare);
         data.putExtra(EXTRA_DATE, date);
 
         int id = getIntent().getIntExtra(EXTRA_ID, -1);
@@ -133,32 +133,8 @@ public class StorageEditActivity extends AppCompatActivity {
 
         setResult(RESULT_OK, data);
         finish();
-
     }
 
-    //set the camera item in Actionbar
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.scanner_button, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    //When camera icon clicked open qr scanner
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_qr:
-                //Show scanner
-                startActivity(new Intent(getApplicationContext(), ScanActivity.class));
-                return true;
-
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-
-        }
-    }
     //index finder
     private int getIndex(Spinner spinner, String myString){
 
@@ -171,5 +147,4 @@ public class StorageEditActivity extends AppCompatActivity {
         }
         return index;
     }
-
 }
