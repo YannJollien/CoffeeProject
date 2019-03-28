@@ -5,59 +5,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#d2a56d"
+    android:gravity="center"
+    android:background="@drawable/login_image"
     tools:context=".ui.login.MainActivity">
 
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="204dp"
-        android:layout_height="219dp"
+        android:layout_height="155dp"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
-        app:srcCompat="@drawable/logo" />
+        android:layout_marginTop="0dp"
+        app:srcCompat="@drawable/logo_coffee" />
 
     <TextView
         android:id="@+id/viewEmail"
-        android:layout_width="match_parent"
+        android:layout_width="343dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="5dp"
+        android:textColor="#ffffff"
+        android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/view_mail" />
 
     <EditText
         android:id="@+id/inMail"
-        android:layout_width="match_parent"
+        android:layout_width="343dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
+        android:textColorHint="#ffffff"
+        android:ems="10"
         android:hint="E-mail"
         android:inputType="textEmailAddress" />
 
     <TextView
         android:id="@+id/viewPass"
-        android:layout_width="match_parent"
+        android:layout_width="336dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="5dp"
+        android:textColor="#ffffff"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/view_pass" />
 
     <EditText
         android:id="@+id/inPass"
-        android:layout_width="match_parent"
+        android:layout_width="338dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginTop="10dp"
+        android:textColor="#ffffff"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
+        android:textColorHint="#ffffff"
+        android:ems="10"
+        android:hint="password"
         android:inputType="textPassword" />
 
     <Button
@@ -67,16 +74,17 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/round_button"
         android:text="@string/sign_in"
-        android:textColor="#ffffff" />
+        android:textColor="#b70f0f" />
 
     <Button
         android:id="@+id/buttonReg"
-        android:layout_width="match_parent"
+        android:layout_width="235dp"
         android:layout_height="wrap_content"
-        android:background="#5d442a"
-        android:textColor="#ffffff"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
         android:text="@string/register"
-        android:layout_marginTop="10dp"/>
+        android:textColor="#ffffff" />
+
 
 
 </LinearLayout>
