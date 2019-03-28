@@ -1,25 +1,31 @@
 package com.example.coffeeproject2.settings;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.ui.login.MainActivity;
+import com.example.coffeeproject2.ui.plantation.PlantationActivity;
+import com.example.coffeeproject2.ui.plantation.PlantationAddActivity;
 
 import org.w3c.dom.Text;
 
 public class ProfileActivity extends AppCompatActivity {
 
     TextView name;
-    TextView mail;
-    TextView state;
-    TextView version;
+    TextView pass;
+    Button logout;
+    public static String nameProfile;
+    public static String passProfile;
 
-    MainActivity main;
+    MainActivity main = new MainActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +44,20 @@ public class ProfileActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         name = (TextView)findViewById(R.id.text_name);
-        mail = (TextView)findViewById(R.id.text_email);
-        version = (TextView)findViewById(R.id.text_version);
-        state = (TextView)findViewById(R.id.text_state);
 
-        name.setText(main.mail);
-        mail.setText("jollienyann@yahoo.fr");
-        state.setText("User");
-        version.setText(Build.VERSION.RELEASE);
+        pass = (TextView)findViewById(R.id.text_password);
+
+        logout = (Button)findViewById(R.id.button_logout);
+
+
+        name.setText("Logged in as " +nameProfile);
+        pass.setText("Password " +passProfile);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+            }
+        });
     }
 }

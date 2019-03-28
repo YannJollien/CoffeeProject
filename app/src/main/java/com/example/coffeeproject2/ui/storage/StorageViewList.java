@@ -135,14 +135,14 @@ public class StorageViewList extends AppCompatActivity {
         }
     }
 
-    //set the camera item in Actionbar
+    //set the add item in Actionbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.add_button, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
-    //When camera icon clicked open qr scanner
+    //When add icon clicked open add Actitivy
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

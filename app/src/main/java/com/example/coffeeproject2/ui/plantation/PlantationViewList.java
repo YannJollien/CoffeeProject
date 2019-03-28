@@ -12,12 +12,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.coffeeproject2.PlantationViewModel;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.adapter.PlantationAdapter;
 import com.example.coffeeproject2.database.entity.Plantation;
+import com.example.coffeeproject2.ui.storage.StorageAddActivity;
 
 import java.util.List;
 
@@ -110,6 +113,30 @@ public class PlantationViewList extends AppCompatActivity {
             Plantation plantation = new Plantation(spinner,Double.parseDouble(hectare) , date);
             plantation.setId(id);
             plantationViewModel.update(plantation);
+        }
+    }
+
+    //set the add item in Actionbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.add_button, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    //When add icon clicked open add Actitivy
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                //Show scanner
+                startActivity(new Intent(getApplicationContext(), PlantationAddActivity.class));
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
         }
     }
 }

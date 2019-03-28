@@ -15,7 +15,9 @@ import android.widget.ImageButton;
 
 import com.example.coffeeproject2.settings.ProfileActivity;
 import com.example.coffeeproject2.R;
+import com.example.coffeeproject2.settings.SettingsAboutActivity;
 import com.example.coffeeproject2.settings.SettingsActivity;
+import com.example.coffeeproject2.ui.login.MainActivity;
 import com.example.coffeeproject2.ui.plantation.PlantationViewActivity;
 import com.example.coffeeproject2.ui.storage.StorageViewActivity;
 
@@ -60,6 +62,15 @@ public class MenuActivity extends AppCompatActivity {
                                 Intent i3 = new Intent(MenuActivity.this, SettingsActivity.class);
                                 startActivity(i3);
                                 break;
+                            case R.id.nav_logout:
+                                Intent i4 = new Intent(MenuActivity.this, MainActivity.class);
+                                startActivity(i4);
+                                break;
+                            case R.id.nav_about:
+                                Intent i5 = new Intent(MenuActivity.this, SettingsAboutActivity.class);
+                                startActivity(i5);
+                                break;
+
                         }
                         return true;
                     }

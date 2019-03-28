@@ -39,6 +39,8 @@ public class SettingsActivity extends PreferenceActivity {
 
         preference = (Preference)findPreference("about");
 
+
+
         int index = Integer.parseInt(list.getValue());
 
         System.out.println(index);

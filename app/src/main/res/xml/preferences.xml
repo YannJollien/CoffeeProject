@@ -32,15 +32,6 @@
             android:entries="@array/listArray"
             android:entryValues="@array/listValues" />
 
-        <!--Intent is used to start Activity from Preference-->
-        <PreferenceScreen android:title="About"
-            android:key="@string/about"
-            android:icon="@drawable/ic_info_black_24dp">
-            <intent android:action="com.example.coffeestorage2.settings.SettingsAboutActivity"/>
-        </PreferenceScreen>
-
-
-
     </PreferenceCategory>
 
 </PreferenceScreen>

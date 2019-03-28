@@ -25,30 +25,26 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"/>
+        android:layout_marginRight="5dp"
+        android:textAlignment="center"/>
 
     <TextView
-        android:id="@+id/text_email"
+        android:id="@+id/text_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"/>
+        android:layout_marginRight="5dp"
+        android:textAlignment="center"/>
 
-    <TextView
-        android:id="@+id/text_state"
+    <Button
+        android:id="@+id/button_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"/>
-
-    <TextView
-        android:id="@+id/text_version"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"/>
+        android:layout_marginRight="5dp"
+        android:text="@string/button_logOut"
+        />
 
 </LinearLayout>

@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.coffeeproject2.adapter.StorageAdapter;
+import com.example.coffeeproject2.settings.ProfileActivity;
 import com.example.coffeeproject2.ui.menu.MenuActivity;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.AppDatabase;
@@ -31,12 +32,13 @@ public class MainActivity extends AppCompatActivity {
     int NOTIFICATION_ID = 234;
     private static String CHANNEL_ID = "my_channel_01";
 
+
     Button bLogin;
     Button bRegister;
     EditText email;
     EditText password;
-    public String mail;
     String pass;
+    String mail;
     ArrayList<String> list = new ArrayList<String>();
 
     @Override
@@ -71,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
                     if(list.get(i).contains(mail)){
                         startActivity(new Intent(MainActivity.this, MenuActivity.class));
                         System.out.println(list.get(i));
-                        Toast.makeText(MainActivity.this, "Welcome",
-                                Toast.LENGTH_LONG).show();
+                        ProfileActivity.nameProfile = mail;
+                        ProfileActivity.passProfile = pass;
                         addNotification();
                     } else {
                         Toast.makeText(MainActivity.this, "Invalid mail or password",
@@ -112,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Test")
+                .setContentTitle("CoffeStorage Application")
                 .setContentText("Welcome "+mail);
 
         Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
@@ -126,5 +128,6 @@ public class MainActivity extends AppCompatActivity {
         notificationManager.notify(NOTIFICATION_ID, builder.build());
 
     }
+
 }
 

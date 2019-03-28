@@ -69,11 +69,7 @@
             android:parentActivityName=".ui.plantation.PlantationViewList"></activity>
         <activity
             android:name=".settings.SettingsAboutActivity"
-            android:parentActivityName=".settings.SettingsActivity">
-            <intent-filter>
-                <action android:name="com.example.coffeestorage2.settings.StorageAboutActivity" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+            android:parentActivityName=".ui.menu.MenuActivity">
         </activity>
     </application>
 
