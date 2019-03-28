@@ -5,13 +5,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    android:background="#b70f0f">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/plantation_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="#790000"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         android:visibility="visible"
@@ -29,20 +29,28 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
 
         <Button
             android:id="@+id/btn_add_plantation"
-            android:layout_width="202dp"
+            android:layout_width="99dp"
             android:layout_height="wrap_content"
-            android:text="Add" />
+            android:layout_marginRight="50dp"
+            android:background="@drawable/button_white"
+            android:drawableTop="@drawable/add_ic" />
 
         <Button
             android:id="@+id/btn_edit_plantation"
-            android:layout_width="match_parent"
+            android:layout_width="99dp"
             android:layout_height="wrap_content"
-            android:text="Edit" />
+            android:background="@drawable/button_white"
+            android:drawableTop="@drawable/edit_ic" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

@@ -37,7 +37,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
-        android:textColorHint="#ffffff"
+        android:textColorHint="#999999"
         android:ems="10"
         android:hint="E-mail or username"
         android:inputType="textEmailAddress" />
@@ -62,7 +62,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
-        android:textColorHint="#ffffff"
+        android:textColorHint="#999999"
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword" />

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#b70f0f"
     tools:context=".ui.storage.StorageAddActivity"
     android:orientation="vertical">
 
@@ -11,7 +12,7 @@
         android:id="@+id/storage_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="#790000"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         android:visibility="visible"
@@ -26,6 +27,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:textColor="#ffffff"
         android:text="@string/storage_type" />
 
     <Spinner
@@ -34,6 +36,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:textColor="#ffffff"
         android:layout_height="wrap_content" />
 
     <TextView
@@ -43,6 +46,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:textColor="#ffffff"
         android:text="@string/storage_amount" />
 
     <EditText
@@ -51,6 +55,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="In kg"
+        android:textColor="#ffffff"
+        android:textColorHint="#999999"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -62,6 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"
+        android:textColor="#ffffff"
         android:layout_marginRight="5dp"
         android:text="@string/storage_date" />
 
@@ -71,6 +78,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
+        android:textColorHint="#999999"
+        android:textColor="#ffffff"
+        android:hint="dd.mm.yyyy"
         android:layout_marginRight="5dp"
         android:ems="10"/>
 
@@ -81,6 +91,8 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="60dp"
         android:layout_marginRight="5dp"
+        android:textColor="#b70f0f"
+        android:background="@android:color/white"
         android:text="@string/storage_save" />
 
 </LinearLayout>

@@ -83,7 +83,7 @@ public class StorageEditActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        setTitle("EDIT Storage");
+        setTitle("Edit Coffee");
 
         dateEdit.setText(intent.getStringExtra(EXTRA_DATE));
         amountEdit.setText(intent.getStringExtra(EXTRA_AMOUNT));

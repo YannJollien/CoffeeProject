@@ -43,6 +43,9 @@ public class StorageViewList extends AppCompatActivity {
         final StorageAdapter adapter = new StorageAdapter();
         recyclerView.setAdapter(adapter);
 
+        //set Titel of View
+        setTitle("Edit Coffees");
+
 
         //Views
         storageViewModel = ViewModelProviders.of(this).get(StorageViewModel.class);

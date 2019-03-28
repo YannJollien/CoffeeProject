@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#b70f0f"
     tools:context=".ui.login.RegisterActivity"
     android:orientation="vertical">
 
@@ -25,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"
+        android:textColor="#ffffff"
         android:layout_marginRight="5dp"
         android:text="@string/view_name" />
 
@@ -34,6 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
+        android:textColor="#ffffff"
+        android:textColorHint="#999999"
         android:layout_marginRight="5dp"
         android:ems="10"
         android:inputType="textPersonName" />
@@ -45,6 +49,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:textColor="#ffffff"
         android:text="@string/view_lastname" />
 
     <EditText
@@ -55,6 +60,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
         android:ems="10"
+        android:textColor="#ffffff"
+        android:textColorHint="#999999"
         android:inputType="textPersonName" />
 
     <TextView
@@ -64,6 +71,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:textColor="#ffffff"
         android:text="@string/view_mail" />
 
     <EditText
@@ -74,6 +82,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
         android:ems="10"
+        android:textColor="#ffffff"
         android:inputType="textPersonName" />
 
     <TextView
@@ -83,6 +92,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:textColor="#ffffff"
         android:text="@string/view_pass" />
 
     <EditText
@@ -93,6 +103,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
         android:ems="10"
+        android:textColor="#ffffff"
+        android:textColorHint="#999999"
         android:inputType="textPersonName" />
 
     <LinearLayout
@@ -106,12 +118,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="#ffffff"
             android:text="@string/radio_user" />
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#ffffff"
             android:layout_weight="1"
             android:text="@string/radio_admin" />
 
@@ -123,6 +137,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="60dp"
+        android:background="@android:color/white"
         android:layout_marginRight="5dp"
         android:text="@string/button_saveRegister" />
 

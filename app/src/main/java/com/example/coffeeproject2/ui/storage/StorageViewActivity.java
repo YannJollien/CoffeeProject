@@ -65,6 +65,8 @@ public class StorageViewActivity extends AppCompatActivity {
                 startActivity(new Intent(StorageViewActivity.this,  StorageAddActivity.class));
             }
         });
+        //set Titel of View
+        setTitle("Coffee");
 
         //Views
         storageViewModel = ViewModelProviders.of(this).get(StorageViewModel.class);

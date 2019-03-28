@@ -41,6 +41,8 @@ public class StorageAddActivity extends AppCompatActivity {
 
     public static TextView result;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,8 @@ public class StorageAddActivity extends AppCompatActivity {
                 //update RecyclerView
             }
         });
+
+        setTitle("Add Coffee");
 
         // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
