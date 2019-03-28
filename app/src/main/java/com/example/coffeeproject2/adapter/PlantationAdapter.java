@@ -20,6 +20,7 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
     private List<Plantation> plantationList = new ArrayList<>();
     private OnItemClickListener listener;
 
+    //Holder
     @NonNull
     @Override
     public PlantationHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
