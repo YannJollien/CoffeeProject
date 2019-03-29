@@ -107,30 +107,6 @@
         android:textColorHint="#999999"
         android:inputType="textPersonName" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="#ffffff"
-            android:text="@string/radio_user" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#ffffff"
-            android:layout_weight="1"
-            android:text="@string/radio_admin" />
-
-    </LinearLayout>
-
     <Button
         android:id="@+id/button_save"
         android:layout_width="match_parent"

@@ -22,9 +22,6 @@ public class User {
     @ColumnInfo(name = "password")
     public String password;
 
-    @ColumnInfo(name = "state")
-    public String state;
-
     public int getUserId() {
         return UserId;
     }
@@ -65,11 +62,4 @@ public class User {
         this.password = password;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
 }
