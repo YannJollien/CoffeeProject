@@ -16,6 +16,7 @@
         <!--android:background="@drawable/back3">-->
 
         <TextView
+            android:id="@+id/sum_storage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Welcome"
@@ -23,6 +24,17 @@
             android:layout_marginLeft="150dp"
             android:textColor="#ffffff"
             android:layout_marginTop="300dp"/>
+
+        <TextView
+            android:id="@+id/sum_plantation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome"
+            android:textSize="32sp"
+            android:layout_marginLeft="150dp"
+            android:textColor="#ffffff"
+            android:layout_marginTop="500dp"/>
+
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"

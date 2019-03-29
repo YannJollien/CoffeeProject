@@ -46,6 +46,8 @@ public class StorageRepository {
     }
 
 
+
+
     //All classes as inner class to have everything synchronous
     private static class InsertStorageAsyncTask extends AsyncTask<Storage,Void,Void>{
         private StorageDao storageDao;

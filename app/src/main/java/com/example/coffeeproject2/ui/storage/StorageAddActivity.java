@@ -4,10 +4,10 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +24,6 @@ import com.example.coffeeproject2.ScanActivity;
 import com.example.coffeeproject2.StorageViewModel;
 import com.example.coffeeproject2.database.StorageDatabase;
 import com.example.coffeeproject2.database.entity.Storage;
-import com.example.coffeeproject2.ui.menu.MenuActivity;
 
 import java.util.List;
 
@@ -67,7 +66,7 @@ public class StorageAddActivity extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-        storageDatabase = Room.databaseBuilder(getApplicationContext(), StorageDatabase.class,"storage").allowMainThreadQueries().build();
+        storageDatabase = Room.databaseBuilder(getApplicationContext(), StorageDatabase.class, "storage").allowMainThreadQueries().build();
 
         spinner = (Spinner) findViewById(R.id.spinner);
         // Create  an ArrayAdapter using the string array and a default spinner layout
@@ -79,20 +78,10 @@ public class StorageAddActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
         //Get the info by id
-        save = (Button)findViewById(R.id.save_add_storage);
+        save = (Button) findViewById(R.id.save_add_storage);
 
-        amountEdit = (EditText)findViewById(R.id.add_amount);
-        dateEdit = (EditText)findViewById(R.id.add_date);
-
-        if (amountEdit.equals("")){
-            Toast.makeText(StorageAddActivity.this, "Please enter amount",
-                    Toast.LENGTH_LONG).show();
-        }
-
-        if (dateEdit.equals("")){
-            Toast.makeText(StorageAddActivity.this, "Please enter date",
-                    Toast.LENGTH_LONG).show();
-        }
+        amountEdit = (EditText) findViewById(R.id.add_amount);
+        dateEdit = (EditText) findViewById(R.id.add_date);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,11 +92,13 @@ public class StorageAddActivity extends AppCompatActivity {
 
     }
 
-    private void saveStorage(){
+
+    private void saveStorage() {
         String type = spinner.getSelectedItem().toString();
         double amount = Double.parseDouble(amountEdit.getText().toString());
         String date = dateEdit.getText().toString();
-        Storage storage = new Storage(type,amount,date);
+
+        Storage storage = new Storage(type, amount, date);
         storageViewModel.insert(storage);
         Toast.makeText(StorageAddActivity.this, "Saved",
                 Toast.LENGTH_LONG).show();

@@ -1,8 +1,11 @@
 package com.example.coffeeproject2.ui.menu;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,8 +18,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.coffeeproject2.PlantationViewModel;
+import com.example.coffeeproject2.StorageViewModel;
+import com.example.coffeeproject2.database.entity.Plantation;
+import com.example.coffeeproject2.database.entity.Storage;
 import com.example.coffeeproject2.settings.ProfileActivity;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.settings.SettingsAboutActivity;
@@ -25,6 +33,7 @@ import com.example.coffeeproject2.ui.login.MainActivity;
 import com.example.coffeeproject2.ui.plantation.PlantationViewActivity;
 import com.example.coffeeproject2.ui.storage.StorageViewActivity;
 
+import java.util.List;
 import java.util.Locale;
 
 public class MenuActivity extends AppCompatActivity {
@@ -33,6 +42,14 @@ public class MenuActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private Locale locale;
     String currentLanguage = "en", currentLang;
+
+    StorageViewModel storageViewModel;
+    PlantationViewModel plantationViewModel;
+
+    TextView sumS;
+    TextView sumP;
+    double sumStorage;
+    double sumPlantation;
 
     Button profile;
 
@@ -50,6 +67,13 @@ public class MenuActivity extends AppCompatActivity {
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+
+        //get Sum Storage
+        sumStorage();
+
+        //get Sum Plantaiton
+        sumPlantation();
+
 
         //Calling the items and tell them what to do
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -126,5 +150,39 @@ public class MenuActivity extends AppCompatActivity {
         } else {
             Toast.makeText(MenuActivity.this, "Language already selected!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void sumStorage(){
+        sumS = (TextView)findViewById(R.id.sum_storage);
+        storageViewModel = ViewModelProviders.of(this).get(StorageViewModel.class);
+        storageViewModel.getAllStorage().observe(this, new Observer<List<Storage>>() {
+            @Override
+            public void onChanged(@Nullable List<Storage> storages) {
+                //update RecyclerView
+                for (int i = 0; i < storages.size(); i++) {
+                    sumStorage +=storages.get(i).getAmount();
+                    System.out.println(storages.get(i).getAmount());
+                    sumS.setText(String.valueOf(sumStorage));
+                    System.out.println(sumStorage);
+                }
+            }
+        });
+    }
+
+    public void sumPlantation(){
+        sumP = (TextView)findViewById(R.id.sum_plantation);
+        plantationViewModel = ViewModelProviders.of(this).get(PlantationViewModel.class);
+        plantationViewModel.getAllPlantation().observe(this, new Observer<List<Plantation>>() {
+            @Override
+            public void onChanged(@Nullable List<Plantation> plantations) {
+                //update RecyclerView
+                for (int i = 0; i < plantations.size(); i++) {
+                    sumPlantation +=plantations.get(i).getHectare();
+                    System.out.println(plantations.get(i).getHectare());
+                    sumP.setText(String.valueOf(sumPlantation));
+                    System.out.println(sumPlantation);
+                }
+            }
+        });
     }
 }
