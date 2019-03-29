@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#b70f0f"
+    android:background="@drawable/add_edit_image"
     tools:context=".ui.storage.StorageAddActivity"
     android:orientation="vertical">
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.storage.StorageAddActivity"
     android:orientation="vertical"
-    android:background="#b70f0f">
+    android:background="@drawable/add_edit_image">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/storage_toolbar"
