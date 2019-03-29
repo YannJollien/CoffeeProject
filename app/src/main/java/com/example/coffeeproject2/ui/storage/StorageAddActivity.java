@@ -41,8 +41,6 @@ public class StorageAddActivity extends AppCompatActivity {
 
     public static TextView result;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

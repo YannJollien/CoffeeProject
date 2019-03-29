@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/add_edit_image"
+    android:background="#b70d0d"
     tools:context=".ui.storage.StorageAddActivity"
     android:orientation="vertical">
 
@@ -14,7 +14,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#790000"
         android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:theme="@style/ToolBarStyle"
         android:visibility="visible"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
@@ -86,13 +86,13 @@
 
     <Button
         android:id="@+id/save_add_storage"
-        android:layout_width="match_parent"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="60dp"
         android:layout_marginRight="5dp"
-        android:textColor="#b70f0f"
-        android:background="@android:color/white"
-        android:text="@string/storage_save" />
+        android:background="@drawable/round_button"
+        android:text="@string/storage_save"
+        android:textColor="#b70f0f" />
 
 </LinearLayout>

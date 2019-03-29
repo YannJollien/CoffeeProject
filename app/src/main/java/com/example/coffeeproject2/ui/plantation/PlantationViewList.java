@@ -116,6 +116,7 @@ public class PlantationViewList extends AppCompatActivity {
         }
     }
 
+    /**
     //set the add item in Actionbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -139,4 +140,5 @@ public class PlantationViewList extends AppCompatActivity {
 
         }
     }
+    */
 }

@@ -134,7 +134,7 @@ public class StorageViewList extends AppCompatActivity {
             storageViewModel.update(storage);
         }
     }
-
+    /**
     //set the add item in Actionbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -143,6 +143,7 @@ public class StorageViewList extends AppCompatActivity {
     }
 
     //When add icon clicked open add Actitivy
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -157,7 +158,8 @@ public class StorageViewList extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
 
         }
+
     }
 
-
+     */
 }

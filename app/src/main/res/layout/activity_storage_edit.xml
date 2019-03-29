@@ -6,15 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.storage.StorageAddActivity"
     android:orientation="vertical"
-    android:background="@drawable/add_edit_image">
+    android:background="#b70d0d">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/storage_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="#790000"
         android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:theme="@style/ToolBarStyle"
         android:visibility="visible"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
@@ -91,23 +91,23 @@
 
         <Button
             android:id="@+id/save_add_storage"
-            android:layout_width="154dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="5dp"
             android:textColor="#b70f0f"
-            android:background="@android:color/white"
+            android:background="@drawable/round_button"
             android:text="@string/storage_save" />
 
         <Button
             android:id="@+id/btn_cancel"
-            android:layout_width="156dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:textColor="#b70f0f"
-            android:background="@android:color/white"
+            android:background="@drawable/round_button"
             android:text="Cancel" />
     </LinearLayout>
 
