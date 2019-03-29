@@ -84,6 +84,16 @@ public class StorageAddActivity extends AppCompatActivity {
         amountEdit = (EditText)findViewById(R.id.add_amount);
         dateEdit = (EditText)findViewById(R.id.add_date);
 
+        if (amountEdit.equals("")){
+            Toast.makeText(StorageAddActivity.this, "Please enter amount",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        if (dateEdit.equals("")){
+            Toast.makeText(StorageAddActivity.this, "Please enter date",
+                    Toast.LENGTH_LONG).show();
+        }
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
