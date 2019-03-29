@@ -12,6 +12,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.os.Bundle;
+import android.preference.SwitchPreference;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
@@ -29,6 +30,8 @@ public class SettingsActivity extends PreferenceActivity {
     ListPreference list;
     ListPreference listPreference = (ListPreference) findPreference("");
     Preference preference;
+    SwitchPreference notif;
+    public boolean isOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,11 @@ public class SettingsActivity extends PreferenceActivity {
 
         preference = (Preference)findPreference("about");
 
+        notif = (SwitchPreference)findPreference("switch");
+
+        if (notif.isChecked()) {
+            isOn=true;
+        }
 
 
         int index = Integer.parseInt(list.getValue());

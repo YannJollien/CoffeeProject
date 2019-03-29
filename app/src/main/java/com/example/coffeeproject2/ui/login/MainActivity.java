@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.coffeeproject2.adapter.StorageAdapter;
 import com.example.coffeeproject2.settings.ProfileActivity;
+import com.example.coffeeproject2.settings.SettingsActivity;
 import com.example.coffeeproject2.ui.menu.MenuActivity;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.AppDatabase;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     String pass;
     String mail;
     ArrayList<String> list = new ArrayList<String>();
+    SettingsActivity settingsActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println(list.get(i));
                         ProfileActivity.nameProfile = mail;
                         ProfileActivity.passProfile = pass;
+                        System.out.println(settingsActivity.isOn);
+                        if (settingsActivity.isOn== true) {
+                            addNotification();
+                        }
                         addNotification();
                     } else {
                         Toast.makeText(MainActivity.this, "Invalid mail or password",
