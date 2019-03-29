@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import com.example.coffeeproject2.database.dao.PlantationDao;
 import com.example.coffeeproject2.database.entity.Plantation;
 
+//Database for Plantation
 @Database(entities = {Plantation.class}, version = 1)
 public abstract class PlantationDatabase extends RoomDatabase {
 

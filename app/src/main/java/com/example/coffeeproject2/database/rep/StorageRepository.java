@@ -10,17 +10,21 @@ import com.example.coffeeproject2.database.entity.Storage;
 
 import java.util.List;
 
+//Rep for storage
 public class StorageRepository {
 
+    //Reference for Dan and List of storage
     private StorageDao storageDao;
     private LiveData<List<Storage>> allStorage;
 
     public StorageRepository(Application application){
         StorageDatabase database = StorageDatabase.getInstance(application);
         storageDao = database.storageDao();
+        //getting all the storage
         allStorage = storageDao.getAllStorage();
     }
 
+    //Operation methods useing async classes
     public void insert(Storage storage){
         new InsertStorageAsyncTask(storageDao).execute(storage);
     }
@@ -42,6 +46,7 @@ public class StorageRepository {
     }
 
 
+    //All classes as inner class to have everything synchronous
     private static class InsertStorageAsyncTask extends AsyncTask<Storage,Void,Void>{
         private StorageDao storageDao;
 

@@ -11,7 +11,7 @@ import android.support.annotation.NonNull;
 import com.example.coffeeproject2.database.dao.StorageDao;
 import com.example.coffeeproject2.database.entity.Storage;
 
-
+//DataBase for Storage
 @Database(entities = {Storage.class}, version = 1)
 public abstract class StorageDatabase extends RoomDatabase {
 

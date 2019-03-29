@@ -15,6 +15,7 @@ import com.example.coffeeproject2.database.entity.Storage;
 import java.util.ArrayList;
 import java.util.List;
 
+//Plantation adapter
 public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.PlantationHolder>  {
 
     private List<Plantation> plantationList = new ArrayList<>();
@@ -28,10 +29,12 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
         return new PlantationHolder(itemView);
     }
 
+    //Get Storage at specific position
     public Plantation getStorageAt(int position) {
         return plantationList.get(position);
     }
 
+    //Holding the data
     @Override
     public void onBindViewHolder(@NonNull PlantationHolder storageHolder, int i) {
         Plantation currentPlantation = plantationList.get(i);

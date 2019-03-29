@@ -12,6 +12,7 @@ import com.example.coffeeproject2.database.entity.Storage;
 import java.util.List;
 
 
+//Dao for Storage
 @Dao
 public interface StorageDao {
 

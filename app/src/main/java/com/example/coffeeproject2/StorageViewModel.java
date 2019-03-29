@@ -10,6 +10,7 @@ import com.example.coffeeproject2.database.rep.StorageRepository;
 
 import java.util.List;
 
+//Storage ViewModel
 public class StorageViewModel extends AndroidViewModel {
 
     private StorageRepository repository;

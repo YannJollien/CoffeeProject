@@ -8,19 +8,20 @@ import com.example.coffeeproject2.database.entity.User;
 
 import java.util.List;
 
+//Dad fpr user
 @Dao
 public interface UserDao {
 
+    //Insert user
     @Insert
     void insertUser(User users);
 
-    /*@Query("SELECT password FROM users where email = :email")
-    List<String> loadUsersName(String email);*/
-
+    //Get email and password for login
     @Query("SELECT Email from users where Email = :email and Password = :pass")
     List<String> loadUsersName (String email,String pass);
 
-    @Query("DELETE FROM users")
-    void deleteAll();
+    //Delete user
+    @Query("Delete from users where Email = :email")
+    void deleteUser(String email);
 
 }

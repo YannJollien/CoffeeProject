@@ -19,6 +19,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+//Adapter for Storage
 public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageHolder> {
 
     private List<Storage> storageList = new ArrayList<>();
@@ -63,6 +64,7 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageH
         public ImageView editView;
 
 
+        //Holding the data
         public StorageHolder(@NonNull View itemView) {
             super(itemView);
             textViewType = itemView.findViewById(R.id.text_view_type);

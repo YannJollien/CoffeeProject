@@ -47,4 +47,14 @@
         android:text="@string/button_logOut"
         />
 
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="@string/profile_delete"
+        />
+
 </LinearLayout>

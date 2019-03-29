@@ -15,6 +15,7 @@ import com.example.coffeeproject2.database.entity.User;
 
 import java.util.concurrent.Executors;
 
+//Database for Login
 @Database(entities = {User.class,}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 

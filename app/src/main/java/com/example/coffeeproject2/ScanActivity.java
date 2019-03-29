@@ -17,8 +17,10 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 import static android.Manifest.permission.CAMERA;
 
+//QR scanner using ZXing
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
+    //Parameters for scanner
     private static ZXingScannerView ScannerView;
     private static final int REQUEST_CAMERA = 1;
     static String data;
@@ -39,6 +41,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
     }
 
+    //Getting permissions
     private void requestPermissions() {
         ActivityCompat.requestPermissions(this,new String[]{CAMERA},REQUEST_CAMERA);
     }
@@ -47,6 +50,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         return (ContextCompat.checkSelfPermission(ScanActivity.this, CAMERA)== PackageManager.PERMISSION_GRANTED);
     }
 
+    //Check if SDK is ok, giving permission to use camera or not
     public void onRequestPermissionsResult(int requestCode, String permission[],int grantResult[]){
         switch(requestCode){
             case REQUEST_CAMERA:
@@ -84,6 +88,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                 .show();
     }
 
+    //Putting data from Scanner in add activity
     @Override
     public void handleResult(Result result) {
 

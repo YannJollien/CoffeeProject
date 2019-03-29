@@ -20,18 +20,4 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="App Settings"
-        android:key="language_category">
-
-        <ListPreference
-            android:title="Languages"
-            android:summary="Select the languages"
-            android:key="languageType"
-            android:defaultValue="1"
-            android:entries="@array/listArray"
-            android:entryValues="@array/listValues" />
-
-    </PreferenceCategory>
-
 </PreferenceScreen>

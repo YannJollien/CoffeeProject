@@ -28,7 +28,6 @@ public class DatabaseInitializer {
 
 
     private static void populateWithTestData(AppDatabase db) {
-        db.userDao().deleteAll();
 
         addClient(db,
                 "m.p@fifa.com", "Michel", "Platini", "michel1"

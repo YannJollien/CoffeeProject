@@ -4,6 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+//User entity
 @Entity(tableName = "users")
 public class User {
     @PrimaryKey(autoGenerate = true)

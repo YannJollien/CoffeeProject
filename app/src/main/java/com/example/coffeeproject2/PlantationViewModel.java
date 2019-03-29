@@ -10,6 +10,7 @@ import com.example.coffeeproject2.database.rep.PlantationRepository;
 
 import java.util.List;
 
+//Plantation ViewModel
 public class PlantationViewModel extends AndroidViewModel {
 
     private PlantationRepository repository;

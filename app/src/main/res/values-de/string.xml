@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">CoffeeStorage</string>
+    <!-- Strings related to login -->
+    <string name="view_mail">E-mail oder Benutzername</string>
+    <string name="view_pass">Passwort eingeben</string>
+    <string name="sign_in">Einloggen</string>
+    <string name="register">Registrieren</string>
+    <string name="radio_user">Benutzer</string>
+    <string name="radio_admin">Admin</string>
+    <string name="title_activity_login">Einloggen</string>
+    <string name="view_name">Vorname</string>
+    <string name="view_lastname">Nachname</string>
+    <string name="mail_register">E-mail odre Benutzername</string>
+    <string name="button_saveRegister">Speichern</string>
+    <!-- Strings related to menu -->
+    <string name="button_storage">Lager</string>
+    <string name="button_plantation">Plantage</string>
+    <string name="button_settings">Einstellungen</string>
+    <string name="button_logOut">Ausloggen</string>
+    <string name="action_Profile">Profil</string>
+    <string name="button_info">Info</string>
+    <string name="button_lang">Sprache ändern(EN-DE)</string>
+
+    <!-- Strings related to storage -->
+    <string name="button_storage_edit">Lager ändern</string>
+    <string name="button_storage_add">Lager hinzufügen</string>
+    <string name="button_storage_show">Lager anzeigen</string>
+    <string name="storage_type">Art auswählen</string>
+    <string name="storage_amount">Menge angeben</string>
+    <string name="storage_date">Datum angeben</string>
+    <string name="storage_save">Speichern</string>
+    <string name="storage_qr">Qr Scanner</string>
+
+    <!-- Strings related to plantation -->
+    <string name="plantation_type">Art auswählen</string>
+    <string name="plantation_hectare">Hektare angeben</string>
+    <string name="plantation_date">Datum angeben</string>
+    <string name="plantation_add">Speichern</string>
+    <string name="button_plantation_edit">Plantage ändern</string>
+    <string name="button_plantation_add">Plantage hinzufügen</string>
+    <string name="button_plantation_show">Plantage anzeigen</string>
+
+    <string name="add_button">Hinzufügen</string>
+
+
+
+    <!-- Strings related to type -->
+    <string-array name="types_array">
+        <item>Arabica</item>
+        <item>Robusta</item>
+        <item>Liberica</item>
+    </string-array>
+
+    <!--RElated to storage view-->
+    <string name="storage_filter">Filter</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+
+    <!--settings-->
+    <string-array name="listArray">
+        <item>Englisch</item>
+        <item>Deutsch</item>
+    </string-array>
+    <string-array name="listValues">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="profile_delete">Profil löschen</string>
+
+    <string name="about">Info</string>
+    <string name="info">Diese App wurde von Agron Asani und Yann Jollien erstellt ©</string>
+
+
+</resources>

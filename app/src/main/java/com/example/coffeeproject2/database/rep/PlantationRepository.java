@@ -10,17 +10,22 @@ import com.example.coffeeproject2.database.entity.Plantation;
 
 import java.util.List;
 
+//Plantation rep
 public class PlantationRepository {
 
+    //Dao reference
     private PlantationDao plantationDao;
+    //List of all plantations
     private LiveData<List<Plantation>> allPlantation;
 
     public  PlantationRepository(Application application){
         PlantationDatabase database = PlantationDatabase.getInstance(application);
         plantationDao = database.plantationDao();
+        //Getting all
         allPlantation = plantationDao.getAllPlantation();
     }
 
+    //Operation methods useing async classes
     public void insert(Plantation plantation){
         new InsertPlantationAsyncTask(plantationDao).execute(plantation);
     }
@@ -40,6 +45,8 @@ public class PlantationRepository {
     public LiveData<List<Plantation>> getAllPlantation(){
         return allPlantation;
     }
+
+    //All classes as inner class to have everything synchronous
 
     private static class InsertPlantationAsyncTask extends AsyncTask<Plantation,Void,Void> {
         private PlantationDao plantationDao;

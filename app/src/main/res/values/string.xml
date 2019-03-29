@@ -19,6 +19,7 @@
     <string name="button_logOut">Logout</string>
     <string name="action_Profile">Profile</string>
     <string name="button_info">About</string>
+    <string name="button_lang">Change Language(EN-DE)</string>
 
     <!-- Strings related to storage -->
     <string name="button_storage_edit">Edit Storage</string>
@@ -67,6 +68,8 @@
         <item>1</item>
         <item>2</item>
     </string-array>
+
+    <string name="profile_delete">Delete Profile</string>
 
     <string name="about">About</string>
     <string name="info">This app has been created from Agron Asani and Yann Jollien ©</string>

@@ -83,6 +83,7 @@ public class RegisterActivity extends AppCompatActivity{
                 email = editEmail.getText().toString();
                 password = editPassword.getText().toString();
 
+                //create new User and add to DB
                 User user = new User();
                 //user.setUserId(id);
                 user.setFirstName(firstName);

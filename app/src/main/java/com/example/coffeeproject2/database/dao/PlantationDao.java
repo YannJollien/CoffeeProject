@@ -11,6 +11,7 @@ import com.example.coffeeproject2.database.entity.Plantation;
 
 import java.util.List;
 
+//Dao for Plantation
 @Dao
 public interface PlantationDao {
 

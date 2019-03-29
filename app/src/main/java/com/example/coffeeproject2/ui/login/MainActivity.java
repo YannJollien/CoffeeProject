@@ -1,5 +1,6 @@
 package com.example.coffeeproject2.ui.login;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    //channel and id for Notification
     NotificationManagerCompat notificationManagerCompat;
     int NOTIFICATION_ID = 234;
     private static String CHANNEL_ID = "my_channel_01";
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                         AppDatabase.class, "users").allowMainThreadQueries().build();
                 mail = email.getText().toString();
                 pass = password.getText().toString();
+                //Check if user and pass are ok
                 list.add(myAppDatabase.userDao().loadUsersName(mail, pass).toString());
                 for (int i = 0; i < list.size(); i++) {
                     if(list.get(i).contains(mail)){
@@ -77,10 +79,12 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println(list.get(i));
                         ProfileActivity.nameProfile = mail;
                         ProfileActivity.passProfile = pass;
+                        settingsActivity = new SettingsActivity();
                         System.out.println(settingsActivity.isOn);
-                        if (settingsActivity.isOn== true) {
+                        if (settingsActivity.isOn ==true) {
                             addNotification();
                         }
+                        //Calling notification when logged in
                         addNotification();
                     } else {
                         Toast.makeText(MainActivity.this, "Invalid mail or password",
@@ -97,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Adding the notification method
     private void addNotification(){
         NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -122,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("CoffeStorage Application")
                 .setContentText("Welcome "+mail);
+
 
         Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());

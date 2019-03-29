@@ -24,6 +24,11 @@
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_info_black_24dp"
             android:title="@string/button_info"/>
+        <item android:id="@+id/nav_lang"
+            android:icon="@drawable/ic_language_black_24dp"
+            android:title="@string/button_lang">
+
+        </item>
     </group>
 
 </menu>
