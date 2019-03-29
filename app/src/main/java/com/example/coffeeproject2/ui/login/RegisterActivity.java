@@ -25,14 +25,10 @@ public class RegisterActivity extends AppCompatActivity{
     EditText editName;
     EditText editEmail;
     EditText editPassword;
-    EditText editState;
-    RadioButton radioUser;
-    RadioButton radioAdmin;
     String lastName;
     String firstName;
     String email;
     String password;
-    String state;
     AppDatabase myAppDatabase;
 
 
@@ -66,14 +62,6 @@ public class RegisterActivity extends AppCompatActivity{
         email = editEmail.getText().toString();
         password = editPassword.getText().toString();
 
-        radioUser = (RadioButton)findViewById(R.id.radioButton);
-        radioAdmin = (RadioButton)findViewById(R.id.radioButton2);
-
-        if (radioUser.isChecked()){
-            state = "User";
-        } else {
-            state = "Admin";
-        }
 
         bSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +78,6 @@ public class RegisterActivity extends AppCompatActivity{
                 user.setLastName(lastName);
                 user.setEmail(email);
                 user.setPassword(password);
-                user.setState(state);
 
                 myAppDatabase.userDao().insertUser(user);
                 Toast.makeText(RegisterActivity.this, "Saved",
@@ -99,8 +86,6 @@ public class RegisterActivity extends AppCompatActivity{
                         editName.setText("");
                         editEmail.setText("");
                         editPassword.setText("");
-
-
 
             }
         });
