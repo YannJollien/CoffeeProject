@@ -19,7 +19,6 @@ import com.example.coffeeproject2.database.entity.User;
 
 
 public class RegisterActivity extends AppCompatActivity{
-
     Button bSave;
     EditText editLastName;
     EditText editName;
@@ -30,7 +29,6 @@ public class RegisterActivity extends AppCompatActivity{
     String email;
     String password;
     AppDatabase myAppDatabase;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +59,6 @@ public class RegisterActivity extends AppCompatActivity{
         firstName = editName.getText().toString();
         email = editEmail.getText().toString();
         password = editPassword.getText().toString();
-
 
         bSave.setOnClickListener(new View.OnClickListener() {
             @Override

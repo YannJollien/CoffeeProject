@@ -83,25 +83,25 @@ public class PlantationViewList extends AppCompatActivity {
                 intent.putExtra(PlantationEditActivity.EXTRA_TYPE, plantation.getType());
                 intent.putExtra(PlantationEditActivity.EXTRA_HECTARE, plantation.getHectare() + "");
                 intent.putExtra(PlantationEditActivity.EXTRA_DATE, plantation.getDate());
-                startActivityForResult(intent, EDIT_NOTE_REQUEST    );
+                startActivityForResult(intent, EDIT_NOTE_REQUEST);
             }
         });
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK){
+        if (requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
             String hectare = data.getStringExtra(PlantationEditActivity.EXTRA_HECTARE);
             String date = data.getStringExtra(PlantationEditActivity.EXTRA_DATE);
             String spinner = data.getStringExtra(PlantationEditActivity.EXTRA_TYPE);
 
-            Plantation plantation = new Plantation(spinner,Double.parseDouble(hectare) , date);
+            Plantation plantation = new Plantation(spinner, Double.parseDouble(hectare), date);
             plantationViewModel.insert(plantation);
-        }else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK){
-            int id = data.getIntExtra(PlantationEditActivity.EXTRA_ID, -1 );
+        } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK) {
+            int id = data.getIntExtra(PlantationEditActivity.EXTRA_ID, -1);
 
-            if(id == -1){
+            if (id == -1) {
                 Toast.makeText(this, "Plantation updated", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -110,35 +110,9 @@ public class PlantationViewList extends AppCompatActivity {
             String hectare = data.getStringExtra(PlantationEditActivity.EXTRA_HECTARE);
             String spinner = data.getStringExtra(PlantationEditActivity.EXTRA_TYPE);
 
-            Plantation plantation = new Plantation(spinner,Double.parseDouble(hectare) , date);
+            Plantation plantation = new Plantation(spinner, Double.parseDouble(hectare), date);
             plantation.setId(id);
             plantationViewModel.update(plantation);
         }
     }
-
-    /**
-    //set the add item in Actionbar
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.add_button, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    //When add icon clicked open add Actitivy
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_add:
-                //Show scanner
-                startActivity(new Intent(getApplicationContext(), PlantationAddActivity.class));
-                return true;
-
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-
-        }
-    }
-    */
 }

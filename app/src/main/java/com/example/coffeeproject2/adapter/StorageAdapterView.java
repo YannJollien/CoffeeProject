@@ -14,7 +14,7 @@ import com.example.coffeeproject2.database.entity.Storage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StorageAdapterView extends RecyclerView.Adapter<StorageAdapterView.StorageHolder>{
+public class StorageAdapterView extends RecyclerView.Adapter<StorageAdapterView.StorageHolder> {
     private List<Storage> storageList = new ArrayList<>();
 
     @NonNull
@@ -32,7 +32,6 @@ public class StorageAdapterView extends RecyclerView.Adapter<StorageAdapterView.
         storageHolder.textViewAmount.setText(String.valueOf(currentStorage.getAmount()));
         storageHolder.textViewDate.setText(currentStorage.getDate());
     }
-
 
     @Override
     public int getItemCount() {
@@ -52,8 +51,6 @@ public class StorageAdapterView extends RecyclerView.Adapter<StorageAdapterView.
         private TextView textViewType;
         private TextView textViewAmount;
         private TextView textViewDate;
-
-
 
         public StorageHolder(@NonNull View itemView) {
             super(itemView);

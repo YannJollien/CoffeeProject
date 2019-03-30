@@ -22,23 +22,23 @@ public class PlantationViewModel extends AndroidViewModel {
         allPlantation = repository.getAllPlantation();
     }
 
-    public void insert(Plantation plantation){
+    public void insert(Plantation plantation) {
         repository.insert(plantation);
     }
 
-    public void update(Plantation plantation){
+    public void update(Plantation plantation) {
         repository.update(plantation);
     }
 
-    public void delete(Plantation plantation){
+    public void delete(Plantation plantation) {
         repository.delete(plantation);
     }
 
-    public void deleteAllPlantation(){
+    public void deleteAllPlantation() {
         repository.deleteAllStorage();
     }
 
-    public LiveData<List<Plantation>> getAllPlantation(){
+    public LiveData<List<Plantation>> getAllPlantation() {
         return allPlantation;
     }
 }

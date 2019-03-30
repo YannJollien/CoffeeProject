@@ -60,7 +60,7 @@ public class PlantationAddActivity extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-        plantationDatabase = Room.databaseBuilder(getApplicationContext(), PlantationDatabase.class,"plantation").allowMainThreadQueries().build();
+        plantationDatabase = Room.databaseBuilder(getApplicationContext(), PlantationDatabase.class, "plantation").allowMainThreadQueries().build();
 
         spinner = (Spinner) findViewById(R.id.spinner);
         // Create  an ArrayAdapter using the string array and a default spinner layout
@@ -72,10 +72,10 @@ public class PlantationAddActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
         //Get the info by id
-        save = (Button)findViewById(R.id.save_add_plantation);
+        save = (Button) findViewById(R.id.save_add_plantation);
 
-        hectareEdit = (EditText)findViewById(R.id.add_hectare);
-        dateEdit = (EditText)findViewById(R.id.add_date);
+        hectareEdit = (EditText) findViewById(R.id.add_hectare);
+        dateEdit = (EditText) findViewById(R.id.add_date);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +84,6 @@ public class PlantationAddActivity extends AppCompatActivity {
                     Toast.makeText(PlantationAddActivity.this, "empty fields",
                             Toast.LENGTH_LONG).show();
                 } else {
-                    System.out.println("Text nicht leer");
                     if (dateCheck(dateEdit.getText().toString())) {
                         savePlantation();
                     } else {
@@ -97,11 +96,11 @@ public class PlantationAddActivity extends AppCompatActivity {
         });
     }
 
-    private void savePlantation(){
+    private void savePlantation() {
         String type = spinner.getSelectedItem().toString();
         double hectare = Double.parseDouble(hectareEdit.getText().toString());
         String date = dateEdit.getText().toString();
-        Plantation plantation = new Plantation(type,hectare,date);
+        Plantation plantation = new Plantation(type, hectare, date);
         plantationViewModel.insert(plantation);
         Toast.makeText(PlantationAddActivity.this, "Saved",
                 Toast.LENGTH_LONG).show();
@@ -137,7 +136,7 @@ public class PlantationAddActivity extends AppCompatActivity {
             } else {
                 return false;
             }
-        }catch (StringIndexOutOfBoundsException a){
+        } catch (StringIndexOutOfBoundsException a) {
             Toast.makeText(PlantationAddActivity.this, "Date format not correct",
                     Toast.LENGTH_LONG).show();
         }

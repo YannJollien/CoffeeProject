@@ -88,7 +88,7 @@ public class PlantationEditActivity extends AppCompatActivity {
         spinner.setSelection(2);
 
 
-        plantationDatabase = Room.databaseBuilder(getApplicationContext(), PlantationDatabase.class,"plantation").allowMainThreadQueries().build();
+        plantationDatabase = Room.databaseBuilder(getApplicationContext(), PlantationDatabase.class, "plantation").allowMainThreadQueries().build();
 
         spinner = (Spinner) findViewById(R.id.spinner);
         // Create  an ArrayAdapter using the string array and a default spinner layout
@@ -100,10 +100,10 @@ public class PlantationEditActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
         //Get the info by id
-        save = (Button)findViewById(R.id.save_add_plantation);
+        save = (Button) findViewById(R.id.save_add_plantation);
 
-        hectareEdit = (EditText)findViewById(R.id.add_hectare);
-        dateEdit = (EditText)findViewById(R.id.add_date);
+        hectareEdit = (EditText) findViewById(R.id.add_hectare);
+        dateEdit = (EditText) findViewById(R.id.add_date);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +112,6 @@ public class PlantationEditActivity extends AppCompatActivity {
                     Toast.makeText(PlantationEditActivity.this, "empty fields",
                             Toast.LENGTH_LONG).show();
                 } else {
-                    System.out.println("Text nicht leer");
                     if (dateCheck(dateEdit.getText().toString())) {
                         savePlantation();
                     } else {
@@ -127,7 +126,7 @@ public class PlantationEditActivity extends AppCompatActivity {
 
     }
 
-    private void savePlantation(){
+    private void savePlantation() {
         String type = spinner.getSelectedItem().toString();
         String hectare = hectareEdit.getText().toString();
         String date = dateEdit.getText().toString();
@@ -138,7 +137,7 @@ public class PlantationEditActivity extends AppCompatActivity {
         data.putExtra(EXTRA_DATE, date);
 
         int id = getIntent().getIntExtra(EXTRA_ID, -1);
-        if(id != -1){
+        if (id != -1) {
             data.putExtra(EXTRA_ID, id);
         }
 
@@ -147,11 +146,11 @@ public class PlantationEditActivity extends AppCompatActivity {
     }
 
     //index finder
-    private int getIndex(Spinner spinner, String myString){
+    private int getIndex(Spinner spinner, String myString) {
         int index = 0;
 
-        for (int i=0;i<spinner.getCount();i++){
-            if (spinner.getItemAtPosition(i).equals(myString)){
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).equals(myString)) {
                 index = i;
             }
         }
@@ -186,7 +185,7 @@ public class PlantationEditActivity extends AppCompatActivity {
             } else {
                 return false;
             }
-        }catch (StringIndexOutOfBoundsException a){
+        } catch (StringIndexOutOfBoundsException a) {
             Toast.makeText(PlantationEditActivity.this, "Date format not correct",
                     Toast.LENGTH_LONG).show();
         }

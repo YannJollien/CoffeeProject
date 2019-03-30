@@ -14,14 +14,13 @@ import com.example.coffeeproject2.database.entity.Plantation;
 //Database for Plantation
 @Database(entities = {Plantation.class}, version = 1)
 public abstract class PlantationDatabase extends RoomDatabase {
-
     private static PlantationDatabase instance;
 
     public abstract PlantationDao plantationDao();
 
-    public static synchronized PlantationDatabase getInstance(Context context){
+    public static synchronized PlantationDatabase getInstance(Context context) {
         if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(),PlantationDatabase.class,"plantation")
+            instance = Room.databaseBuilder(context.getApplicationContext(), PlantationDatabase.class, "plantation")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
@@ -30,7 +29,7 @@ public abstract class PlantationDatabase extends RoomDatabase {
     }
 
     //Um Testdaten einzufügen
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback(){
+    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
@@ -38,18 +37,18 @@ public abstract class PlantationDatabase extends RoomDatabase {
         }
     };
 
-    private static class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void> {
+    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
         private PlantationDao plantationDao;
 
-        private PopulateDbAsyncTask(PlantationDatabase plantationDatabase){
+        private PopulateDbAsyncTask(PlantationDatabase plantationDatabase) {
             plantationDao = plantationDatabase.plantationDao();
         }
 
         @Override
-        protected Void doInBackground(Void... voids){
-            plantationDao.insertPlantation(new Plantation("Arabica",12,"11.01.2015"));
-            plantationDao.insertPlantation(new Plantation("Arabica",13,"11.01.2013"));
-            plantationDao.insertPlantation(new Plantation("Arabica",14,"11.01.2012"));
+        protected Void doInBackground(Void... voids) {
+            plantationDao.insertPlantation(new Plantation("Arabica", 12, "11.01.2015"));
+            plantationDao.insertPlantation(new Plantation("Arabica", 13, "11.01.2013"));
+            plantationDao.insertPlantation(new Plantation("Arabica", 14, "11.01.2012"));
             return null;
         }
     }

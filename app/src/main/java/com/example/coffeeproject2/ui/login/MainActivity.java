@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     int NOTIFICATION_ID = 234;
     private static String CHANNEL_ID = "my_channel_01";
 
-
     Button bLogin;
     Button bRegister;
     EditText email;
@@ -48,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         bLogin = (Button) findViewById(R.id.buttonSign);
         bRegister = (Button) findViewById(R.id.buttonReg);
@@ -74,14 +71,14 @@ public class MainActivity extends AppCompatActivity {
                 //Check if user and pass are ok
                 list.add(myAppDatabase.userDao().loadUsersName(mail, pass).toString());
                 for (int i = 0; i < list.size(); i++) {
-                    if(list.get(i).contains(mail)){
+                    if (list.get(i).contains(mail)) {
                         startActivity(new Intent(MainActivity.this, MenuActivity.class));
                         System.out.println(list.get(i));
                         ProfileActivity.nameProfile = mail;
                         ProfileActivity.passProfile = pass;
                         settingsActivity = new SettingsActivity();
                         System.out.println(settingsActivity.isOn);
-                        if (settingsActivity.isOn ==true) {
+                        if (settingsActivity.isOn == true) {
                             addNotification();
                         }
                         //Calling notification when logged in
@@ -102,13 +99,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Adding the notification method
-    private void addNotification(){
+    private void addNotification() {
         NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
-
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-
-
             String CHANNEL_ID = "my_channel_01";
             CharSequence name = "my_channel";
             String Description = "This is my channel";
@@ -126,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("CoffeStorage Application")
-                .setContentText("Welcome "+mail);
+                .setContentText("Welcome " + mail);
 
 
         Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);

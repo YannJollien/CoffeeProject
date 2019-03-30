@@ -86,14 +86,13 @@ public class StorageAddActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(amountEdit.getText().toString().equals("") || dateEdit.getText().toString().equals("") ){
+                if (amountEdit.getText().toString().equals("") || dateEdit.getText().toString().equals("")) {
                     Toast.makeText(StorageAddActivity.this, "empty fields",
                             Toast.LENGTH_LONG).show();
-                }else{
-                    System.out.println("Text nicht leer");
-                    if(dateCheck(dateEdit.getText().toString())){
+                } else {
+                    if (dateCheck(dateEdit.getText().toString())) {
                         saveStorage();
-                    }else{
+                    } else {
                         Toast.makeText(StorageAddActivity.this, "date not correct",
                                 Toast.LENGTH_LONG).show();
                     }
@@ -103,7 +102,6 @@ public class StorageAddActivity extends AppCompatActivity {
         });
 
     }
-
 
     private void saveStorage() {
         String type = spinner.getSelectedItem().toString();
@@ -173,12 +171,12 @@ public class StorageAddActivity extends AppCompatActivity {
             } else {
                 return false;
             }
-        }catch (StringIndexOutOfBoundsException a){
+        } catch (StringIndexOutOfBoundsException a) {
             Toast.makeText(StorageAddActivity.this, "Date format not correct",
                     Toast.LENGTH_LONG).show();
         }
         return false;
-        }
+    }
 
 
 }

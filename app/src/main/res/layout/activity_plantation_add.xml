@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#b70d0d"
-    tools:context=".ui.plantation.PlantationAddActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.plantation.PlantationAddActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/plantation_toolbar"
@@ -24,74 +24,74 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="5dp"
-        android:textColor="#ffffff"
-        android:text="@string/plantation_type" />
+        android:text="@string/plantation_type"
+        android:textColor="#ffffff" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
-        android:textColor="#ffffff"
-        android:layout_height="wrap_content" />
+        android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="5dp"
-        android:textColor="#ffffff"
-        android:text="@string/plantation_hectare" />
+        android:text="@string/plantation_hectare"
+        android:textColor="#ffffff" />
 
     <EditText
         android:id="@+id/add_hectare"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
         android:ems="10"
         android:hint="In ha"
+        android:inputType="numberDecimal"
         android:textColor="#ffffff"
-        android:textColorHint="#999999"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:inputType="numberDecimal" />
+        android:textColorHint="#999999" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:textColor="#ffffff"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="5dp"
-        android:text="@string/plantation_date" />
+        android:text="@string/plantation_date"
+        android:textColor="#ffffff" />
 
     <EditText
         android:id="@+id/add_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:textColorHint="#999999"
-        android:hint="dd.mm.yyyy"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
-        android:ems="10"/>
+        android:ems="10"
+        android:hint="dd.mm.yyyy"
+        android:textColor="#ffffff"
+        android:textColorHint="#999999" />
 
     <Button
         android:id="@+id/save_add_plantation"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/round_button"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="60dp"
         android:layout_marginRight="5dp"
+        android:background="@drawable/round_button"
         android:text="@string/plantation_add" />
 
 </LinearLayout>

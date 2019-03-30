@@ -18,7 +18,7 @@ public interface UserDao {
 
     //Get email and password for login
     @Query("SELECT Email from users where Email = :email and Password = :pass")
-    List<String> loadUsersName (String email,String pass);
+    List<String> loadUsersName(String email, String pass);
 
     //Delete user
     @Query("Delete from users where Email = :email")

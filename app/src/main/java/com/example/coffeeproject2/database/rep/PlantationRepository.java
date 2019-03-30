@@ -18,7 +18,7 @@ public class PlantationRepository {
     //List of all plantations
     private LiveData<List<Plantation>> allPlantation;
 
-    public  PlantationRepository(Application application){
+    public PlantationRepository(Application application) {
         PlantationDatabase database = PlantationDatabase.getInstance(application);
         plantationDao = database.plantationDao();
         //Getting all
@@ -26,79 +26,79 @@ public class PlantationRepository {
     }
 
     //Operation methods useing async classes
-    public void insert(Plantation plantation){
+    public void insert(Plantation plantation) {
         new InsertPlantationAsyncTask(plantationDao).execute(plantation);
     }
 
-    public void delete(Plantation plantation){
+    public void delete(Plantation plantation) {
         new DeletePlantationAsyncTask(plantationDao).execute(plantation);
     }
 
-    public void update(Plantation plantation){
+    public void update(Plantation plantation) {
         new UpdatePlantationAsyncTask(plantationDao).execute(plantation);
     }
 
-    public void deleteAllStorage(){
+    public void deleteAllStorage() {
         new DeleteAllPlantationAsyncTask(plantationDao).execute();
     }
 
-    public LiveData<List<Plantation>> getAllPlantation(){
+    public LiveData<List<Plantation>> getAllPlantation() {
         return allPlantation;
     }
 
     //All classes as inner class to have everything synchronous
 
-    private static class InsertPlantationAsyncTask extends AsyncTask<Plantation,Void,Void> {
+    private static class InsertPlantationAsyncTask extends AsyncTask<Plantation, Void, Void> {
         private PlantationDao plantationDao;
 
-        private InsertPlantationAsyncTask(PlantationDao plantationDao){
-            this.plantationDao=plantationDao;
+        private InsertPlantationAsyncTask(PlantationDao plantationDao) {
+            this.plantationDao = plantationDao;
         }
 
         @Override
-        protected Void doInBackground(Plantation... plantations){
+        protected Void doInBackground(Plantation... plantations) {
             plantationDao.insertPlantation(plantations[0]);
             return null;
         }
     }
 
-    private static class UpdatePlantationAsyncTask extends AsyncTask<Plantation,Void,Void>{
+    private static class UpdatePlantationAsyncTask extends AsyncTask<Plantation, Void, Void> {
         private PlantationDao plantationDao;
 
-        private UpdatePlantationAsyncTask(PlantationDao plantationDao){
-            this.plantationDao=plantationDao;
+        private UpdatePlantationAsyncTask(PlantationDao plantationDao) {
+            this.plantationDao = plantationDao;
         }
 
         @Override
-        protected Void doInBackground(Plantation... plantations){
+        protected Void doInBackground(Plantation... plantations) {
             plantationDao.updatePlantation(plantations[0]);
             return null;
         }
     }
 
-    private static class DeletePlantationAsyncTask extends AsyncTask<Plantation,Void,Void>{
+    private static class DeletePlantationAsyncTask extends AsyncTask<Plantation, Void, Void> {
         private PlantationDao plantationDao;
 
-        private DeletePlantationAsyncTask(PlantationDao plantationDao){
-            this.plantationDao=plantationDao;
+        private DeletePlantationAsyncTask(PlantationDao plantationDao) {
+            this.plantationDao = plantationDao;
         }
 
         @Override
-        protected Void doInBackground(Plantation... plantations){
+        protected Void doInBackground(Plantation... plantations) {
             plantationDao.deletePlantation(plantations[0]);
             return null;
         }
     }
 
-    private static class DeleteAllPlantationAsyncTask extends AsyncTask<Void,Void,Void>{
+    private static class DeleteAllPlantationAsyncTask extends AsyncTask<Void, Void, Void> {
         private PlantationDao plantationDao;
 
-        private DeleteAllPlantationAsyncTask(PlantationDao plantationDao){
-            this.plantationDao=plantationDao;
+        private DeleteAllPlantationAsyncTask(PlantationDao plantationDao) {
+            this.plantationDao = plantationDao;
         }
 
         @Override
-        protected Void doInBackground(Void... voids){
+        protected Void doInBackground(Void... voids) {
             plantationDao.deleteAllPlantation();
             return null;
         }

@@ -26,7 +26,6 @@ public class DatabaseInitializer {
         db.userDao().insertUser(user);
     }
 
-
     private static void populateWithTestData(AppDatabase db) {
 
         addClient(db,
@@ -50,10 +49,7 @@ public class DatabaseInitializer {
         }
     }
 
-
-
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
-
         private final AppDatabase database;
 
         PopulateDbAsync(AppDatabase db) {
@@ -65,6 +61,5 @@ public class DatabaseInitializer {
             populateWithTestData(database);
             return null;
         }
-
     }
 }

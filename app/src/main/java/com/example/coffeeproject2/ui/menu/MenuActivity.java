@@ -45,8 +45,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class MenuActivity extends AppCompatActivity {
-
-
     private DrawerLayout drawerLayout;
     private Locale locale;
     String currentLanguage = "en", currentLang;
@@ -59,10 +57,6 @@ public class MenuActivity extends AppCompatActivity {
     double sumStorage;
     double sumPlantation;
 
-    double amArab = 0;
-    double amRob = 0;
-    double amL = 0;
-
     float[] am = {0,0,0};
     float[] hec = {0,0,0};
     String[] typ = {"Arabica" , "Robusta" , "Liberica" };
@@ -73,8 +67,6 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
-
 
         //Display the drawer
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -89,11 +81,8 @@ public class MenuActivity extends AppCompatActivity {
         //get Sum Storage
         sumStorage();
 
-
-
         //get Sum Plantaiton
         sumPlantation();
-
 
         //Calling the items and tell them what to do
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -140,9 +129,6 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(new Intent(MenuActivity.this, ProfileActivity.class));
             }
         });
-
-
-
     }
     //setup chart
     public void setupPieChartCoffee(float [] a, String [] b){
@@ -151,14 +137,15 @@ public class MenuActivity extends AppCompatActivity {
         for(int i = 0; i < a.length; i++){
             pieEntries.add(new PieEntry(a[i], b[i]));
         }
-
         PieDataSet dataSet = new PieDataSet(pieEntries, "Statistics");
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
 
         PieData data = new PieData(dataSet);
+        data.setValueTextSize(30);
 
         PieChart chart = (PieChart) findViewById(R.id.chart);
         chart.getLegend().setEnabled(false);
+        chart.getDescription().setEnabled(false);
         chart.setData(data);
         chart.invalidate();
 
@@ -175,10 +162,12 @@ public class MenuActivity extends AppCompatActivity {
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
 
         PieData data = new PieData(dataSet);
+        data.setValueTextSize(30);
 
         PieChart chart = (PieChart) findViewById(R.id.chart2);
         chart.getLegend().setEnabled(false);
         chart.setData(data);
+        chart.getDescription().setEnabled(false);
         chart.invalidate();
 
     }
@@ -193,8 +182,6 @@ public class MenuActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 
     //Change language method
     public void setLocale(String localeName) {
@@ -214,7 +201,6 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void sumStorage(){
-
         sumS = (TextView)findViewById(R.id.sum_storage);
         storageViewModel = ViewModelProviders.of(this).get(StorageViewModel.class);
         storageViewModel.getAllStorage().observe(this, new Observer<List<Storage>>() {
@@ -239,21 +225,17 @@ public class MenuActivity extends AppCompatActivity {
                         case "Liberica":
                             am[2] += storages.get(i).getAmount();
                     }
-
-
                 }
                 System.out.println("Hier");
                 for(int j = 0; j < am.length; j++){
                     System.out.println(am[j]);
                 }
                 setupPieChartCoffee(am, typ);
-
             }
         });
     }
 
     public void sumPlantation(){
-
         sumP = (TextView)findViewById(R.id.sum_plantation);
         plantationViewModel = ViewModelProviders.of(this).get(PlantationViewModel.class);
         plantationViewModel.getAllPlantation().observe(this, new Observer<List<Plantation>>() {

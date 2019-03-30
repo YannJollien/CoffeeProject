@@ -43,7 +43,6 @@
     <string name="add_button">Add</string>
 
 
-
     <!-- Strings related to type -->
     <string-array name="types_array">
         <item>Arabica</item>

@@ -51,20 +51,20 @@ public class PlantationViewActivity extends AppCompatActivity {
         final PlantationAdapterView adapter = new PlantationAdapterView();
         recyclerView.setAdapter(adapter);
 
-        bEdit = (Button)findViewById(R.id.btn_edit_plantation);
-        bAdd = (Button)findViewById(R.id.btn_add_plantation);
+        bEdit = (Button) findViewById(R.id.btn_edit_plantation);
+        bAdd = (Button) findViewById(R.id.btn_add_plantation);
 
         bEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlantationViewActivity.this,  PlantationViewList.class));
+                startActivity(new Intent(PlantationViewActivity.this, PlantationViewList.class));
             }
         });
 
         bAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlantationViewActivity.this,  PlantationAddActivity.class));
+                startActivity(new Intent(PlantationViewActivity.this, PlantationAddActivity.class));
             }
         });
 
@@ -87,63 +87,7 @@ public class PlantationViewActivity extends AppCompatActivity {
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
-/*
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
-                return false;
-            }
 
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-                plantationViewModel.delete(adapter.getStorageAt(viewHolder.getAdapterPosition()));
-                //startActivity(new Intent(StorageViewActivity.this, StorageEditActivity.class));
-            }
-        }).attachToRecyclerView(recyclerView);
-
-        adapter.setOnItemClickListener(new PlantationAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Plantation plantation) {
-                Intent intent = new Intent(PlantationViewActivity.this, PlantationEditActivity.class);
-                intent.putExtra(PlantationEditActivity.EXTRA_ID, plantation.getId());
-                intent.putExtra(PlantationEditActivity.EXTRA_TYPE, plantation.getType());
-                intent.putExtra(PlantationEditActivity.EXTRA_HECTARE, plantation.getHectare() + "");
-                intent.putExtra(PlantationEditActivity.EXTRA_DATE, plantation.getDate());
-                startActivityForResult(intent, EDIT_NOTE_REQUEST    );
-            }
-        });
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK){
-            String hectare = data.getStringExtra(PlantationEditActivity.EXTRA_HECTARE);
-            String date = data.getStringExtra(PlantationEditActivity.EXTRA_DATE);
-            String spinner = data.getStringExtra(PlantationEditActivity.EXTRA_TYPE);
-
-            Plantation plantation = new Plantation(spinner,Double.parseDouble(hectare) , date);
-            plantationViewModel.insert(plantation);
-        }else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK){
-            int id = data.getIntExtra(PlantationEditActivity.EXTRA_ID, -1 );
-
-            if(id == -1){
-                Toast.makeText(this, "Plantation updated", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // String amount = data.getStringExtra(StorageEditActivity.EXTRA_AMOUNT);
-            String date = data.getStringExtra(PlantationEditActivity.EXTRA_DATE);
-            String hectare = data.getStringExtra(PlantationEditActivity.EXTRA_HECTARE);
-            String spinner = data.getStringExtra(PlantationEditActivity.EXTRA_TYPE);
-
-            //double amount2 = Double.parseDouble(amount);
-
-            Plantation plantation = new Plantation(spinner,Double.parseDouble(hectare) , date);
-            plantation.setId(id);
-            plantationViewModel.update(plantation);
-        }
-        */
     }
 
 }

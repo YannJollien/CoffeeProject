@@ -35,16 +35,16 @@ public class SettingsAboutActivity extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-        build = (TextView)findViewById(R.id.about_version);
+        build = (TextView) findViewById(R.id.about_version);
 
-        build1 = (TextView)findViewById(R.id.about_version1);
+        build1 = (TextView) findViewById(R.id.about_version1);
 
-        build2 = (TextView)findViewById(R.id.about_version2);
+        build2 = (TextView) findViewById(R.id.about_version2);
 
-        build.setText("Version "+ BuildConfig.VERSION_NAME);
+        build.setText("Version " + BuildConfig.VERSION_NAME);
 
-        build1.setText("VersionID " +Build.ID);
+        build1.setText("VersionID " + Build.ID);
 
-        build2.setText("Running on "+Build.DEVICE);
+        build2.setText("Running on " + Build.DEVICE);
     }
 }

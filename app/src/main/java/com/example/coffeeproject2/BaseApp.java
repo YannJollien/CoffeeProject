@@ -18,6 +18,4 @@ public class BaseApp extends Application {
         return AppDatabase.getInstance(this);
     }
 
-
-
 }

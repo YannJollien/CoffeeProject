@@ -38,9 +38,6 @@
             android:name=".ui.storage.StorageAddActivity"
             android:parentActivityName=".ui.storage.StorageActivity" />
         <activity
-            android:name=".ui.plantation.PlantationActivity"
-            android:parentActivityName=".ui.menu.MenuActivity" />
-        <activity
             android:name=".settings.SettingsActivity"
             android:parentActivityName=".ui.menu.MenuActivity" />
         <activity

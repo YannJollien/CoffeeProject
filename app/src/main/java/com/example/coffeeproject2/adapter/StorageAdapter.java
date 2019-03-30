@@ -25,7 +25,6 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageH
     private List<Storage> storageList = new ArrayList<>();
     private OnItemClickListener listener;
 
-
     @NonNull
     @Override
     public StorageHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -40,7 +39,6 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageH
         storageHolder.textViewType.setText(currentStorage.getType());
         storageHolder.textViewAmount.setText(String.valueOf(currentStorage.getAmount()));
         storageHolder.textViewDate.setText(currentStorage.getDate());
-
     }
 
     @Override
@@ -77,8 +75,8 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageH
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     //if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(storageList.get(position));
-                   // }
+                    listener.onItemClick(storageList.get(position));
+                    // }
                 }
             });
 
@@ -87,7 +85,6 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageH
 
     public interface OnItemClickListener {
         void onItemClick(Storage storage);
-
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

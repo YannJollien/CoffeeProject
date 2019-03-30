@@ -14,7 +14,7 @@ import com.example.coffeeproject2.database.entity.Plantation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlantationAdapterView extends RecyclerView.Adapter<PlantationAdapterView.PlantationHolder>  {
+public class PlantationAdapterView extends RecyclerView.Adapter<PlantationAdapterView.PlantationHolder> {
 
     private List<Plantation> plantationList = new ArrayList<>();
 
@@ -22,7 +22,7 @@ public class PlantationAdapterView extends RecyclerView.Adapter<PlantationAdapte
     @Override
     public PlantationHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.plantation_view_2,viewGroup,false);
+                .inflate(R.layout.plantation_view_2, viewGroup, false);
         return new PlantationHolder(itemView);
     }
 
@@ -44,23 +44,21 @@ public class PlantationAdapterView extends RecyclerView.Adapter<PlantationAdapte
         return plantationList.size();
     }
 
-    public void setPlantation(List<Plantation> plantations){
+    public void setPlantation(List<Plantation> plantations) {
         this.plantationList = plantations;
         notifyDataSetChanged();
     }
 
-    class PlantationHolder extends RecyclerView.ViewHolder{
+    class PlantationHolder extends RecyclerView.ViewHolder {
         private TextView textViewType;
         private TextView textViewHectare;
         private TextView textViewDate;
-
 
         public PlantationHolder(@NonNull View itemView) {
             super(itemView);
             textViewType = itemView.findViewById(R.id.text_view_type);
             textViewHectare = itemView.findViewById(R.id.text_view_hectare);
             textViewDate = itemView.findViewById(R.id.text_view_date);
-
         }
     }
 }

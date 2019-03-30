@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#b70f0f">
+    android:background="#b70f0f"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/plantation_toolbar"
@@ -23,8 +23,7 @@
         android:id="@+id/recycler_view_plantation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/plantation_view">
-    </android.support.v7.widget.RecyclerView>
+        tools:listitem="@layout/plantation_view"></android.support.v7.widget.RecyclerView>
 
 
 </LinearLayout>

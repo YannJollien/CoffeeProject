@@ -39,9 +39,9 @@ public class StorageEditActivity extends AppCompatActivity {
     public static final String EXTRA_DATE =
             "com.example.coffeeproject2.ui.storage.EXTRA_DATE;";
 
-    public  Spinner spinner;
-    public  EditText amountEdit;
-    public  EditText dateEdit;
+    public Spinner spinner;
+    public EditText amountEdit;
+    public EditText dateEdit;
 
     private StorageViewModel storageViewModel;
 
@@ -90,7 +90,7 @@ public class StorageEditActivity extends AppCompatActivity {
         spinner.setSelection(2);
 
 
-        storageDatabase = Room.databaseBuilder(getApplicationContext(), StorageDatabase.class,"storage").allowMainThreadQueries().build();
+        storageDatabase = Room.databaseBuilder(getApplicationContext(), StorageDatabase.class, "storage").allowMainThreadQueries().build();
 
 
         // Create  an ArrayAdapter using the string array and a default spinner layout
@@ -104,11 +104,11 @@ public class StorageEditActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
         //Get the info by id
-        save = (Button)findViewById(R.id.save_add_storage);
-        cancel = (Button)findViewById(R.id.btn_cancel);
+        save = (Button) findViewById(R.id.save_add_storage);
+        cancel = (Button) findViewById(R.id.btn_cancel);
 
-        amountEdit = (EditText)findViewById(R.id.add_amount);
-        dateEdit = (EditText)findViewById(R.id.add_date);
+        amountEdit = (EditText) findViewById(R.id.add_amount);
+        dateEdit = (EditText) findViewById(R.id.add_date);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,10 +134,10 @@ public class StorageEditActivity extends AppCompatActivity {
                 finish();
             }
         });
-    spinner.setSelection(getIndex(spinner, intent.getStringExtra(EXTRA_TYPE)));
+        spinner.setSelection(getIndex(spinner, intent.getStringExtra(EXTRA_TYPE)));
     }
 
-    private void saveStorage(){
+    private void saveStorage() {
         String type = spinner.getSelectedItem().toString();
         String amount = amountEdit.getText().toString();
         String date = dateEdit.getText().toString();
@@ -148,7 +148,7 @@ public class StorageEditActivity extends AppCompatActivity {
         data.putExtra(EXTRA_DATE, date);
 
         int id = getIntent().getIntExtra(EXTRA_ID, -1);
-        if(id != -1){
+        if (id != -1) {
             data.putExtra(EXTRA_ID, id);
         }
 
@@ -180,13 +180,14 @@ public class StorageEditActivity extends AppCompatActivity {
 
         }
     }
+
     //index finder
-    private int getIndex(Spinner spinner, String myString){
+    private int getIndex(Spinner spinner, String myString) {
 
         int index = 0;
 
-        for (int i=0;i<spinner.getCount();i++){
-            if (spinner.getItemAtPosition(i).equals(myString)){
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).equals(myString)) {
                 index = i;
             }
         }
@@ -221,7 +222,7 @@ public class StorageEditActivity extends AppCompatActivity {
             } else {
                 return false;
             }
-        }catch (StringIndexOutOfBoundsException a){
+        } catch (StringIndexOutOfBoundsException a) {
             Toast.makeText(StorageEditActivity.this, "Date format not correct",
                     Toast.LENGTH_LONG).show();
         }

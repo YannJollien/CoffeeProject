@@ -44,9 +44,9 @@ public class SettingsActivity extends PreferenceActivity {
 
         list = (ListPreference) findPreference("languageType");
 
-        preference = (Preference)findPreference("about");
+        preference = (Preference) findPreference("about");
 
-        notif = (SwitchPreference)findPreference("switch");
+        notif = (SwitchPreference) findPreference("switch");
 
         notif.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override

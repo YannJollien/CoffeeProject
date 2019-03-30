@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#b70f0f"
-    tools:context=".ui.login.RegisterActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.login.RegisterActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/register_toolbar"
@@ -24,11 +24,11 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"
-        android:textColor="#ffffff"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="5dp"
-        android:text="@string/view_name" />
+        android:text="@string/view_name"
+        android:textColor="#ffffff" />
 
     <EditText
         android:id="@+id/nameRegister"
@@ -36,21 +36,21 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:textColor="#ffffff"
-        android:textColorHint="#999999"
         android:layout_marginRight="5dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="#ffffff"
+        android:textColorHint="#999999" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="5dp"
-        android:textColor="#ffffff"
-        android:text="@string/view_lastname" />
+        android:text="@string/view_lastname"
+        android:textColor="#ffffff" />
 
     <EditText
         android:id="@+id/lNameRegister"
@@ -60,19 +60,19 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
         android:ems="10"
+        android:inputType="textPersonName"
         android:textColor="#ffffff"
-        android:textColorHint="#999999"
-        android:inputType="textPersonName" />
+        android:textColorHint="#999999" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="5dp"
-        android:textColor="#ffffff"
-        android:text="@string/view_mail" />
+        android:text="@string/view_mail"
+        android:textColor="#ffffff" />
 
     <EditText
         android:id="@+id/mailRegister"
@@ -82,18 +82,18 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
         android:ems="10"
-        android:textColor="#ffffff"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="5dp"
-        android:textColor="#ffffff"
-        android:text="@string/view_pass" />
+        android:text="@string/view_pass"
+        android:textColor="#ffffff" />
 
     <EditText
         android:id="@+id/passRegister"
@@ -103,9 +103,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
         android:ems="10"
+        android:inputType="textPersonName"
         android:textColor="#ffffff"
-        android:textColorHint="#999999"
-        android:inputType="textPersonName" />
+        android:textColorHint="#999999" />
 
     <Button
         android:id="@+id/button_save"
@@ -113,8 +113,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="60dp"
-        android:background="@drawable/round_button"
         android:layout_marginRight="5dp"
+        android:background="@drawable/round_button"
         android:text="@string/button_saveRegister" />
 
 </LinearLayout>

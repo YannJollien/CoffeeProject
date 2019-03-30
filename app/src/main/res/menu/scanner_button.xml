@@ -1,10 +1,11 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Qr code scanner  -->
     <item
         android:id="@+id/action_qr"
         android:icon="@drawable/ic_photo_camera_black_24dp"
         android:title="@string/storage_qr"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 
 </menu>

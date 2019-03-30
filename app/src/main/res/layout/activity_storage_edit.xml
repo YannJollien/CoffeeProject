@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.storage.StorageAddActivity"
+    android:background="#b70d0d"
     android:orientation="vertical"
-    android:background="#b70d0d">
+    tools:context=".ui.storage.StorageAddActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/storage_toolbar"
@@ -24,65 +24,65 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="5dp"
-        android:textColor="#ffffff"
-        android:text="@string/storage_type" />
+        android:text="@string/storage_type"
+        android:textColor="#ffffff" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
-        android:textColor="#ffffff"
-        android:layout_height="wrap_content" />
+        android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="5dp"
-        android:textColor="#ffffff"
-        android:text="@string/storage_amount" />
+        android:text="@string/storage_amount"
+        android:textColor="#ffffff" />
 
     <EditText
         android:id="@+id/add_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
         android:ems="10"
         android:hint="In kg"
-        android:textColorHint="#999999"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
+        android:inputType="numberDecimal"
         android:textColor="#ffffff"
-        android:layout_marginRight="5dp"
-        android:inputType="numberDecimal" />
+        android:textColorHint="#999999" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="5dp"
-        android:textColor="#ffffff"
-        android:text="@string/storage_date" />
+        android:text="@string/storage_date"
+        android:textColor="#ffffff" />
 
     <EditText
         android:id="@+id/add_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
-        android:textColorHint="#999999"
-        android:textColor="#ffffff"
+        android:ems="10"
         android:hint="dd.mm.yyyy"
-        android:ems="10"/>
+        android:textColor="#ffffff"
+        android:textColorHint="#999999" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -97,18 +97,18 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="5dp"
-            android:textColor="#b70f0f"
             android:background="@drawable/round_button"
-            android:text="@string/storage_save" />
+            android:text="@string/storage_save"
+            android:textColor="#b70f0f" />
 
         <Button
             android:id="@+id/btn_cancel"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:textColor="#b70f0f"
             android:background="@drawable/round_button"
-            android:text="Cancel" />
+            android:text="Cancel"
+            android:textColor="#b70f0f" />
     </LinearLayout>
 
 </LinearLayout>

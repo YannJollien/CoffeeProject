@@ -14,14 +14,13 @@ import com.example.coffeeproject2.database.entity.Storage;
 //DataBase for Storage
 @Database(entities = {Storage.class}, version = 1)
 public abstract class StorageDatabase extends RoomDatabase {
-
     private static StorageDatabase instance;
 
     public abstract StorageDao storageDao();
 
-    public static synchronized StorageDatabase getInstance(Context context){
+    public static synchronized StorageDatabase getInstance(Context context) {
         if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(),StorageDatabase.class,"storage")
+            instance = Room.databaseBuilder(context.getApplicationContext(), StorageDatabase.class, "storage")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
@@ -30,7 +29,7 @@ public abstract class StorageDatabase extends RoomDatabase {
     }
 
     //Um Testdaten einzufügen
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback(){
+    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
@@ -38,18 +37,18 @@ public abstract class StorageDatabase extends RoomDatabase {
         }
     };
 
-    private static class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void>{
+    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
         private StorageDao storageDao;
 
-        private PopulateDbAsyncTask(StorageDatabase storageDatabase){
+        private PopulateDbAsyncTask(StorageDatabase storageDatabase) {
             storageDao = storageDatabase.storageDao();
         }
 
         @Override
-        protected Void doInBackground(Void... voids){
-            storageDao.insertStorage(new Storage("Arabica",123,"11.01.2015"));
-            storageDao.insertStorage(new Storage("Arabica",154,"11.01.2018"));
-            storageDao.insertStorage(new Storage("Arabica",54,"11.01.2012"));
+        protected Void doInBackground(Void... voids) {
+            storageDao.insertStorage(new Storage("Arabica", 123, "11.01.2015"));
+            storageDao.insertStorage(new Storage("Arabica", 154, "11.01.2018"));
+            storageDao.insertStorage(new Storage("Arabica", 54, "11.01.2012"));
             return null;
         }
     }

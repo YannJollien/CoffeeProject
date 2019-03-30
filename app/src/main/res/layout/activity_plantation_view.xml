@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#b70f0f">
+    android:background="#b70f0f"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/plantation_toolbar"
@@ -34,8 +34,8 @@
             android:id="@+id/btn_add_plantation"
             android:layout_width="174dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="50dp"
             android:layout_marginTop="50dp"
+            android:layout_marginRight="50dp"
             android:background="@drawable/button_white"
             android:text="Add"
             android:textColor="#ffffff"
@@ -49,15 +49,13 @@
             android:background="@drawable/button_white"
             android:text="Edit"
             android:textColor="#ffffff"
-            android:textSize="22dp"  />
+            android:textSize="22dp" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_plantation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/plantation_view_2">
-    </android.support.v7.widget.RecyclerView>
-
+        tools:listitem="@layout/plantation_view_2"></android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

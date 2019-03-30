@@ -67,16 +67,6 @@ public class StorageViewList extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-        /**adapter.setOnItemClickListener(new StorageAdapter.OnItemClickListener() {
-        @Override
-        public void onItemClick(Storage storage) {
-        Intent intent = new Intent(StorageViewActivity.this, StorageEditActivity.class);
-        intent.putExtra(StorageEditActivity.EXTRA_ID, storage.getId());
-
-        }
-        });
-
-         */
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
@@ -98,26 +88,26 @@ public class StorageViewList extends AppCompatActivity {
                 intent.putExtra(StorageEditActivity.EXTRA_TYPE, storage.getType());
                 intent.putExtra(StorageEditActivity.EXTRA_AMOUNT, storage.getAmount() + "");
                 intent.putExtra(StorageEditActivity.EXTRA_DATE, storage.getDate());
-                startActivityForResult(intent, EDIT_NOTE_REQUEST    );
+                startActivityForResult(intent, EDIT_NOTE_REQUEST);
             }
         });
 
-
     }
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK){
+        if (requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
             String amount = data.getStringExtra(StorageEditActivity.EXTRA_AMOUNT);
             String date = data.getStringExtra(StorageEditActivity.EXTRA_DATE);
             String spinner = data.getStringExtra(StorageEditActivity.EXTRA_TYPE);
 
-            Storage storage = new Storage(spinner,Double.parseDouble(amount) , date);
+            Storage storage = new Storage(spinner, Double.parseDouble(amount), date);
             storageViewModel.insert(storage);
-        }else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK){
-            int id = data.getIntExtra(StorageEditActivity.EXTRA_ID, -1 );
+        } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK) {
+            int id = data.getIntExtra(StorageEditActivity.EXTRA_ID, -1);
 
-            if(id == -1){
+            if (id == -1) {
                 Toast.makeText(this, "Storage updated", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -129,37 +119,9 @@ public class StorageViewList extends AppCompatActivity {
 
             //double amount2 = Double.parseDouble(amount);
 
-            Storage storage = new Storage(spinner,Double.parseDouble(amount) , date);
+            Storage storage = new Storage(spinner, Double.parseDouble(amount), date);
             storage.setId(id);
             storageViewModel.update(storage);
         }
     }
-    /**
-    //set the add item in Actionbar
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.add_button, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    //When add icon clicked open add Actitivy
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_add:
-                //Show scanner
-                startActivity(new Intent(getApplicationContext(), StorageAddActivity.class));
-                return true;
-
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-
-        }
-
-    }
-
-     */
 }

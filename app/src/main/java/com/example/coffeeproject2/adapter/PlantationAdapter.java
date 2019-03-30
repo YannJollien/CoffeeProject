@@ -16,16 +16,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Plantation adapter
-public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.PlantationHolder>  {
+public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.PlantationHolder> {
 
     private List<Plantation> plantationList = new ArrayList<>();
     private OnItemClickListener listener;
-    //test test test
+
     @NonNull
     @Override
     public PlantationHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.plantation_view,viewGroup,false);
+                .inflate(R.layout.plantation_view, viewGroup, false);
         return new PlantationHolder(itemView);
     }
 
@@ -49,12 +49,12 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
         return plantationList.size();
     }
 
-    public void setPlantation(List<Plantation> plantations){
+    public void setPlantation(List<Plantation> plantations) {
         this.plantationList = plantations;
         notifyDataSetChanged();
     }
 
-    class PlantationHolder extends RecyclerView.ViewHolder{
+    class PlantationHolder extends RecyclerView.ViewHolder {
         private TextView textViewType;
         private TextView textViewHectare;
         private TextView textViewDate;
@@ -72,7 +72,7 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if (listener != null && position != RecyclerView.NO_POSITION) {
-                    listener.onItemClick(plantationList.get(position));
+                        listener.onItemClick(plantationList.get(position));
                     }
                 }
             });
@@ -81,11 +81,9 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
 
     public interface OnItemClickListener {
         void onItemClick(Plantation plantation);
-
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener)
-    {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 }

@@ -31,9 +31,9 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         ScannerView = new ZXingScannerView(this);
         setContentView(ScannerView);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if (checkPermission()){
-                Toast.makeText(ScanActivity.this,"Permission is granted!",Toast.LENGTH_LONG).show();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkPermission()) {
+                Toast.makeText(ScanActivity.this, "Permission is granted!", Toast.LENGTH_LONG).show();
             } else {
                 requestPermissions();
             }
@@ -43,29 +43,29 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
     //Getting permissions
     private void requestPermissions() {
-        ActivityCompat.requestPermissions(this,new String[]{CAMERA},REQUEST_CAMERA);
+        ActivityCompat.requestPermissions(this, new String[]{CAMERA}, REQUEST_CAMERA);
     }
 
-    private boolean checkPermission(){
-        return (ContextCompat.checkSelfPermission(ScanActivity.this, CAMERA)== PackageManager.PERMISSION_GRANTED);
+    private boolean checkPermission() {
+        return (ContextCompat.checkSelfPermission(ScanActivity.this, CAMERA) == PackageManager.PERMISSION_GRANTED);
     }
 
     //Check if SDK is ok, giving permission to use camera or not
-    public void onRequestPermissionsResult(int requestCode, String permission[],int grantResult[]){
-        switch(requestCode){
+    public void onRequestPermissionsResult(int requestCode, String permission[], int grantResult[]) {
+        switch (requestCode) {
             case REQUEST_CAMERA:
-                if (grantResult.length > 0){
+                if (grantResult.length > 0) {
                     boolean cameraAccepted = grantResult[0] == PackageManager.PERMISSION_GRANTED;
-                    if (cameraAccepted){
-                        Toast.makeText(ScanActivity.this,"Permission Granted",Toast.LENGTH_LONG).show();
-                    } else{
-                        Toast.makeText(ScanActivity.this,"Permission Denied",Toast.LENGTH_LONG).show();
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                            if (shouldShowRequestPermissionRationale(CAMERA)){
+                    if (cameraAccepted) {
+                        Toast.makeText(ScanActivity.this, "Permission Granted", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(ScanActivity.this, "Permission Denied", Toast.LENGTH_LONG).show();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            if (shouldShowRequestPermissionRationale(CAMERA)) {
                                 displayAlertMessage("You need to allow access for both permissions", new DialogInterface.OnCancelListener() {
                                     @Override
                                     public void onCancel(DialogInterface dialog) {
-                                        ActivityCompat.requestPermissions(ScanActivity.this,new String[]{CAMERA},REQUEST_CAMERA);
+                                        ActivityCompat.requestPermissions(ScanActivity.this, new String[]{CAMERA}, REQUEST_CAMERA);
                                     }
                                 });
                                 return;
@@ -79,11 +79,11 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         }
     }
 
-    public void displayAlertMessage(String message, DialogInterface.OnCancelListener listener){
+    public void displayAlertMessage(String message, DialogInterface.OnCancelListener listener) {
         new AlertDialog.Builder(ScanActivity.this)
                 .setMessage(message)
                 .setPositiveButton("OK", (DialogInterface.OnClickListener) listener)
-                .setNegativeButton("Cancel",null)
+                .setNegativeButton("Cancel", null)
                 .create()
                 .show();
     }
@@ -93,12 +93,12 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     public void handleResult(Result result) {
 
         data = result.toString();
-        String array [] = data.split(",");
-        if (array[0].equals("Arabica")){
+        String array[] = data.split(",");
+        if (array[0].equals("Arabica")) {
             StorageAddActivity.spinner.setSelection(0);
-        } else if (array[0].equals("Robusta")){
+        } else if (array[0].equals("Robusta")) {
             StorageAddActivity.spinner.setSelection(1);
-        }else if (array[0].equals("Liberica")) {
+        } else if (array[0].equals("Liberica")) {
             StorageAddActivity.spinner.setSelection(2);
         }
         StorageAddActivity.amountEdit.setText(array[1]);
@@ -110,14 +110,14 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     }
 
     @Override
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
 
         ScannerView.stopCamera();
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -128,12 +128,11 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                 }
                 ScannerView.setResultHandler(this);
                 ScannerView.startCamera();
-            } else{
+            } else {
                 requestPermissions();
             }
 
         }
     }
-
 
 }
