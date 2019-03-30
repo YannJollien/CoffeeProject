@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -108,7 +109,6 @@ public class MenuActivity extends AppCompatActivity {
                             case R.id.nav_lang:
                                 //calling changing langugage method
                                 setLocale("de");
-
                         }
                         return true;
                     }
@@ -134,6 +134,8 @@ public class MenuActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
     //Change language method
     public void setLocale(String localeName) {
