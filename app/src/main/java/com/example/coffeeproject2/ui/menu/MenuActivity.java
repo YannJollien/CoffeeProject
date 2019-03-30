@@ -219,8 +219,10 @@ public class MenuActivity extends AppCompatActivity {
                             break;
                         case "Robusta":
                             am[1] += storages.get(i).getAmount();
+                            break;
                         case "Liberica":
                             am[2] += storages.get(i).getAmount();
+                            break;
                     }
                 }
                 System.out.println("Hier");
@@ -251,8 +253,10 @@ public class MenuActivity extends AppCompatActivity {
                             break;
                         case "Robusta":
                             hec[1] += plantations.get(i).getHectare();
+                            break;
                         case "Liberica":
                             hec[2] += plantations.get(i).getHectare();
+                            break;
                     }
                 }
                 setupPieChartPlantation(hec, typ);
