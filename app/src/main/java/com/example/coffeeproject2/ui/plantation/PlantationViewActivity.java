@@ -51,6 +51,8 @@ public class PlantationViewActivity extends AppCompatActivity {
         final PlantationAdapterView adapter = new PlantationAdapterView();
         recyclerView.setAdapter(adapter);
 
+
+
         bEdit = (Button) findViewById(R.id.btn_edit_plantation);
         bAdd = (Button) findViewById(R.id.btn_add_plantation);
 
@@ -87,6 +89,8 @@ public class PlantationViewActivity extends AppCompatActivity {
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
+
+        setTitle("Plantation");
 
     }
 

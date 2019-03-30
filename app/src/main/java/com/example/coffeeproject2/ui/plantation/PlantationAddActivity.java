@@ -70,6 +70,8 @@ public class PlantationAddActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+        //set Titel of View
+        setTitle("Add Plantation");
 
         //Get the info by id
         save = (Button) findViewById(R.id.save_add_plantation);

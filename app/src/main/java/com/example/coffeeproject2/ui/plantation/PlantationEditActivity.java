@@ -81,12 +81,11 @@ public class PlantationEditActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        setTitle("Edit Plantation");
+
 
         dateEdit.setText(intent.getStringExtra(EXTRA_DATE));
         hectareEdit.setText(intent.getStringExtra(EXTRA_HECTARE));
         spinner.setSelection(2);
-
 
         plantationDatabase = Room.databaseBuilder(getApplicationContext(), PlantationDatabase.class, "plantation").allowMainThreadQueries().build();
 
@@ -98,7 +97,8 @@ public class PlantationEditActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
-
+        //set Titel of view
+        setTitle("Edit Plantation");
         //Get the info by id
         save = (Button) findViewById(R.id.save_add_plantation);
 

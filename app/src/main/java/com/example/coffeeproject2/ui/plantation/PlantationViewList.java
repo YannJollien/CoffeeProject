@@ -59,6 +59,8 @@ public class PlantationViewList extends AppCompatActivity {
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
 
+        setTitle("Edit Plantations");
+
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 

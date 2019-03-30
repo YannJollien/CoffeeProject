@@ -45,6 +45,7 @@ public class RegisterActivity extends AppCompatActivity{
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
+        setTitle("Registration");
 
         myAppDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,"users").allowMainThreadQueries().build();
 
