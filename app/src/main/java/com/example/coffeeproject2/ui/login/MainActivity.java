@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -67,23 +66,25 @@ public class MainActivity extends AppCompatActivity {
                 pass = password.getText().toString();
                 //Check if user and pass are ok
                 list.add(myAppDatabase.userDao().loadUsersName(mail, pass).toString());
-                for (int i = 0; i < list.size(); i++) {
-                    if (list.get(i).contains(mail)) {
-                        startActivity(new Intent(MainActivity.this, MenuActivity.class));
-                        System.out.println(list.get(i));
-                        ProfileActivity.nameProfile = mail;
-                        ProfileActivity.passProfile = pass;
-                        settingsActivity = new SettingsActivity();
-                        System.out.println(settingsActivity.isOn);
-                        if (settingsActivity.isOn == true) {
+                if (mail.equals("") || pass.equals("")) {
+                    Toast.makeText(MainActivity.this, "Please enter informations",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    for (int i = 0; i < list.size(); i++) {
+
+                        if (list.get(i).contains(mail)) {
+                            startActivity(new Intent(MainActivity.this, MenuActivity.class));
+                            System.out.println(list.get(i));
+                            ProfileActivity.nameProfile = mail;
+                            ProfileActivity.passProfile = pass;
+                            //Calling notification when logged in
                             addNotification();
+
+                        } else {
+                            Toast.makeText(MainActivity.this, "Invalid mail or password",
+                                    Toast.LENGTH_LONG).show();
+                            System.out.println("nein");
                         }
-                        //Calling notification when logged in
-                        addNotification();
-                    } else {
-                        Toast.makeText(MainActivity.this, "Invalid mail or password",
-                                Toast.LENGTH_LONG).show();
-                        System.out.println("nein");
                     }
 
                 }
