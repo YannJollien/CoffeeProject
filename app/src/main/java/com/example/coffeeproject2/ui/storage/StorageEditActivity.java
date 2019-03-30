@@ -113,7 +113,18 @@ public class StorageEditActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveStorage();
+                if (amountEdit.getText().toString().equals("") || dateEdit.getText().toString().equals("")) {
+                    Toast.makeText(StorageEditActivity.this, "empty fields",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    System.out.println("Text nicht leer");
+                    if (dateCheck(dateEdit.getText().toString())) {
+                        saveStorage();
+                    } else {
+                        Toast.makeText(StorageEditActivity.this, "date not correct",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
             }
         });
 
@@ -180,6 +191,41 @@ public class StorageEditActivity extends AppCompatActivity {
             }
         }
         return index;
+    }
+
+    public boolean dateCheck(String date) {
+        try {
+            int a = Integer.parseInt(date.substring(0, 2));
+            int b = Integer.parseInt(date.substring(3, 5));
+            int c = Integer.parseInt(date.substring(6, 10));
+
+            if (c > 1900 && c < 2400) {
+                if (b < 13 && b > 0) {
+                    if (b == 1 || b == 3 || b == 5 || b == 7 || b == 8 || b == 10 || b == 12) {
+                        if (a > 0 && a < 32) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                    if (b == 2 || b == 4 || b == 6 || b == 9 || b == 11) {
+                        if (a > 0 && a < 31) {
+                            return true;
+                        }
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+
+            } else {
+                return false;
+            }
+        }catch (StringIndexOutOfBoundsException a){
+            Toast.makeText(StorageEditActivity.this, "Date format not correct",
+                    Toast.LENGTH_LONG).show();
+        }
+        return false;
     }
 
 }
