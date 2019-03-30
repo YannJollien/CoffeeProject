@@ -100,7 +100,7 @@ public class PlantationAddActivity extends AppCompatActivity {
         String date = dateEdit.getText().toString();
         Plantation plantation = new Plantation(type, hectare, date);
         plantationViewModel.insert(plantation);
-        startActivity(new Intent(PlantationAddActivity.this, PlantationViewList.class));
+        startActivity(new Intent(PlantationAddActivity.this, PlantationViewActivity.class));
         Toast.makeText(PlantationAddActivity.this, "Saved",
                 Toast.LENGTH_LONG).show();
         hectareEdit.setText("");

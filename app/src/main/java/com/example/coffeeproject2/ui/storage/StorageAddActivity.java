@@ -25,6 +25,7 @@ import com.example.coffeeproject2.StorageViewModel;
 import com.example.coffeeproject2.database.StorageDatabase;
 import com.example.coffeeproject2.database.entity.Storage;
 import com.example.coffeeproject2.ui.plantation.PlantationAddActivity;
+import com.example.coffeeproject2.ui.plantation.PlantationViewActivity;
 import com.example.coffeeproject2.ui.plantation.PlantationViewList;
 
 import java.util.List;
@@ -111,7 +112,7 @@ public class StorageAddActivity extends AppCompatActivity {
 
         Storage storage = new Storage(type, amount, date);
         storageViewModel.insert(storage);
-        startActivity(new Intent(StorageAddActivity.this, StorageViewList.class));
+        startActivity(new Intent(StorageAddActivity.this, StorageViewActivity.class));
         Toast.makeText(StorageAddActivity.this, "Saved",
                 Toast.LENGTH_LONG).show();
         amountEdit.setText("");
