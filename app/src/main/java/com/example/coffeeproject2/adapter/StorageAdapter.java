@@ -2,19 +2,14 @@ package com.example.coffeeproject2.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.entity.Storage;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,11 +54,11 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageH
         private TextView textViewType;
         private TextView textViewAmount;
         private TextView textViewDate;
-        public ImageView editView;
+        private ImageView editView;
 
 
         //Holding the data
-        public StorageHolder(@NonNull View itemView) {
+        private StorageHolder(@NonNull View itemView) {
             super(itemView);
             textViewType = itemView.findViewById(R.id.text_view_type);
             textViewAmount = itemView.findViewById(R.id.text_view_amount);

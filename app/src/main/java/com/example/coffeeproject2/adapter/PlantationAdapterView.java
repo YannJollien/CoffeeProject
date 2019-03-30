@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.coffeeproject2.R;
@@ -26,7 +25,8 @@ public class PlantationAdapterView extends RecyclerView.Adapter<PlantationAdapte
         return new PlantationHolder(itemView);
     }
 
-    public Plantation getStorageAt(int position) {
+    public Plantation getStorageAt(int position)
+    {
         return plantationList.get(position);
     }
 
@@ -54,7 +54,7 @@ public class PlantationAdapterView extends RecyclerView.Adapter<PlantationAdapte
         private TextView textViewHectare;
         private TextView textViewDate;
 
-        public PlantationHolder(@NonNull View itemView) {
+        private PlantationHolder(@NonNull View itemView) {
             super(itemView);
             textViewType = itemView.findViewById(R.id.text_view_type);
             textViewHectare = itemView.findViewById(R.id.text_view_hectare);

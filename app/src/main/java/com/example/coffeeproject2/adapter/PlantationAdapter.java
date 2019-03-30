@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.entity.Plantation;
-import com.example.coffeeproject2.database.entity.Storage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,9 +57,9 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
         private TextView textViewType;
         private TextView textViewHectare;
         private TextView textViewDate;
-        public ImageView editView;
+        private ImageView editView;
 
-        public PlantationHolder(@NonNull View itemView) {
+        private PlantationHolder(@NonNull View itemView) {
             super(itemView);
             textViewType = itemView.findViewById(R.id.text_view_type);
             textViewHectare = itemView.findViewById(R.id.text_view_hectare);

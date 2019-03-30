@@ -3,7 +3,6 @@ package com.example.coffeeproject2.database;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.coffeeproject2.database.AppDatabase;
 import com.example.coffeeproject2.database.entity.User;
 
 
