@@ -3,6 +3,7 @@ package com.example.coffeeproject2.ui.plantation;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -99,6 +100,7 @@ public class PlantationAddActivity extends AppCompatActivity {
         String date = dateEdit.getText().toString();
         Plantation plantation = new Plantation(type, hectare, date);
         plantationViewModel.insert(plantation);
+        startActivity(new Intent(PlantationAddActivity.this, PlantationViewList.class));
         Toast.makeText(PlantationAddActivity.this, "Saved",
                 Toast.LENGTH_LONG).show();
         hectareEdit.setText("");

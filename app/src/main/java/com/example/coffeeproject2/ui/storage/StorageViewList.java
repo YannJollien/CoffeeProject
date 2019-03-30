@@ -72,7 +72,9 @@ public class StorageViewList extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
                 storageViewModel.delete(adapter.getStorageAt(viewHolder.getAdapterPosition()));
-                //startActivity(new Intent(StorageViewActivity.this, StorageEditActivity.class));
+                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(StorageViewList.this, StorageViewActivity.class));
+
             }
         }).attachToRecyclerView(recyclerView);
 

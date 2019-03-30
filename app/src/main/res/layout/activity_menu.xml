@@ -39,12 +39,13 @@
                     android:layout_marginTop="10dp"
                     android:text="Storage: 0 Kg"
                     android:textColor="#ffffff"
-                    android:textSize="32sp" />
+                    android:textSize="32sp"
+                    android:textAlignment="center"/>
 
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/chart"
-                    android:layout_width="350dp"
-                    android:layout_height="350dp"
+                    android:layout_width="230dp"
+                    android:layout_height="230dp"
                     android:layout_marginTop="10dp">
 
                 </com.github.mikephil.charting.charts.PieChart>
@@ -57,12 +58,13 @@
                     android:layout_marginTop="10dp"
                     android:text="Hectare: 0 Ha"
                     android:textColor="#ffffff"
-                    android:textSize="32sp" />
+                    android:textSize="32sp"
+                    android:textAlignment="center"/>
 
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/chart2"
-                    android:layout_width="350dp"
-                    android:layout_height="350dp"
+                    android:layout_width="230dp"
+                    android:layout_height="230dp"
                     android:layout_marginTop="10dp" />
 
             </LinearLayout>

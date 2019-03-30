@@ -18,6 +18,8 @@ import com.example.coffeeproject2.PlantationViewModel;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.adapter.PlantationAdapter;
 import com.example.coffeeproject2.database.entity.Plantation;
+import com.example.coffeeproject2.ui.storage.StorageViewActivity;
+import com.example.coffeeproject2.ui.storage.StorageViewList;
 
 import java.util.List;
 
@@ -70,7 +72,9 @@ public class PlantationViewList extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
                 plantationViewModel.delete(adapter.getStorageAt(viewHolder.getAdapterPosition()));
-                //startActivity(new Intent(StorageViewActivity.this, StorageEditActivity.class));
+                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                //Back to List
+                startActivity(new Intent(PlantationViewList.this, PlantationViewActivity.class));
             }
         }).attachToRecyclerView(recyclerView);
 
