@@ -3,11 +3,11 @@ package com.example.coffeeproject2;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.coffeeproject2.ui.storage.StorageAddActivity;
@@ -20,10 +20,10 @@ import static android.Manifest.permission.CAMERA;
 //QR scanner using ZXing
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
-    //Parameters for scanner
-    private static ZXingScannerView ScannerView;
     private static final int REQUEST_CAMERA = 1;
     static String data;
+    //Parameters for scanner
+    private static ZXingScannerView ScannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

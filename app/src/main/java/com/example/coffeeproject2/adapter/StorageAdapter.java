@@ -50,6 +50,14 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageH
         return storageList.get(position);
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Storage storage);
+    }
+
     class StorageHolder extends RecyclerView.ViewHolder {
         private TextView textViewType;
         private TextView textViewAmount;
@@ -76,13 +84,5 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageH
             });
 
         }
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(Storage storage);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
     }
 }

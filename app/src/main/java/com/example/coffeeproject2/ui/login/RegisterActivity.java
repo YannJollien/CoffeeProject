@@ -2,14 +2,13 @@ package com.example.coffeeproject2.ui.login;
 
 
 import android.arch.persistence.room.Room;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
@@ -80,8 +79,8 @@ public class RegisterActivity extends AppCompatActivity{
                 myAppDatabase.userDao().insertUser(user);
                 Toast.makeText(RegisterActivity.this, "Saved",
                         Toast.LENGTH_LONG).show();
-                        editLastName.setText("");
-                        editName.setText("");
+                editLastName.setText("");
+                editName.setText("");
                         editEmail.setText("");
                         editPassword.setText("");
 

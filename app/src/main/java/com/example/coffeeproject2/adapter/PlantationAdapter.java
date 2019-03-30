@@ -53,6 +53,14 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
         notifyDataSetChanged();
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Plantation plantation);
+    }
+
     class PlantationHolder extends RecyclerView.ViewHolder {
         private TextView textViewType;
         private TextView textViewHectare;
@@ -76,13 +84,5 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
                 }
             });
         }
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(Plantation plantation);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
     }
 }

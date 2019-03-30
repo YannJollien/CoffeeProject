@@ -25,8 +25,7 @@ public class PlantationAdapterView extends RecyclerView.Adapter<PlantationAdapte
         return new PlantationHolder(itemView);
     }
 
-    public Plantation getStorageAt(int position)
-    {
+    public Plantation getStorageAt(int position) {
         return plantationList.get(position);
     }
 

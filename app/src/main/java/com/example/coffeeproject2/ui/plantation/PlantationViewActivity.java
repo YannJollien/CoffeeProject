@@ -3,30 +3,20 @@ package com.example.coffeeproject2.ui.plantation;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.annotation.NonNull;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.coffeeproject2.PlantationViewModel;
 import com.example.coffeeproject2.R;
-import com.example.coffeeproject2.adapter.PlantationAdapter;
 import com.example.coffeeproject2.adapter.PlantationAdapterView;
-import com.example.coffeeproject2.adapter.StorageAdapter;
 import com.example.coffeeproject2.database.entity.Plantation;
-import com.example.coffeeproject2.database.entity.Storage;
-import com.example.coffeeproject2.ui.storage.StorageAddActivity;
-import com.example.coffeeproject2.ui.storage.StorageEditActivity;
-import com.example.coffeeproject2.ui.storage.StorageViewActivity;
-import com.example.coffeeproject2.ui.storage.StorageViewList;
 
 import java.util.List;
 
@@ -50,7 +40,6 @@ public class PlantationViewActivity extends AppCompatActivity {
 
         final PlantationAdapterView adapter = new PlantationAdapterView();
         recyclerView.setAdapter(adapter);
-
 
 
         bEdit = (Button) findViewById(R.id.btn_edit_plantation);

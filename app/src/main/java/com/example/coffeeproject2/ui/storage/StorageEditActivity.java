@@ -38,19 +38,15 @@ public class StorageEditActivity extends AppCompatActivity {
             "com.example.coffeeproject2.ui.storage.EXTRA_AMOUNT";
     public static final String EXTRA_DATE =
             "com.example.coffeeproject2.ui.storage.EXTRA_DATE;";
-
+    public static TextView result;
     public Spinner spinner;
     public EditText amountEdit;
     public EditText dateEdit;
-
-    private StorageViewModel storageViewModel;
-
     Button save;
     Button cancel;
 
     StorageDatabase storageDatabase;
-
-    public static TextView result;
+    private StorageViewModel storageViewModel;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -94,8 +90,7 @@ public class StorageEditActivity extends AppCompatActivity {
 
 
         // Create  an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.types_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(StorageEditActivity.this, R.array.types_array, R.layout.custom_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner

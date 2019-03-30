@@ -1,17 +1,14 @@
 package com.example.coffeeproject2.settings;
 
-import android.content.pm.PackageInfo;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.example.coffeeproject2.BuildConfig;
 import com.example.coffeeproject2.R;
-
-import org.w3c.dom.Text;
 
 public class SettingsAboutActivity extends AppCompatActivity {
 

@@ -12,15 +12,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.coffeeproject2.PlantationViewModel;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.adapter.PlantationAdapter;
 import com.example.coffeeproject2.database.entity.Plantation;
-import com.example.coffeeproject2.ui.storage.StorageAddActivity;
 
 import java.util.List;
 

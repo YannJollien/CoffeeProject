@@ -5,16 +5,15 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,18 +22,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coffeeproject2.PlantationViewModel;
+import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.StorageViewModel;
 import com.example.coffeeproject2.database.entity.Plantation;
 import com.example.coffeeproject2.database.entity.Storage;
 import com.example.coffeeproject2.settings.ProfileActivity;
-import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.settings.SettingsAboutActivity;
 import com.example.coffeeproject2.settings.SettingsActivity;
 import com.example.coffeeproject2.ui.login.MainActivity;
 import com.example.coffeeproject2.ui.plantation.PlantationViewActivity;
 import com.example.coffeeproject2.ui.storage.StorageViewActivity;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -45,23 +43,19 @@ import java.util.List;
 import java.util.Locale;
 
 public class MenuActivity extends AppCompatActivity {
-    private DrawerLayout drawerLayout;
-    private Locale locale;
     String currentLanguage = "en", currentLang;
-
     StorageViewModel storageViewModel;
     PlantationViewModel plantationViewModel;
-
     TextView sumS;
     TextView sumP;
     double sumStorage;
     double sumPlantation;
-
-    float[] am = {0,0,0};
-    float[] hec = {0,0,0};
-    String[] typ = {"Arabica" , "Robusta" , "Liberica" };
-
+    float[] am = {0, 0, 0};
+    float[] hec = {0, 0, 0};
+    String[] typ = {"Arabica", "Robusta", "Liberica"};
     Button profile;
+    private DrawerLayout drawerLayout;
+    private Locale locale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,19 +118,20 @@ public class MenuActivity extends AppCompatActivity {
                     }
                 });
 
-        ImageButton ib = (ImageButton)navigationView.getHeaderView(0).findViewById(R.id.nav_button);
-        ib.setOnClickListener(new View.OnClickListener(){
+        ImageButton ib = (ImageButton) navigationView.getHeaderView(0).findViewById(R.id.nav_button);
+        ib.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 startActivity(new Intent(MenuActivity.this, ProfileActivity.class));
             }
         });
     }
+
     //setup chart
-    public void setupPieChartCoffee(float [] a, String [] b){
+    public void setupPieChartCoffee(float[] a, String[] b) {
         List<PieEntry> pieEntries = new ArrayList<>();
 
-        for(int i = 0; i < a.length; i++){
+        for (int i = 0; i < a.length; i++) {
             pieEntries.add(new PieEntry(a[i], b[i]));
         }
         PieDataSet dataSet = new PieDataSet(pieEntries, "Statistics");
@@ -153,10 +148,10 @@ public class MenuActivity extends AppCompatActivity {
 
     }
 
-    public void setupPieChartPlantation(float [] a, String [] b){
+    public void setupPieChartPlantation(float[] a, String[] b) {
         List<PieEntry> pieEntries = new ArrayList<>();
 
-        for(int i = 0; i < a.length; i++){
+        for (int i = 0; i < a.length; i++) {
             pieEntries.add(new PieEntry(a[i], b[i]));
         }
 
@@ -202,8 +197,8 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-    public void sumStorage(){
-        sumS = (TextView)findViewById(R.id.sum_storage);
+    public void sumStorage() {
+        sumS = (TextView) findViewById(R.id.sum_storage);
         storageViewModel = ViewModelProviders.of(this).get(StorageViewModel.class);
         storageViewModel.getAllStorage().observe(this, new Observer<List<Storage>>() {
             @Override
@@ -212,13 +207,13 @@ public class MenuActivity extends AppCompatActivity {
 
                 //update RecyclerView
                 for (int i = 0; i < storages.size(); i++) {
-                    sumStorage +=storages.get(i).getAmount();
+                    sumStorage += storages.get(i).getAmount();
 
                     System.out.println(storages.get(i).getAmount());
-                    sumS.setText("Storage: " + String.valueOf(sumStorage)+ " Kg");
+                    sumS.setText("Storage: " + String.valueOf(sumStorage) + " Kg");
                     System.out.println(sumStorage);
 
-                    switch(storages.get(i).getType()){
+                    switch (storages.get(i).getType()) {
                         case "Arabica":
                             am[0] += storages.get(i).getAmount();
                             break;
@@ -229,7 +224,7 @@ public class MenuActivity extends AppCompatActivity {
                     }
                 }
                 System.out.println("Hier");
-                for(int j = 0; j < am.length; j++){
+                for (int j = 0; j < am.length; j++) {
                     System.out.println(am[j]);
                 }
                 setupPieChartCoffee(am, typ);
@@ -237,20 +232,20 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
-    public void sumPlantation(){
-        sumP = (TextView)findViewById(R.id.sum_plantation);
+    public void sumPlantation() {
+        sumP = (TextView) findViewById(R.id.sum_plantation);
         plantationViewModel = ViewModelProviders.of(this).get(PlantationViewModel.class);
         plantationViewModel.getAllPlantation().observe(this, new Observer<List<Plantation>>() {
             @Override
             public void onChanged(@Nullable List<Plantation> plantations) {
                 //update RecyclerView
                 for (int i = 0; i < plantations.size(); i++) {
-                    sumPlantation +=plantations.get(i).getHectare();
+                    sumPlantation += plantations.get(i).getHectare();
                     System.out.println(plantations.get(i).getHectare());
-                    sumP.setText("Plantation: " +String.valueOf(sumPlantation) + " Ha");
+                    sumP.setText("Plantation: " + String.valueOf(sumPlantation) + " Ha");
                     System.out.println(sumPlantation);
 
-                    switch(plantations.get(i).getType()){
+                    switch (plantations.get(i).getType()) {
                         case "Arabica":
                             hec[0] += plantations.get(i).getHectare();
                             break;

@@ -15,8 +15,14 @@ import com.example.coffeeproject2.database.entity.Plantation;
 @Database(entities = {Plantation.class}, version = 1)
 public abstract class PlantationDatabase extends RoomDatabase {
     private static PlantationDatabase instance;
-
-    public abstract PlantationDao plantationDao();
+    //Um Testdaten einzufügen
+    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            new PopulateDbAsyncTask(instance).execute();
+        }
+    };
 
     public static synchronized PlantationDatabase getInstance(Context context) {
         if (instance == null) {
@@ -28,14 +34,7 @@ public abstract class PlantationDatabase extends RoomDatabase {
         return instance;
     }
 
-    //Um Testdaten einzufügen
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            new PopulateDbAsyncTask(instance).execute();
-        }
-    };
+    public abstract PlantationDao plantationDao();
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
         private PlantationDao plantationDao;

@@ -1,6 +1,5 @@
 package com.example.coffeeproject2.ui.login;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -8,32 +7,30 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.coffeeproject2.adapter.StorageAdapter;
+import com.example.coffeeproject2.R;
+import com.example.coffeeproject2.database.AppDatabase;
 import com.example.coffeeproject2.settings.ProfileActivity;
 import com.example.coffeeproject2.settings.SettingsActivity;
 import com.example.coffeeproject2.ui.menu.MenuActivity;
-import com.example.coffeeproject2.R;
-import com.example.coffeeproject2.database.AppDatabase;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static String CHANNEL_ID = "my_channel_01";
     //channel and id for Notification
     NotificationManagerCompat notificationManagerCompat;
     int NOTIFICATION_ID = 234;
-    private static String CHANNEL_ID = "my_channel_01";
-
     Button bLogin;
     Button bRegister;
     EditText email;

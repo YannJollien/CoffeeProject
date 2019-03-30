@@ -15,8 +15,14 @@ import com.example.coffeeproject2.database.entity.Storage;
 @Database(entities = {Storage.class}, version = 1)
 public abstract class StorageDatabase extends RoomDatabase {
     private static StorageDatabase instance;
-
-    public abstract StorageDao storageDao();
+    //Um Testdaten einzufügen
+    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            new PopulateDbAsyncTask(instance).execute();
+        }
+    };
 
     public static synchronized StorageDatabase getInstance(Context context) {
         if (instance == null) {
@@ -28,14 +34,7 @@ public abstract class StorageDatabase extends RoomDatabase {
         return instance;
     }
 
-    //Um Testdaten einzufügen
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            new PopulateDbAsyncTask(instance).execute();
-        }
-    };
+    public abstract StorageDao storageDao();
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
         private StorageDao storageDao;

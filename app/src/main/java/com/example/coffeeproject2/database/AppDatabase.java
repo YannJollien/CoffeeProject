@@ -2,31 +2,21 @@ package com.example.coffeeproject2.database;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
-import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.coffeeproject2.database.dao.UserDao;
 import com.example.coffeeproject2.database.entity.User;
-
-import java.util.concurrent.Executors;
 
 //Database for Login
 @Database(entities = {User.class,}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String TAG = "AppDatabase";
-
-    private static AppDatabase instance;
-
     private static final String DATABASE_NAME = "coffee";
-
-    public abstract UserDao userDao();
-
+    private static AppDatabase instance;
     private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
 
     public static AppDatabase getInstance(final Context context) {
@@ -40,6 +30,8 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return instance;
     }
+
+    public abstract UserDao userDao();
 
     /**
      * Build the database. {@link Builder#build()} only sets up the database configuration and
