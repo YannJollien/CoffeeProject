@@ -114,19 +114,16 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(mChannel);
         }
 
+        //Nothing in intent --> delete notification wehn pressed
+        Intent notificationIntent = new Intent();
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("CoffeStorage Application")
+                .setAutoCancel(true)
+                .setContentIntent(resultPendingIntent)
                 .setContentText("Welcome " + mail);
-
-
-        Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
-        stackBuilder.addParentStack(MainActivity.class);
-        stackBuilder.addNextIntent(resultIntent);
-        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        builder.setContentIntent(resultPendingIntent);
 
         notificationManager.notify(NOTIFICATION_ID, builder.build());
 
