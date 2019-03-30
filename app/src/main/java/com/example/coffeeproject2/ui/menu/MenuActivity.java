@@ -225,7 +225,7 @@ public class MenuActivity extends AppCompatActivity {
                     sumStorage +=storages.get(i).getAmount();
 
                     System.out.println(storages.get(i).getAmount());
-                    sumS.setText("Coffee total: " + String.valueOf(sumStorage));
+                    sumS.setText("Storage: " + String.valueOf(sumStorage)+ " Kg");
                     System.out.println(sumStorage);
 
                     switch(storages.get(i).getType()){
@@ -261,7 +261,7 @@ public class MenuActivity extends AppCompatActivity {
                 for (int i = 0; i < plantations.size(); i++) {
                     sumPlantation +=plantations.get(i).getHectare();
                     System.out.println(plantations.get(i).getHectare());
-                    sumP.setText("Hectare total:" +String.valueOf(sumPlantation));
+                    sumP.setText("Plantation: " +String.valueOf(sumPlantation) + " Ha");
                     System.out.println(sumPlantation);
 
                     switch(plantations.get(i).getType()){
