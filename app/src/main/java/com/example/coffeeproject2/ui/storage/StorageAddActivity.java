@@ -51,7 +51,7 @@ public class StorageAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage_add);
 
-        databaseStorage = FirebaseDatabase.getInstance().getReference("recyclerView");
+        databaseStorage = FirebaseDatabase.getInstance().getReference("storage");
 
 
         setTitle("Add Coffee");

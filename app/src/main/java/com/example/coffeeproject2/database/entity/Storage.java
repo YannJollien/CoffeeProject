@@ -1,7 +1,5 @@
 package com.example.coffeeproject2.database.entity;
 
-
-
 //Storage entity
 public class Storage {
 
@@ -16,8 +14,6 @@ public class Storage {
     public Storage(){
 
     }
-
-
     //Constructor
     public Storage(String type, double amount, String date) {
         this.type = type;
