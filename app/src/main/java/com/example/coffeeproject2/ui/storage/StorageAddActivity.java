@@ -136,7 +136,7 @@ public class StorageAddActivity extends AppCompatActivity {
         double amount = Double.parseDouble(amountEdit.getText().toString());
         String date = dateEdit.getText().toString();
 
-        String id =databaseStorage.push().getKey();
+        String id = databaseStorage.push().getKey();
 
         Storage storage = new Storage(type, amount, date);
 
@@ -147,6 +147,7 @@ public class StorageAddActivity extends AppCompatActivity {
                 Toast.LENGTH_LONG).show();
         amountEdit.setText("");
         dateEdit.setText("");
+        System.out.println(id);
         startActivity(new Intent(getApplicationContext(), StorageViewActivity.class));
 
     }

@@ -29,17 +29,20 @@ import java.util.List;
 
 public class StorageEditActivity extends AppCompatActivity {
     public static final String EXTRA_ID =
-            "com.example.coffeeproject2.ui.recyclerView.EXTRA_ID";
+            "com.example.coffeeproject2.ui.storage.EXTRA_ID";
     public static final String EXTRA_TYPE =
-            "com.example.coffeeproject2.ui.recyclerView.EXTRA_TYPE";
+            "com.example.coffeeproject2.ui.storage.EXTRA_TYPE";
     public static final String EXTRA_AMOUNT =
-            "com.example.coffeeproject2.ui.recyclerView.EXTRA_AMOUNT";
+            "com.example.coffeeproject2.ui.storage.EXTRA_AMOUNT";
     public static final String EXTRA_DATE =
-            "com.example.coffeeproject2.ui.recyclerView.EXTRA_DATE;";
+            "com.example.coffeeproject2.ui.storage.EXTRA_DATE;";
+
+
     public static TextView result;
     public Spinner spinner;
     public EditText amountEdit;
     public EditText dateEdit;
+
     Button save;
     Button cancel;
 
@@ -69,8 +72,6 @@ public class StorageEditActivity extends AppCompatActivity {
 
         setTitle("Edit Coffee");
 
-        dateEdit.setText(intent.getStringExtra(EXTRA_DATE));
-        amountEdit.setText(intent.getStringExtra(EXTRA_AMOUNT));
         spinner.setSelection(2);
 
 
@@ -100,7 +101,7 @@ public class StorageEditActivity extends AppCompatActivity {
                 } else {
                     System.out.println("Text nicht leer");
                     if (dateCheck(dateEdit.getText().toString())) {
-                        saveStorage();
+                        //saveStorage();
                     } else {
                         Toast.makeText(StorageEditActivity.this, "date not correct",
                                 Toast.LENGTH_LONG).show();
@@ -115,10 +116,10 @@ public class StorageEditActivity extends AppCompatActivity {
                 finish();
             }
         });
-        spinner.setSelection(getIndex(spinner, intent.getStringExtra(EXTRA_TYPE)));
+        //spinner.setSelection(getIndex(spinner, intent.getStringExtra(EXTRA_TYPE)));
     }
 
-    private void saveStorage() {
+    /*private void saveStorage() {
         String type = spinner.getSelectedItem().toString();
         String amount = amountEdit.getText().toString();
         String date = dateEdit.getText().toString();
@@ -136,7 +137,7 @@ public class StorageEditActivity extends AppCompatActivity {
         setResult(RESULT_OK, data);
         finish();
 
-    }
+    }*/
 
     //set the camera item in Actionbar
     @Override
