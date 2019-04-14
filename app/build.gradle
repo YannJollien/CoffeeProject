@@ -39,6 +39,7 @@ dependencies {
     implementation 'android.arch.lifecycle:viewmodel:1.1.1'
     implementation 'com.google.firebase:firebase-database:16.1.0'
     implementation 'com.google.firebase:firebase-core:16.0.8'
+    implementation 'com.google.firebase:firebase-auth:16.2.1'
     implementation 'com.jakewharton:butterknife:8.8.1' //8.8.1 is the latest version atm
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 

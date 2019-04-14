@@ -4,30 +4,42 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-//User entity
-@Entity(tableName = "users")
-public class User {
-    @PrimaryKey(autoGenerate = true)
-    public int UserId;
 
-    @ColumnInfo(name = "first_name")
+
+public class User {
+
+
+    public String userId;
+
+
     public String firstName;
 
-    @ColumnInfo(name = "last_name")
+
     public String lastName;
 
-    @ColumnInfo(name = "email")
+
     public String email;
 
-    @ColumnInfo(name = "password")
+
     public String password;
 
-    public int getUserId() {
-        return UserId;
+    public User(){
+
     }
 
-    public void setUserId(int userId) {
-        UserId = userId;
+    public User(String firstName,String lastName, String email, String password ){
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.email=email;
+        this.password=password;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        userId = userId;
     }
 
     public String getFirstName() {
