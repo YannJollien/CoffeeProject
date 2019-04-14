@@ -1,25 +1,21 @@
 package com.example.coffeeproject2.database.entity;
 
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
 
 //Storage entity
-@Entity(tableName = "storage")
 public class Storage {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    private String id;
 
-    @ColumnInfo(name = "type")
     private String type;
 
-    @ColumnInfo(name = "amount")
     private double amount;
 
-    @ColumnInfo(name = "date")
     private String date;
+
+    public Storage(){
+
+    }
 
 
     //Constructor
@@ -29,7 +25,7 @@ public class Storage {
         this.date = date;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -45,7 +41,7 @@ public class Storage {
         this.date = date;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

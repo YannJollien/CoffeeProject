@@ -3,7 +3,6 @@ package com.example.coffeeproject2.ui.login;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,11 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
-import com.example.coffeeproject2.database.AppDatabase;
-import com.example.coffeeproject2.settings.ProfileActivity;
 import com.example.coffeeproject2.settings.SettingsActivity;
 import com.example.coffeeproject2.ui.menu.MenuActivity;
 
@@ -59,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         bLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //startActivity(new Intent(MainActivity.this,MenuActivity.class));
-                AppDatabase myAppDatabase = Room.databaseBuilder(getApplicationContext(),
+                startActivity(new Intent(MainActivity.this,MenuActivity.class));
+                /*AppDatabase myAppDatabase = Room.databaseBuilder(getApplicationContext(),
                         AppDatabase.class, "users").allowMainThreadQueries().build();
                 mail = email.getText().toString();
                 pass = password.getText().toString();
@@ -87,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
 
-                }
+                }*/
 
 
             }

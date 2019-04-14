@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 28
@@ -31,13 +32,16 @@ dependencies {
     annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
     implementation 'com.pusher:pusher-java-client:1.0.0'
     implementation 'com.loopj.android:android-async-http:1.4.9'
-    implementation 'com.google.code.gson:gson:2.2.4'
+    implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
     implementation 'me.dm7.barcodescanner:zxing:1.9'
-    implementation 'android.arch.lifecycle:extensions:1.1.0'
-    implementation 'android.arch.lifecycle:viewmodel:1.1.0'
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    implementation 'android.arch.lifecycle:viewmodel:1.1.1'
+    implementation 'com.google.firebase:firebase-database:16.1.0'
+    implementation 'com.google.firebase:firebase-core:16.0.8'
     implementation 'com.jakewharton:butterknife:8.8.1' //8.8.1 is the latest version atm
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
 
 
 }
@@ -45,3 +49,5 @@ dependencies {
 dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.1'
 }
+
+apply plugin: 'com.google.gms.google-services'

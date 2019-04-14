@@ -2,7 +2,6 @@ package com.example.coffeeproject2.ui.plantation;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,9 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.coffeeproject2.PlantationViewModel;
 import com.example.coffeeproject2.R;
-import com.example.coffeeproject2.database.PlantationDatabase;
 import com.example.coffeeproject2.database.entity.Plantation;
 
 import java.util.List;
@@ -37,8 +34,6 @@ public class PlantationEditActivity extends AppCompatActivity {
     public EditText hectareEdit;
     public EditText dateEdit;
     Button save;
-    PlantationDatabase plantationDatabase;
-    private PlantationViewModel plantationViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +44,6 @@ public class PlantationEditActivity extends AppCompatActivity {
         hectareEdit = findViewById(R.id.add_hectare);
         spinner = findViewById(R.id.spinner);
 
-        plantationViewModel = ViewModelProviders.of(this).get(PlantationViewModel.class);
-        plantationViewModel.getAllPlantation().observe(this, new Observer<List<Plantation>>() {
-            @Override
-            public void onChanged(@Nullable List<Plantation> plantations) {
-                //update RecyclerView
-            }
-        });
 
         // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
@@ -75,7 +63,6 @@ public class PlantationEditActivity extends AppCompatActivity {
         hectareEdit.setText(intent.getStringExtra(EXTRA_HECTARE));
         spinner.setSelection(2);
 
-        plantationDatabase = Room.databaseBuilder(getApplicationContext(), PlantationDatabase.class, "plantation").allowMainThreadQueries().build();
 
         spinner = (Spinner) findViewById(R.id.spinner);
         // Create  an ArrayAdapter using the string array and a default spinner layout

@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
-import com.example.coffeeproject2.database.AppDatabase;
 import com.example.coffeeproject2.ui.login.MainActivity;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -23,7 +22,6 @@ public class ProfileActivity extends AppCompatActivity {
     TextView pass;
     Button logout;
     Button delete;
-    AppDatabase appDatabase;
     MainActivity main = new MainActivity();
 
     @Override
@@ -42,7 +40,6 @@ public class ProfileActivity extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "users").allowMainThreadQueries().build();
 
         name = (TextView) findViewById(R.id.text_name);
 
@@ -66,7 +63,7 @@ public class ProfileActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                appDatabase.userDao().deleteUser(nameProfile);
+                //appDatabase.userDao().deleteUser(nameProfile);
                 Toast.makeText(ProfileActivity.this, "User deleted",
                         Toast.LENGTH_LONG).show();
                 startActivity(new Intent(ProfileActivity.this, MainActivity.class));

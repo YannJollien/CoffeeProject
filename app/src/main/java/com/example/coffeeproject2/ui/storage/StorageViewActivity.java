@@ -14,11 +14,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.coffeeproject2.R;
-import com.example.coffeeproject2.StorageViewModel;
-import com.example.coffeeproject2.adapter.StorageAdapterView;
-import com.example.coffeeproject2.database.entity.Storage;
 
-import java.util.List;
 
 public class StorageViewActivity extends AppCompatActivity {
     public final static int ADD_NOTE_REQUEST = 1;
@@ -27,7 +23,6 @@ public class StorageViewActivity extends AppCompatActivity {
     Button bEdit;
     Button bAdd;
 
-    private StorageViewModel storageViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +33,8 @@ public class StorageViewActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        final StorageAdapterView adapter = new StorageAdapterView();
-        recyclerView.setAdapter(adapter);
+        //final StorageAdapterView adapter = new StorageAdapterView();
+        //recyclerView.setAdapter(adapter);
 
         bEdit = (Button) findViewById(R.id.btn_edit);
         bAdd = (Button) findViewById(R.id.btn_add);
@@ -60,14 +55,6 @@ public class StorageViewActivity extends AppCompatActivity {
         //set Titel of View
         setTitle("Coffee");
 
-        //Views
-        storageViewModel = ViewModelProviders.of(this).get(StorageViewModel.class);
-        storageViewModel.getAllStorage().observe(this, new Observer<List<Storage>>() {
-            @Override
-            public void onChanged(@Nullable List<Storage> storages) {
-                adapter.setStorage(storages);
-            }
-        });
 
         // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =

@@ -15,8 +15,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
-import com.example.coffeeproject2.StorageViewModel;
-import com.example.coffeeproject2.adapter.StorageAdapter;
 import com.example.coffeeproject2.database.entity.Storage;
 
 import java.util.List;
@@ -25,7 +23,6 @@ public class StorageViewList extends AppCompatActivity {
     public final static int ADD_NOTE_REQUEST = 1;
     public final static int EDIT_NOTE_REQUEST = 2;
 
-    private StorageViewModel storageViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,21 +33,13 @@ public class StorageViewList extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        final StorageAdapter adapter = new StorageAdapter();
-        recyclerView.setAdapter(adapter);
+        //final StorageAdapter adapter = new StorageAdapter();
+        //recyclerView.setAdapter(adapter);
 
         //set Titel of View
         setTitle("Edit Coffees");
 
 
-        //Views
-        storageViewModel = ViewModelProviders.of(this).get(StorageViewModel.class);
-        storageViewModel.getAllStorage().observe(this, new Observer<List<Storage>>() {
-            @Override
-            public void onChanged(@Nullable List<Storage> storages) {
-                adapter.setStorage(storages);
-            }
-        });
 
         // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
@@ -71,14 +60,14 @@ public class StorageViewList extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-                storageViewModel.delete(adapter.getStorageAt(viewHolder.getAdapterPosition()));
+                //storageViewModel.delete(adapter.getStorageAt(viewHolder.getAdapterPosition()));
                 Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(StorageViewList.this, StorageViewActivity.class));
 
             }
         }).attachToRecyclerView(recyclerView);
 
-        adapter.setOnItemClickListener(new StorageAdapter.OnItemClickListener() {
+        /*adapter.setOnItemClickListener(new StorageAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Storage storage) {
                 Intent intent = new Intent(StorageViewList.this, StorageEditActivity.class);
@@ -88,7 +77,7 @@ public class StorageViewList extends AppCompatActivity {
                 intent.putExtra(StorageEditActivity.EXTRA_DATE, storage.getDate());
                 startActivityForResult(intent, EDIT_NOTE_REQUEST);
             }
-        });
+        });*/
 
     }
 
@@ -101,7 +90,7 @@ public class StorageViewList extends AppCompatActivity {
             String spinner = data.getStringExtra(StorageEditActivity.EXTRA_TYPE);
 
             Storage storage = new Storage(spinner, Double.parseDouble(amount), date);
-            storageViewModel.insert(storage);
+            //storageViewModel.insert(recyclerView);
         } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK) {
             int id = data.getIntExtra(StorageEditActivity.EXTRA_ID, -1);
 
@@ -118,8 +107,7 @@ public class StorageViewList extends AppCompatActivity {
             //double amount2 = Double.parseDouble(amount);
 
             Storage storage = new Storage(spinner, Double.parseDouble(amount), date);
-            storage.setId(id);
-            storageViewModel.update(storage);
+            //storageViewModel.update(recyclerView);
         }
     }
 }

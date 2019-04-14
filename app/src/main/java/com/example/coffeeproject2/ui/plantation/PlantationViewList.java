@@ -14,12 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.widget.Toast;
 
-import com.example.coffeeproject2.PlantationViewModel;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.adapter.PlantationAdapter;
 import com.example.coffeeproject2.database.entity.Plantation;
-import com.example.coffeeproject2.ui.storage.StorageViewActivity;
-import com.example.coffeeproject2.ui.storage.StorageViewList;
 
 import java.util.List;
 
@@ -27,7 +24,6 @@ public class PlantationViewList extends AppCompatActivity {
     public final static int ADD_NOTE_REQUEST = 1;
     public final static int EDIT_NOTE_REQUEST = 2;
 
-    private PlantationViewModel plantationViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +36,6 @@ public class PlantationViewList extends AppCompatActivity {
 
         final PlantationAdapter adapter = new PlantationAdapter();
         recyclerView.setAdapter(adapter);
-
-        //Views
-        plantationViewModel = ViewModelProviders.of(this).get(PlantationViewModel.class);
-        plantationViewModel.getAllPlantation().observe(this, new Observer<List<Plantation>>() {
-            @Override
-            public void onChanged(@Nullable List<Plantation> plantations) {
-                adapter.setPlantation(plantations);
-            }
-        });
 
         // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
@@ -71,7 +58,7 @@ public class PlantationViewList extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-                plantationViewModel.delete(adapter.getStorageAt(viewHolder.getAdapterPosition()));
+                //plantationViewModel.delete(adapter.getStorageAt(viewHolder.getAdapterPosition()));
                 Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
                 //Back to List
                 startActivity(new Intent(PlantationViewList.this, PlantationViewActivity.class));
@@ -100,7 +87,7 @@ public class PlantationViewList extends AppCompatActivity {
             String spinner = data.getStringExtra(PlantationEditActivity.EXTRA_TYPE);
 
             Plantation plantation = new Plantation(spinner, Double.parseDouble(hectare), date);
-            plantationViewModel.insert(plantation);
+            //plantationViewModel.insert(plantation);
         } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK) {
             int id = data.getIntExtra(PlantationEditActivity.EXTRA_ID, -1);
 
@@ -115,7 +102,7 @@ public class PlantationViewList extends AppCompatActivity {
 
             Plantation plantation = new Plantation(spinner, Double.parseDouble(hectare), date);
             plantation.setId(id);
-            plantationViewModel.update(plantation);
+            //plantationViewModel.update(plantation);
         }
     }
 }

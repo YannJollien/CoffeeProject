@@ -13,7 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.coffeeproject2.PlantationViewModel;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.adapter.PlantationAdapterView;
 import com.example.coffeeproject2.database.entity.Plantation;
@@ -26,8 +25,6 @@ public class PlantationViewActivity extends AppCompatActivity {
 
     Button bEdit;
     Button bAdd;
-
-    private PlantationViewModel plantationViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +56,7 @@ public class PlantationViewActivity extends AppCompatActivity {
             }
         });
 
-        //Views
-        plantationViewModel = ViewModelProviders.of(this).get(PlantationViewModel.class);
-        plantationViewModel.getAllPlantation().observe(this, new Observer<List<Plantation>>() {
-            @Override
-            public void onChanged(@Nullable List<Plantation> plantations) {
-                adapter.setPlantation(plantations);
-            }
-        });
+
 
         // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =

@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
-import com.example.coffeeproject2.database.AppDatabase;
 import com.example.coffeeproject2.database.entity.User;
 
 
@@ -27,7 +26,6 @@ public class RegisterActivity extends AppCompatActivity{
     String firstName;
     String email;
     String password;
-    AppDatabase myAppDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +44,6 @@ public class RegisterActivity extends AppCompatActivity{
         ab.setDisplayHomeAsUpEnabled(true);
         setTitle("Registration");
 
-        myAppDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,"users").allowMainThreadQueries().build();
 
         bSave = (Button) findViewById(R.id.button_save);
 
@@ -76,13 +73,6 @@ public class RegisterActivity extends AppCompatActivity{
                 user.setEmail(email);
                 user.setPassword(password);
 
-                myAppDatabase.userDao().insertUser(user);
-                Toast.makeText(RegisterActivity.this, "Saved",
-                        Toast.LENGTH_LONG).show();
-                editLastName.setText("");
-                editName.setText("");
-                        editEmail.setText("");
-                        editPassword.setText("");
 
             }
         });

@@ -1,13 +1,11 @@
 package com.example.coffeeproject2.ui.storage;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
-import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,13 +19,14 @@ import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.ScanActivity;
-import com.example.coffeeproject2.StorageViewModel;
-import com.example.coffeeproject2.database.StorageDatabase;
 import com.example.coffeeproject2.database.entity.Storage;
-import com.example.coffeeproject2.ui.plantation.PlantationAddActivity;
-import com.example.coffeeproject2.ui.plantation.PlantationViewActivity;
-import com.example.coffeeproject2.ui.plantation.PlantationViewList;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,25 +35,24 @@ public class StorageAddActivity extends AppCompatActivity {
     public static Spinner spinner;
     public static EditText amountEdit;
     public static EditText dateEdit;
-    private StorageViewModel storageViewModel;
+
+    DatabaseReference databaseStorage;
+
 
     Button save;
-    StorageDatabase storageDatabase;
+    //StorageDatabase storageDatabase;
 
     public static TextView result;
+
+    ArrayList<Storage> storageList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage_add);
 
-        storageViewModel = ViewModelProviders.of(this).get(StorageViewModel.class);
-        storageViewModel.getAllStorage().observe(this, new Observer<List<Storage>>() {
-            @Override
-            public void onChanged(@Nullable List<Storage> storages) {
-                //update RecyclerView
-            }
-        });
+        databaseStorage = FirebaseDatabase.getInstance().getReference("recyclerView");
+
 
         setTitle("Add Coffee");
 
@@ -69,7 +67,7 @@ public class StorageAddActivity extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-        storageDatabase = Room.databaseBuilder(getApplicationContext(), StorageDatabase.class, "storage").allowMainThreadQueries().build();
+        //storageDatabase = Room.databaseBuilder(getApplicationContext(), StorageDatabase.class, "recyclerView").allowMainThreadQueries().build();
 
         spinner = (Spinner) findViewById(R.id.spinner);
         // Create  an ArrayAdapter using the string array and a default spinner layout
@@ -84,6 +82,9 @@ public class StorageAddActivity extends AppCompatActivity {
 
         amountEdit = (EditText) findViewById(R.id.add_amount);
         dateEdit = (EditText) findViewById(R.id.add_date);
+
+
+        storageList = new ArrayList<>();
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,13 +106,42 @@ public class StorageAddActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        databaseStorage.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                storageList.clear();
+
+                for (DataSnapshot storageSnapshot : dataSnapshot.getChildren()){
+                    Storage strage = storageSnapshot.getValue(Storage.class);
+                    storageList.add(strage);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     private void saveStorage() {
         String type = spinner.getSelectedItem().toString();
         double amount = Double.parseDouble(amountEdit.getText().toString());
         String date = dateEdit.getText().toString();
 
+        String id =databaseStorage.push().getKey();
+
         Storage storage = new Storage(type, amount, date);
-        storageViewModel.insert(storage);
+
+        databaseStorage.child(id).setValue(storage);
+        //storageViewModel.insert(recyclerView);
         startActivity(new Intent(StorageAddActivity.this, StorageViewActivity.class));
         Toast.makeText(StorageAddActivity.this, "Saved",
                 Toast.LENGTH_LONG).show();

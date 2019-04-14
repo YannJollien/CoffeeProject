@@ -22,22 +22,20 @@ import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.ScanActivity;
-import com.example.coffeeproject2.StorageViewModel;
-import com.example.coffeeproject2.database.StorageDatabase;
-import com.example.coffeeproject2.database.entity.Storage;
+
 
 import java.util.List;
 
 
 public class StorageEditActivity extends AppCompatActivity {
     public static final String EXTRA_ID =
-            "com.example.coffeeproject2.ui.storage.EXTRA_ID";
+            "com.example.coffeeproject2.ui.recyclerView.EXTRA_ID";
     public static final String EXTRA_TYPE =
-            "com.example.coffeeproject2.ui.storage.EXTRA_TYPE";
+            "com.example.coffeeproject2.ui.recyclerView.EXTRA_TYPE";
     public static final String EXTRA_AMOUNT =
-            "com.example.coffeeproject2.ui.storage.EXTRA_AMOUNT";
+            "com.example.coffeeproject2.ui.recyclerView.EXTRA_AMOUNT";
     public static final String EXTRA_DATE =
-            "com.example.coffeeproject2.ui.storage.EXTRA_DATE;";
+            "com.example.coffeeproject2.ui.recyclerView.EXTRA_DATE;";
     public static TextView result;
     public Spinner spinner;
     public EditText amountEdit;
@@ -45,8 +43,6 @@ public class StorageEditActivity extends AppCompatActivity {
     Button save;
     Button cancel;
 
-    StorageDatabase storageDatabase;
-    private StorageViewModel storageViewModel;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -57,14 +53,6 @@ public class StorageEditActivity extends AppCompatActivity {
         dateEdit = findViewById(R.id.add_date);
         amountEdit = findViewById(R.id.add_amount);
         spinner = findViewById(R.id.spinner);
-
-        storageViewModel = ViewModelProviders.of(this).get(StorageViewModel.class);
-        storageViewModel.getAllStorage().observe(this, new Observer<List<Storage>>() {
-            @Override
-            public void onChanged(@Nullable List<Storage> storages) {
-                //update RecyclerView
-            }
-        });
 
         // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
@@ -85,8 +73,6 @@ public class StorageEditActivity extends AppCompatActivity {
         amountEdit.setText(intent.getStringExtra(EXTRA_AMOUNT));
         spinner.setSelection(2);
 
-
-        storageDatabase = Room.databaseBuilder(getApplicationContext(), StorageDatabase.class, "storage").allowMainThreadQueries().build();
 
 
         // Create  an ArrayAdapter using the string array and a default spinner layout

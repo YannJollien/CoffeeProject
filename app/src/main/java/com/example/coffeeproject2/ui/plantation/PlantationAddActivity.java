@@ -2,7 +2,6 @@ package com.example.coffeeproject2.ui.plantation;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,9 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.coffeeproject2.PlantationViewModel;
 import com.example.coffeeproject2.R;
-import com.example.coffeeproject2.database.PlantationDatabase;
 import com.example.coffeeproject2.database.entity.Plantation;
 
 import java.util.List;
@@ -30,21 +27,13 @@ public class PlantationAddActivity extends AppCompatActivity {
     public static EditText hectareEdit;
     public static EditText dateEdit;
     Button save;
-    PlantationDatabase plantationDatabase;
-    private PlantationViewModel plantationViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plantation_add);
 
-        plantationViewModel = ViewModelProviders.of(this).get(PlantationViewModel.class);
-        plantationViewModel.getAllPlantation().observe(this, new Observer<List<Plantation>>() {
-            @Override
-            public void onChanged(@Nullable List<Plantation> plantations) {
-                //update RecyclerView
-            }
-        });
+
 
         // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
@@ -57,7 +46,6 @@ public class PlantationAddActivity extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-        plantationDatabase = Room.databaseBuilder(getApplicationContext(), PlantationDatabase.class, "plantation").allowMainThreadQueries().build();
 
         spinner = (Spinner) findViewById(R.id.spinner);
         // Create  an ArrayAdapter using the string array and a default spinner layout
@@ -99,7 +87,7 @@ public class PlantationAddActivity extends AppCompatActivity {
         double hectare = Double.parseDouble(hectareEdit.getText().toString());
         String date = dateEdit.getText().toString();
         Plantation plantation = new Plantation(type, hectare, date);
-        plantationViewModel.insert(plantation);
+        //plantationViewModel.insert(plantation);
         startActivity(new Intent(PlantationAddActivity.this, PlantationViewActivity.class));
         Toast.makeText(PlantationAddActivity.this, "Saved",
                 Toast.LENGTH_LONG).show();

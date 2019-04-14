@@ -21,9 +21,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.coffeeproject2.PlantationViewModel;
 import com.example.coffeeproject2.R;
-import com.example.coffeeproject2.StorageViewModel;
 import com.example.coffeeproject2.database.entity.Plantation;
 import com.example.coffeeproject2.database.entity.Storage;
 import com.example.coffeeproject2.settings.ProfileActivity;
@@ -44,8 +42,6 @@ import java.util.Locale;
 
 public class MenuActivity extends AppCompatActivity {
     String currentLanguage = "en", currentLang;
-    StorageViewModel storageViewModel;
-    PlantationViewModel plantationViewModel;
     TextView sumS;
     TextView sumP;
     double sumStorage;
@@ -75,10 +71,10 @@ public class MenuActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
 
         //get Sum Storage
-        sumStorage();
+        //sumStorage();
 
         //get Sum Plantaiton
-        sumPlantation();
+        //sumPlantation();
 
         //Calling the items and tell them what to do
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -197,7 +193,7 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-    public void sumStorage() {
+    /*public void sumStorage() {
         sumS = (TextView) findViewById(R.id.sum_storage);
         storageViewModel = ViewModelProviders.of(this).get(StorageViewModel.class);
         storageViewModel.getAllStorage().observe(this, new Observer<List<Storage>>() {
@@ -262,5 +258,5 @@ public class MenuActivity extends AppCompatActivity {
                 setupPieChartPlantation(hec, typ);
             }
         });
-    }
+    }*/
 }
