@@ -22,6 +22,8 @@ import com.example.coffeeproject2.database.entity.User;
 import com.example.coffeeproject2.settings.ProfileActivity;
 import com.example.coffeeproject2.settings.SettingsActivity;
 import com.example.coffeeproject2.ui.menu.MenuActivity;
+import com.google.firebase.FirebaseError;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.inMail);
         password = (EditText) findViewById(R.id.inPass);
 
-        ref = FirebaseDatabase.getInstance().getReference().child("user");
+        ref = FirebaseDatabase.getInstance().getReference("user");
 
         bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,12 +75,8 @@ public class MainActivity extends AppCompatActivity {
         bLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //startActivity(new Intent(MainActivity.this,MenuActivity.class));
-
                 mail = email.getText().toString();
                 pass = password.getText().toString();
-
-                System.out.println(mail);
-                System.out.println(pass);
 
                 startActivity(new Intent(MainActivity.this, MenuActivity.class));
             }
