@@ -32,11 +32,11 @@ public class PlantationAdapterView extends RecyclerView.Adapter<PlantationAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PlantationHolder storageHolder, int i) {
+    public void onBindViewHolder(@NonNull PlantationHolder plantationHolder, int i) {
         Plantation plantation = plantationList.get(i);
-        storageHolder.type.setText(plantation.getType());
-        storageHolder.hectare.setText(String.valueOf(plantation.getHectare()));
-        storageHolder.date.setText(plantation.getDate());
+        plantationHolder.type.setText(plantation.getType());
+        plantationHolder.hectare.setText(String.valueOf(plantation.getHectare()));
+        plantationHolder.date.setText(plantation.getDate());
     }
 
     @Override

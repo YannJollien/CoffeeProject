@@ -1,13 +1,10 @@
 package com.example.coffeeproject2.ui.menu;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,7 +12,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -37,20 +33,15 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.firebase.FirebaseError;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -67,8 +58,10 @@ public class MenuActivity extends AppCompatActivity {
     private Locale locale;
 
     ArrayList<Storage> amountList;
+    ArrayList<Plantation> hectareList;
 
     DatabaseReference databaseStorage;
+    DatabaseReference databasePlantation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +81,10 @@ public class MenuActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
 
         databaseStorage = FirebaseDatabase.getInstance().getReference("storage");
+        databasePlantation = FirebaseDatabase.getInstance().getReference("plantation");
 
         amountList =  new ArrayList<>();
+        hectareList =  new ArrayList<>();
 
         databaseStorage.addValueEventListener(new ValueEventListener() {
 
@@ -131,10 +126,50 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        databasePlantation.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
+
+                sumP = (TextView) findViewById(R.id.sum_plantation);
+                hectareList.clear();
+
+                for (DataSnapshot plantationSnapshot : dataSnapshot1.getChildren()){
+                    Plantation plantation = plantationSnapshot.getValue(Plantation.class);
+                    hectareList.add(plantation);
+                }
+                for (int i = 0; i < hectareList.size();i++){
+                    sumPlantation += hectareList.get(i).getHectare();
+
+                    sumP.setText("Plantation: " + String.valueOf(sumStorage) + " Kg");
+                    System.out.println(sumPlantation);
+
+                    switch (hectareList.get(i).getType()) {
+                        case "Arabica":
+                            am[0] += hectareList.get(i).getHectare();
+                            break;
+                        case "Robusta":
+                            am[1] += hectareList.get(i).getHectare();
+                            break;
+                        case "Liberica":
+                            am[2] += hectareList.get(i).getHectare();
+                            break;
+                    }
+                    setupPieChartPlantation(am, typ);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
 
         //get Sum Storage
-        sumStorage();
+        //sumStorage();
 
         //get Sum Plantaiton
         //sumPlantation();
@@ -257,7 +292,7 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-    public void sumStorage() {
+    /*public void sumStorage() {
 
         sumS = (TextView) findViewById(R.id.sum_storage);
 
@@ -283,7 +318,7 @@ public class MenuActivity extends AppCompatActivity {
         }
         setupPieChartCoffee(am, typ);
 
-    }
+    }*/
 
 }
 

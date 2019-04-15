@@ -48,28 +48,25 @@
             android:parentActivityName=".ui.menu.MenuActivity" />
         <activity
             android:name=".ui.plantation.PlantationViewActivity"
-            android:parentActivityName=".ui.menu.MenuActivity"></activity>
-        <activity
-            android:name=".ui.storage.StorageEditActivity"
-            android:parentActivityName=".ui.storage.StorageViewActivity"></activity>
-        <activity
-            android:name=".ui.plantation.PlantationEditActivity"
-            android:parentActivityName=".ui.plantation.PlantationViewActivity"></activity>
-        <activity
-            android:name=".ui.storage.StorageViewList"
-            android:parentActivityName=".ui.storage.StorageViewList"></activity>
-        <activity
-            android:name=".ui.plantation.PlantationViewList"
-            android:parentActivityName=".ui.plantation.PlantationViewList"></activity>
-        <activity
-            android:name=".settings.SettingsAboutActivity"
             android:parentActivityName=".ui.menu.MenuActivity">
         </activity>
-        <service android:name=".notification.MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
+        <activity
+            android:name=".ui.storage.StorageEditActivity"
+            android:parentActivityName=".ui.storage.StorageViewActivity">
+        </activity>
+        <activity
+            android:name=".ui.plantation.PlantationEditActivity"
+            android:parentActivityName=".ui.plantation.PlantationViewActivity">
+        </activity>
+        <activity
+            android:name=".ui.storage.StorageViewList"
+            android:parentActivityName=".ui.storage.StorageViewList">
+        </activity>
+        <activity
+            android:name=".ui.plantation.PlantationViewList"
+            android:parentActivityName=".ui.plantation.PlantationViewList">
+        </activity>
+
     </application>
 
 

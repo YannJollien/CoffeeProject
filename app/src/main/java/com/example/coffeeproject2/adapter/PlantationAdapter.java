@@ -41,7 +41,7 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
         return plantationList.size();
     }
 
-    public void setStorage(List<Plantation> plantations) {
+    public void setPlantation(List<Plantation> plantations) {
         this.plantationList = plantations;
         notifyDataSetChanged();
     }
