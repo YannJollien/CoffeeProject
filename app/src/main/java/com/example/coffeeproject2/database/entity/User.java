@@ -12,12 +12,6 @@ public class User {
     public String userId;
 
 
-    public String firstName;
-
-
-    public String lastName;
-
-
     public String email;
 
 
@@ -27,9 +21,8 @@ public class User {
 
     }
 
-    public User(String firstName,String lastName, String email, String password ){
-        this.firstName=firstName;
-        this.lastName=lastName;
+    public User(String email, String password ){
+
         this.email=email;
         this.password=password;
     }
@@ -40,22 +33,6 @@ public class User {
 
     public void setUserId(String userId) {
         userId = userId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {

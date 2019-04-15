@@ -21,50 +21,6 @@
     </android.support.v7.widget.Toolbar>
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="5dp"
-        android:text="@string/view_name"
-        android:textColor="#ffffff" />
-
-    <EditText
-        android:id="@+id/nameRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="#ffffff"
-        android:textColorHint="#999999" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="5dp"
-        android:text="@string/view_lastname"
-        android:textColor="#ffffff" />
-
-    <EditText
-        android:id="@+id/lNameRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="#ffffff"
-        android:textColorHint="#999999" />
-
-    <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

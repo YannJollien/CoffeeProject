@@ -12,6 +12,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +24,12 @@ import com.example.coffeeproject2.database.entity.User;
 import com.example.coffeeproject2.settings.ProfileActivity;
 import com.example.coffeeproject2.settings.SettingsActivity;
 import com.example.coffeeproject2.ui.menu.MenuActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseError;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,47 +47,68 @@ public class MainActivity extends AppCompatActivity {
     //channel and id for Notification
     NotificationManagerCompat notificationManagerCompat;
     int NOTIFICATION_ID = 234;
-    Button bLogin;
-    Button bRegister;
-    EditText email;
-    EditText password;
-    String pass;
-    String mail;
-    String id;
-    ArrayList<String> list = new ArrayList<String>();
-    SettingsActivity settingsActivity;
-
-    DatabaseReference ref;
-
+    private EditText inputEmail, inputPassword;
+    private Button btnSignIn, btnSignUp;
+    private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bLogin = (Button) findViewById(R.id.buttonSign);
-        bRegister = (Button) findViewById(R.id.buttonReg);
+        //Get Firebase auth instance
+        auth = FirebaseAuth.getInstance();
+        btnSignIn = (Button) findViewById(R.id.buttonSign);
+        btnSignUp = (Button) findViewById(R.id.buttonReg);
+        inputEmail = (EditText) findViewById(R.id.inMail);
+        inputPassword = (EditText) findViewById(R.id.inPass);
 
-        email = (EditText) findViewById(R.id.inMail);
-        password = (EditText) findViewById(R.id.inPass);
-
-        ref = FirebaseDatabase.getInstance().getReference("user");
-
-        bRegister.setOnClickListener(new View.OnClickListener() {
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+                String email = inputEmail.getText().toString();
+                final String password = inputPassword.getText().toString();
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                //authenticate user
+                auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                // If sign in fails, display a message to the user. If sign in succeeds
+                                // the auth state listener will be notified and logic to handle the
+                                // signed in user can be handled in the listener.
+                                if (!task.isSuccessful()) {
+                                    // there was an error
+                                    if (password.length() < 6) {
+                                        Toast.makeText(MainActivity.this, "Password to short", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(MainActivity.this, "Authentication failed", Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+                                    Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+                        });
             }
         });
-
-        bLogin.setOnClickListener(new View.OnClickListener() {
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                //startActivity(new Intent(MainActivity.this,MenuActivity.class));
-                mail = email.getText().toString();
-                pass = password.getText().toString();
-
-                startActivity(new Intent(MainActivity.this, MenuActivity.class));
+                startActivity(new Intent(MainActivity.this,RegisterActivity.class));
             }
         });
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
 
@@ -112,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 .setContentTitle("CoffeStorage Application")
                 .setAutoCancel(true)
                 .setContentIntent(resultPendingIntent)
-                .setContentText("Welcome " + mail);
+                .setContentText("Welcome " + inputEmail);
 
         notificationManager.notify(NOTIFICATION_ID, builder.build());
 

@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +18,11 @@ import android.widget.Toast;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.entity.User;
 import com.example.coffeeproject2.ui.storage.StorageAddActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,19 +33,17 @@ import java.util.ArrayList;
 
 
 public class RegisterActivity extends AppCompatActivity{
+
     Button bSave;
-    EditText editLastName;
-    EditText editName;
-    EditText editEmail;
-    EditText editPassword;
-    String lastName;
-    String firstName;
-    String email;
-    String password;
+
+    private EditText editEmail;
+    private EditText editPassword;
 
     DatabaseReference databaseUser;
 
     ArrayList<User> userList;
+
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +60,13 @@ public class RegisterActivity extends AppCompatActivity{
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
+
+        initializeUI();
+
         setTitle("Registration");
+
+        //Get Firebase auth instance
+        auth = FirebaseAuth.getInstance();
 
         databaseUser = FirebaseDatabase.getInstance().getReference("user");
 
@@ -64,73 +74,57 @@ public class RegisterActivity extends AppCompatActivity{
 
         bSave = (Button) findViewById(R.id.button_save);
 
-        editLastName = (EditText)findViewById(R.id.lNameRegister);
-        editName = (EditText)findViewById(R.id.nameRegister);
-        editEmail = (EditText)findViewById(R.id.mailRegister);
-        editPassword = (EditText)findViewById(R.id.passRegister);
-
-        lastName = editLastName.getText().toString();
-        firstName = editName.getText().toString();
-        email = editEmail.getText().toString();
-        password = editPassword.getText().toString();
-
         bSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (editLastName.getText().toString().equals("") || editName.getText().toString().equals("") ||
-                        editEmail.getText().toString().equals("") || editPassword.getText().toString().equals("")) {
-                    Toast.makeText(RegisterActivity.this, "empty fields",
-                            Toast.LENGTH_LONG).show();
-                } else {
-                    lastName = editLastName.getText().toString();
-                    firstName = editName.getText().toString();
-                    email = editEmail.getText().toString();
-                    password = editPassword.getText().toString();
+                //create user
 
-                    String id = databaseUser.push().getKey();
-
-                    User user = new User(lastName,firstName,email,password);
-
-                    databaseUser.child(id).setValue(user);
-                    //storageViewModel.insert(recyclerView);
-                    editLastName.setText("");
-                    editName.setText("");
-                    editEmail.setText("");
-                    editPassword.setText("");
-                    System.out.println(id);
-                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-                    Toast.makeText(RegisterActivity.this, "Saved",
-                            Toast.LENGTH_LONG).show();
-                }
+                registerNewUser();
 
             }
         });
 
     }
 
-    @Override
-    public void onStart(){
-        super.onStart();
+    private void registerNewUser() {
 
-        databaseUser.addValueEventListener(new ValueEventListener() {
+        String email, password;
+        email = editEmail.getText().toString();
+        password = editPassword.getText().toString();
 
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
+            return;
+        }
 
-                userList.clear();
-
-                for (DataSnapshot storageSnapshot : dataSnapshot.getChildren()){
-                    User user = storageSnapshot.getValue(User.class);
-                    userList.add(user);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Toast.makeText(RegisterActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(RegisterActivity.this, "Authentication failed." + task.getException(),
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                            finish();
+                        }
+                    }
+                });
     }
+
+    private void initializeUI() {
+        editEmail = findViewById(R.id.mailRegister);
+        editPassword = findViewById(R.id.passRegister);
+
+    }
+
 
 }

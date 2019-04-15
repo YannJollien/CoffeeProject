@@ -22,46 +22,52 @@ import java.util.List;
 
 public class StorageAdapterView extends RecyclerView.Adapter<StorageAdapterView.StorageHolder> {
 
-    Context context;
-    ArrayList<Storage> storage;
+    private Context context;
+    List<Storage> storageList;
 
-    public StorageAdapterView(Context context, ArrayList<Storage> storage){
+    public StorageAdapterView(Context context, List<Storage> storageList){
         this.context=context;
-        this.storage=storage;
+        this.storageList=storageList;
     }
-
 
     @NonNull
     @Override
-    public StorageAdapterView.StorageHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new StorageHolder(LayoutInflater.from(context).inflate(R.layout.storage_view_1,viewGroup,false));
+    public StorageHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View itemView = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.storage_view_1, viewGroup, false);
+        return new StorageAdapterView.StorageHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StorageAdapterView.StorageHolder storageHolder, int i) {
-        storageHolder.type.setText(storage.get(i).getType());
-        storageHolder.amount.setText(String.valueOf(storage.get(i).getAmount()));
-        storageHolder.date.setText(storage.get(i).getDate());
+    public void onBindViewHolder(@NonNull StorageHolder storageHolder, int i) {
+        Storage storage = storageList.get(i);
+        storageHolder.type.setText(storage.getType());
+        storageHolder.amount.setText(String.valueOf(storage.getAmount()));
+        storageHolder.date.setText(storage.getDate());
     }
 
     @Override
     public int getItemCount() {
-        return storage.size();
+        return storageList.size();
     }
 
-    class StorageHolder extends RecyclerView.ViewHolder {
-        TextView type;
-        TextView amount;
-        TextView date;
+    public class StorageHolder extends RecyclerView.ViewHolder{
+        public TextView type;
+        public TextView amount;
+        public TextView date;
 
-        public StorageHolder(View view){
-            super(view);
-            type = view.findViewById(R.id.text_view_type);
-            amount = view.findViewById(R.id.text_view_amount);
-            date = view.findViewById(R.id.text_view_date);
+        public StorageHolder(View itemView){
+            super(itemView);
+
+            type = itemView.findViewById(R.id.text_view_type);
+            amount = itemView.findViewById(R.id.text_view_amount);
+            date = itemView.findViewById(R.id.text_view_date);
+
         }
 
     }
+
+
 }
 
 

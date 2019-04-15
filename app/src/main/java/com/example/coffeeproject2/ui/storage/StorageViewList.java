@@ -39,6 +39,7 @@ public class StorageViewList extends AppCompatActivity {
     StorageAdapterView adapter;
 
     DatabaseReference databaseStorage;
+    StorageAdapter storageAdapter = new StorageAdapter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class StorageViewList extends AppCompatActivity {
         final RecyclerView recyclerView = findViewById(R.id.recycler_view_storage);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        final StorageAdapter storageAdapter = new StorageAdapter();
+        StorageAdapter storageAdapter = new StorageAdapter();
         recyclerView.setAdapter(storageAdapter);
 
         storageList = new ArrayList<>();
@@ -97,8 +98,6 @@ public class StorageViewList extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-
-                System.out.println();
                 Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(StorageViewList.this, StorageViewActivity.class));
 
@@ -108,20 +107,21 @@ public class StorageViewList extends AppCompatActivity {
         storageAdapter.setOnItemClickListener(new StorageAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Storage storage) {
+                System.out.println("CLick");
                 Intent intent = new Intent(StorageViewList.this, StorageEditActivity.class);
-                intent.putExtra(EXTRA_ID, storage.getId());
+                /*intent.putExtra(StorageEditActivity.EXTRA_ID, storage.getId());
                 intent.putExtra(StorageEditActivity.EXTRA_TYPE, storage.getType());
                 intent.putExtra(StorageEditActivity.EXTRA_AMOUNT, storage.getAmount() + "");
-                intent.putExtra(StorageEditActivity.EXTRA_DATE, storage.getDate());
+                intent.putExtra(StorageEditActivity.EXTRA_DATE, storage.getDate());*/
                 startActivityForResult(intent, EDIT_NOTE_REQUEST);
             }
         });
 
+
     }
 
     public void deleteStorage(String id){
-        DatabaseReference deleteStorage = FirebaseDatabase.getInstance().getReference("storage").child(id);
-        deleteStorage.removeValue();
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -153,6 +153,11 @@ public class StorageViewList extends AppCompatActivity {
             //storageViewModel.update(recyclerView);
         }
     }
+
+    /*@Override
+    public void onDeleteClick(int position) {
+
+    }*/
 
     /*public final static int ADD_NOTE_REQUEST = 1;
     public final static int EDIT_NOTE_REQUEST = 2;
