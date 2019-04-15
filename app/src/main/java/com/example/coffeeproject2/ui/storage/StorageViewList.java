@@ -111,7 +111,7 @@ public class StorageViewList extends AppCompatActivity {
                 Intent intent = new Intent(StorageViewList.this, StorageEditActivity.class);
                 /*intent.putExtra(StorageEditActivity.EXTRA_ID, storage.getId());
                 intent.putExtra(StorageEditActivity.EXTRA_TYPE, storage.getType());
-                intent.putExtra(StorageEditActivity.EXTRA_AMOUNT, storage.getAmount() + "");
+                intent.putExtra(StorageEditActivity.EXTRA_AMOUNT, storage.getHectare() + "");
                 intent.putExtra(StorageEditActivity.EXTRA_DATE, storage.getDate());*/
                 startActivityForResult(intent, EDIT_NOTE_REQUEST);
             }
@@ -142,12 +142,12 @@ public class StorageViewList extends AppCompatActivity {
                 return;
             }
 
-            // String amount = data.getStringExtra(StorageEditActivity.EXTRA_AMOUNT);
+            // String hectare = data.getStringExtra(StorageEditActivity.EXTRA_AMOUNT);
             String date = data.getStringExtra(StorageEditActivity.EXTRA_DATE);
             String amount = data.getStringExtra(StorageEditActivity.EXTRA_AMOUNT);
             String spinner = data.getStringExtra(StorageEditActivity.EXTRA_TYPE);
 
-            //double amount2 = Double.parseDouble(amount);
+            //double amount2 = Double.parseDouble(hectare);
 
             Storage storage = new Storage(spinner, Double.parseDouble(amount), date);
             //storageViewModel.update(recyclerView);
@@ -199,7 +199,7 @@ public class StorageViewList extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-                //storageViewModel.delete(adapter.getStorageAt(viewHolder.getAdapterPosition()));
+                //storageViewModel.delete(adapter.getPlantationAt(viewHolder.getAdapterPosition()));
                 Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(StorageViewList.this, StorageViewActivity.class));
 
@@ -212,7 +212,7 @@ public class StorageViewList extends AppCompatActivity {
                 Intent intent = new Intent(StorageViewList.this, StorageEditActivity.class);
                 intent.putExtra(StorageEditActivity.EXTRA_ID, storage.getId());
                 intent.putExtra(StorageEditActivity.EXTRA_TYPE, storage.getType());
-                intent.putExtra(StorageEditActivity.EXTRA_AMOUNT, storage.getAmount() + "");
+                intent.putExtra(StorageEditActivity.EXTRA_AMOUNT, storage.getHectare() + "");
                 intent.putExtra(StorageEditActivity.EXTRA_DATE, storage.getDate());
                 startActivityForResult(intent, EDIT_NOTE_REQUEST);
             }
@@ -224,11 +224,11 @@ public class StorageViewList extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
-            String amount = data.getStringExtra(StorageEditActivity.EXTRA_AMOUNT);
+            String hectare = data.getStringExtra(StorageEditActivity.EXTRA_AMOUNT);
             String date = data.getStringExtra(StorageEditActivity.EXTRA_DATE);
             String spinner = data.getStringExtra(StorageEditActivity.EXTRA_TYPE);
 
-            Storage storage = new Storage(spinner, Double.parseDouble(amount), date);
+            Storage storage = new Storage(spinner, Double.parseDouble(hectare), date);
             //storageViewModel.insert(recyclerView);
         } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK) {
             int id = data.getIntExtra(StorageEditActivity.EXTRA_ID, -1);
@@ -238,14 +238,14 @@ public class StorageViewList extends AppCompatActivity {
                 return;
             }
 
-            // String amount = data.getStringExtra(StorageEditActivity.EXTRA_AMOUNT);
+            // String hectare = data.getStringExtra(StorageEditActivity.EXTRA_AMOUNT);
             String date = data.getStringExtra(StorageEditActivity.EXTRA_DATE);
-            String amount = data.getStringExtra(StorageEditActivity.EXTRA_AMOUNT);
+            String hectare = data.getStringExtra(StorageEditActivity.EXTRA_AMOUNT);
             String spinner = data.getStringExtra(StorageEditActivity.EXTRA_TYPE);
 
-            //double amount2 = Double.parseDouble(amount);
+            //double amount2 = Double.parseDouble(hectare);
 
-            Storage storage = new Storage(spinner, Double.parseDouble(amount), date);
+            Storage storage = new Storage(spinner, Double.parseDouble(hectare), date);
             //storageViewModel.update(recyclerView);
         }
     }*/

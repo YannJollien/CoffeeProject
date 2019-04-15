@@ -1,39 +1,55 @@
 package com.example.coffeeproject2.ui.plantation;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.entity.Plantation;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class PlantationAddActivity extends AppCompatActivity {
 
     public static Spinner spinner;
-
     public static EditText hectareEdit;
     public static EditText dateEdit;
+
+    DatabaseReference databasePlantation;
+
+
     Button save;
+    //StorageDatabase storageDatabase;
+
+    public static TextView result;
+
+    ArrayList<Plantation> plantationList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plantation_add);
 
+        databasePlantation = FirebaseDatabase.getInstance().getReference("plantation");
 
+
+        setTitle("Add Plantation");
 
         // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
@@ -46,6 +62,7 @@ public class PlantationAddActivity extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
+        //storageDatabase = Room.databaseBuilder(getApplicationContext(), StorageDatabase.class, "recyclerView").allowMainThreadQueries().build();
 
         spinner = (Spinner) findViewById(R.id.spinner);
         // Create  an ArrayAdapter using the string array and a default spinner layout
@@ -54,14 +71,15 @@ public class PlantationAddActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
-        //set Titel of View
-        setTitle("Add Plantation");
 
         //Get the info by id
         save = (Button) findViewById(R.id.save_add_plantation);
 
         hectareEdit = (EditText) findViewById(R.id.add_hectare);
         dateEdit = (EditText) findViewById(R.id.add_date);
+
+
+        plantationList = new ArrayList<>();
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,21 +98,58 @@ public class PlantationAddActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        databasePlantation.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                plantationList.clear();
+
+                for (DataSnapshot storageSnapshot : dataSnapshot.getChildren()){
+                    Plantation plantation = storageSnapshot.getValue(Plantation.class);
+                    plantationList.add(plantation);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void savePlantation() {
         String type = spinner.getSelectedItem().toString();
         double hectare = Double.parseDouble(hectareEdit.getText().toString());
         String date = dateEdit.getText().toString();
+
+        String id = databasePlantation.push().getKey();
+
         Plantation plantation = new Plantation(type, hectare, date);
-        //plantationViewModel.insert(plantation);
+
+        databasePlantation.child(id).setValue(plantation);
+        //storageViewModel.insert(recyclerView);
         startActivity(new Intent(PlantationAddActivity.this, PlantationViewActivity.class));
         Toast.makeText(PlantationAddActivity.this, "Saved",
                 Toast.LENGTH_LONG).show();
         hectareEdit.setText("");
         dateEdit.setText("");
+        System.out.println(id);
+        startActivity(new Intent(getApplicationContext(), PlantationViewActivity.class));
+
     }
 
+
+
+    //date chack
     public boolean dateCheck(String date) {
         try {
             int a = Integer.parseInt(date.substring(0, 2));

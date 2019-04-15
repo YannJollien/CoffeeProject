@@ -1,5 +1,6 @@
 package com.example.coffeeproject2.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,32 +11,32 @@ import android.widget.TextView;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.entity.Plantation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlantationAdapterView extends RecyclerView.Adapter<PlantationAdapterView.PlantationHolder> {
 
-    private List<Plantation> plantationList = new ArrayList<>();
+    private Context context;
+    List<Plantation> plantationList;
+
+    public PlantationAdapterView(Context context, List<Plantation> plantationList){
+        this.context=context;
+        this.plantationList = plantationList;
+    }
 
     @NonNull
     @Override
     public PlantationHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.plantation_view_2, viewGroup, false);
-        return new PlantationHolder(itemView);
-    }
-
-    public Plantation getStorageAt(int position) {
-        return plantationList.get(position);
+        return new PlantationAdapterView.PlantationHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PlantationHolder storageHolder, int i) {
-        Plantation currentPlantation = plantationList.get(i);
-        storageHolder.textViewType.setText(currentPlantation.getType());
-        storageHolder.textViewHectare.setText(String.valueOf(currentPlantation.getHectare()));
-        storageHolder.textViewDate.setText(currentPlantation.getDate());
-
+        Plantation plantation = plantationList.get(i);
+        storageHolder.type.setText(plantation.getType());
+        storageHolder.hectare.setText(String.valueOf(plantation.getHectare()));
+        storageHolder.date.setText(plantation.getDate());
     }
 
     @Override
@@ -43,21 +44,19 @@ public class PlantationAdapterView extends RecyclerView.Adapter<PlantationAdapte
         return plantationList.size();
     }
 
-    public void setPlantation(List<Plantation> plantations) {
-        this.plantationList = plantations;
-        notifyDataSetChanged();
-    }
+    public class PlantationHolder extends RecyclerView.ViewHolder{
+        public TextView type;
+        public TextView hectare;
+        public TextView date;
 
-    class PlantationHolder extends RecyclerView.ViewHolder {
-        private TextView textViewType;
-        private TextView textViewHectare;
-        private TextView textViewDate;
-
-        private PlantationHolder(@NonNull View itemView) {
+        public PlantationHolder(View itemView){
             super(itemView);
-            textViewType = itemView.findViewById(R.id.text_view_type);
-            textViewHectare = itemView.findViewById(R.id.text_view_hectare);
-            textViewDate = itemView.findViewById(R.id.text_view_date);
+
+            type = itemView.findViewById(R.id.text_view_type);
+            hectare = itemView.findViewById(R.id.text_view_hectare);
+            date = itemView.findViewById(R.id.text_view_date);
+
         }
+
     }
 }

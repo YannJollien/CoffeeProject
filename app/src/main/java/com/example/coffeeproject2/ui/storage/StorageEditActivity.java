@@ -121,12 +121,12 @@ public class StorageEditActivity extends AppCompatActivity {
 
     /*private void saveStorage() {
         String type = spinner.getSelectedItem().toString();
-        String amount = amountEdit.getText().toString();
+        String hectare = hectareEdit.getText().toString();
         String date = dateEdit.getText().toString();
 
         Intent data = new Intent();
         data.putExtra(EXTRA_TYPE, type);
-        data.putExtra(EXTRA_AMOUNT, amount);
+        data.putExtra(EXTRA_AMOUNT, hectare);
         data.putExtra(EXTRA_DATE, date);
 
         int id = getIntent().getIntExtra(EXTRA_ID, -1);

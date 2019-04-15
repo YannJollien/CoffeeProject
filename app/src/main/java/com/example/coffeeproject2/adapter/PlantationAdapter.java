@@ -24,23 +24,16 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
     @Override
     public PlantationHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.plantation_view, viewGroup, false);
+                .inflate(R.layout.plantation_view_2, viewGroup, false);
         return new PlantationHolder(itemView);
     }
 
-    //Get Storage at specific position
-    public Plantation getStorageAt(int position) {
-        return plantationList.get(position);
-    }
-
-    //Holding the data
     @Override
-    public void onBindViewHolder(@NonNull PlantationHolder storageHolder, int i) {
+    public void onBindViewHolder(@NonNull PlantationHolder plantationHolder, int i) {
         Plantation currentPlantation = plantationList.get(i);
-        storageHolder.textViewType.setText(currentPlantation.getType());
-        storageHolder.textViewHectare.setText(String.valueOf(currentPlantation.getHectare()));
-        storageHolder.textViewDate.setText(currentPlantation.getDate());
-
+        plantationHolder.textViewType.setText(currentPlantation.getType());
+        plantationHolder.textViewHectare.setText(String.valueOf(currentPlantation.getHectare()));
+        plantationHolder.textViewDate.setText(currentPlantation.getDate());
     }
 
     @Override
@@ -48,9 +41,13 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
         return plantationList.size();
     }
 
-    public void setPlantation(List<Plantation> plantations) {
+    public void setStorage(List<Plantation> plantations) {
         this.plantationList = plantations;
         notifyDataSetChanged();
+    }
+
+    public Plantation getPlantationAt(int position) {
+        return plantationList.get(position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -67,6 +64,8 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
         private TextView textViewDate;
         private ImageView editView;
 
+
+        //Holding the data
         private PlantationHolder(@NonNull View itemView) {
             super(itemView);
             textViewType = itemView.findViewById(R.id.text_view_type);
@@ -78,11 +77,12 @@ public class PlantationAdapter extends RecyclerView.Adapter<PlantationAdapter.Pl
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(plantationList.get(position));
-                    }
+                    //if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(plantationList.get(position));
+                    // }
                 }
             });
+
         }
     }
 }
