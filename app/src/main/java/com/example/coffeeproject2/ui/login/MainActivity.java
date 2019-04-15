@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnSignIn, btnSignUp;
     private FirebaseAuth auth;
 
+    ProgressBar progress;
+
     public String password;
     public String email;
 
@@ -52,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progress = findViewById(R.id.load);
+                progress.setVisibility(View.VISIBLE);
                  email = inputEmail.getText().toString();
                  password = inputPassword.getText().toString();
                 if (TextUtils.isEmpty(email)) {
@@ -66,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
+
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
@@ -78,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(MainActivity.this, "Authentication failed", Toast.LENGTH_LONG).show();
                                     }
                                 } else {
+                                    progress.setVisibility(View.GONE);
                                     Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                                     startActivity(intent);
                                     finish();
