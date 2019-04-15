@@ -65,6 +65,13 @@
             android:name=".settings.SettingsAboutActivity"
             android:parentActivityName=".ui.menu.MenuActivity">
         </activity>
+        <service android:name=".notification.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
+
+
 
 </manifest>

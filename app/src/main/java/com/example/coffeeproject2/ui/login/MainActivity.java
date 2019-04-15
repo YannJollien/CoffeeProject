@@ -3,7 +3,6 @@ package com.example.coffeeproject2.ui.login;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.arch.persistence.room.Database;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,7 +11,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -20,26 +18,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
-import com.example.coffeeproject2.database.entity.User;
-import com.example.coffeeproject2.settings.ProfileActivity;
-import com.example.coffeeproject2.settings.SettingsActivity;
 import com.example.coffeeproject2.ui.menu.MenuActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseError;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import org.apache.log4j.chainsaw.Main;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -35,12 +36,21 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 public class MenuActivity extends AppCompatActivity {
+
     String currentLanguage = "en", currentLang;
     TextView sumS;
     TextView sumP;
@@ -52,6 +62,14 @@ public class MenuActivity extends AppCompatActivity {
     Button profile;
     private DrawerLayout drawerLayout;
     private Locale locale;
+
+    private FirebaseDatabase database;
+    private DatabaseReference myRef = null;
+
+    List<Storage> storageList;
+
+
+    private String currentUserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +88,11 @@ public class MenuActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
 
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("storage");
+
         //get Sum Storage
-        //sumStorage();
+        sumStorage();
 
         //get Sum Plantaiton
         //sumPlantation();
@@ -121,7 +142,29 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(new Intent(MenuActivity.this, ProfileActivity.class));
             }
         });
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                /* This method is called once with the initial value and again whenever data at this location is updated.*/
+                long value = dataSnapshot.getChildrenCount();
+
+                GenericTypeIndicator<List<Storage>> genericTypeIndicator = new GenericTypeIndicator<List<Storage>>() {
+                };
+
+                storageList = dataSnapshot.getValue(genericTypeIndicator);
+                for (int i = 0; i < storageList.size(); i++){
+                    System.out.println(storageList.get(i).getAmount());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
     }
+
 
     //setup chart
     public void setupPieChartCoffee(float[] a, String[] b) {
@@ -193,44 +236,32 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-    /*public void sumStorage() {
+    public void sumStorage() {
         sumS = (TextView) findViewById(R.id.sum_storage);
-        storageViewModel = ViewModelProviders.of(this).get(StorageViewModel.class);
-        storageViewModel.getAllStorage().observe(this, new Observer<List<Storage>>() {
-            @Override
-            public void onChanged(@Nullable List<Storage> storages) {
-                System.out.println(storages.size());
+        //update RecyclerView
+        for (int i = 0; i < storageList.size(); i++) {
+            sumStorage += storageList.get(i).getAmount();
 
-                //update RecyclerView
-                for (int i = 0; i < storages.size(); i++) {
-                    sumStorage += storages.get(i).getAmount();
+            sumS.setText("Storage: " + String.valueOf(sumStorage) + " Kg");
+            System.out.println(sumStorage);
 
-                    System.out.println(storages.get(i).getAmount());
-                    sumS.setText("Storage: " + String.valueOf(sumStorage) + " Kg");
-                    System.out.println(sumStorage);
-
-                    switch (storages.get(i).getType()) {
-                        case "Arabica":
-                            am[0] += storages.get(i).getAmount();
-                            break;
-                        case "Robusta":
-                            am[1] += storages.get(i).getAmount();
-                            break;
-                        case "Liberica":
-                            am[2] += storages.get(i).getAmount();
-                            break;
-                    }
-                }
-                System.out.println("Hier");
-                for (int j = 0; j < am.length; j++) {
-                    System.out.println(am[j]);
-                }
-                setupPieChartCoffee(am, typ);
+            switch (storageList.get(i).getType()) {
+                case "Arabica":
+                    am[0] += storageList.get(i).getAmount();
+                    break;
+                case "Robusta":
+                    am[1] += storageList.get(i).getAmount();
+                    break;
+                case "Liberica":
+                    am[2] += storageList.get(i).getAmount();
+                    break;
             }
-        });
+        }
+        setupPieChartCoffee(am, typ);
     }
+}
 
-    public void sumPlantation() {
+    /*public void sumPlantation() {
         sumP = (TextView) findViewById(R.id.sum_plantation);
         plantationViewModel = ViewModelProviders.of(this).get(PlantationViewModel.class);
         plantationViewModel.getAllPlantation().observe(this, new Observer<List<Plantation>>() {
@@ -259,4 +290,4 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
     }*/
-}
+
