@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -36,6 +37,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,6 +50,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -63,6 +66,9 @@ public class MenuActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private Locale locale;
 
+    ArrayList<Storage> amountList;
+
+    DatabaseReference databaseStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,9 +87,54 @@ public class MenuActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
 
+        databaseStorage = FirebaseDatabase.getInstance().getReference("storage");
+
+        amountList =  new ArrayList<>();
+
+        databaseStorage.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                sumS = (TextView) findViewById(R.id.sum_storage);
+                amountList.clear();
+
+                for (DataSnapshot storageSnapshot : dataSnapshot.getChildren()){
+                    Storage strage = storageSnapshot.getValue(Storage.class);
+                    amountList.add(strage);
+                }
+                for (int i = 0; i < amountList.size();i++){
+                    sumStorage += amountList.get(i).getAmount();
+
+                    sumS.setText("Storage: " + String.valueOf(sumStorage) + " Kg");
+                    System.out.println(sumStorage);
+
+                    switch (amountList.get(i).getType()) {
+                        case "Arabica":
+                            am[0] += amountList.get(i).getAmount();
+                            break;
+                        case "Robusta":
+                            am[1] += amountList.get(i).getAmount();
+                            break;
+                        case "Liberica":
+                            am[2] += amountList.get(i).getAmount();
+                            break;
+                    }
+                    setupPieChartCoffee(am, typ);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         //get Sum Storage
-        //sumStorage();
+        sumStorage();
 
         //get Sum Plantaiton
         //sumPlantation();
@@ -133,7 +184,6 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(new Intent(MenuActivity.this, ProfileActivity.class));
             }
         });
-
     }
 
 
@@ -207,29 +257,34 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-    /*public void sumStorage() {
+    public void sumStorage() {
+
         sumS = (TextView) findViewById(R.id.sum_storage);
+
         //update RecyclerView
-        for (int i = 0; i < storageList.size(); i++) {
-            sumStorage += storageList.get(i).getAmount();
+        for (int i = 0; i < amountList.size(); i++) {
+            sumStorage += amountList.get(i).getAmount();
 
             sumS.setText("Storage: " + String.valueOf(sumStorage) + " Kg");
             System.out.println(sumStorage);
 
-            switch (storageList.get(i).getType()) {
+            switch (amountList.get(i).getType()) {
                 case "Arabica":
-                    am[0] += storageList.get(i).getAmount();
+                    am[0] += amountList.get(i).getAmount();
                     break;
                 case "Robusta":
-                    am[1] += storageList.get(i).getAmount();
+                    am[1] += amountList.get(i).getAmount();
                     break;
                 case "Liberica":
-                    am[2] += storageList.get(i).getAmount();
+                    am[2] += amountList.get(i).getAmount();
                     break;
             }
+            System.out.println(sumStorage);
         }
         setupPieChartCoffee(am, typ);
-    }*/
+
+    }
+
 }
 
     /*public void sumPlantation() {
