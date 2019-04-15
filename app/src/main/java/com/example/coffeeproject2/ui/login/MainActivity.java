@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private EditText inputEmail, inputPassword;
     private Button btnSignIn, btnSignUp;
     private FirebaseAuth auth;
+
+    public String password;
+    public String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = inputEmail.getText().toString();
-                final String password = inputPassword.getText().toString();
+                 email = inputEmail.getText().toString();
+                 password = inputPassword.getText().toString();
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
                     return;

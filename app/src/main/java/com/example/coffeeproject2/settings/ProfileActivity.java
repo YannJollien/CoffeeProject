@@ -13,16 +13,20 @@ import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.ui.login.MainActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    public static String nameProfile;
-    public static String passProfile;
     TextView name;
-    TextView pass;
     Button logout;
     Button delete;
     MainActivity main = new MainActivity();
+
+    String email;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +45,29 @@ public class ProfileActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
 
+
+
         name = (TextView) findViewById(R.id.text_name);
 
-        pass = (TextView) findViewById(R.id.text_password);
 
         logout = (Button) findViewById(R.id.button_logout);
 
         delete = (Button) findViewById(R.id.button_delete);
 
+        if(user != null) {
+            // Name, email address, and profile photo Url
+            email = user.getEmail();
 
-        name.setText("Logged in as " + nameProfile);
-        pass.setText("Password " + passProfile);
+            // Check if user's email is verified
+            boolean emailVerified = user.isEmailVerified();
+
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getIdToken() instead.
+            String uid = user.getUid();
+        }
+
+        name.setText("Logged in as " + email);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,11 +79,16 @@ public class ProfileActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //appDatabase.userDao().deleteUser(nameProfile);
+                user.delete();
                 Toast.makeText(ProfileActivity.this, "User deleted",
                         Toast.LENGTH_LONG).show();
                 startActivity(new Intent(ProfileActivity.this, MainActivity.class));
             }
         });
+
+
     }
+
+
+
 }

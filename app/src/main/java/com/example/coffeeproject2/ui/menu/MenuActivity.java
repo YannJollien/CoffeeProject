@@ -63,13 +63,6 @@ public class MenuActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private Locale locale;
 
-    private FirebaseDatabase database;
-    private DatabaseReference myRef = null;
-
-    List<Storage> storageList;
-
-
-    private String currentUserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,11 +81,9 @@ public class MenuActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("storage");
 
         //get Sum Storage
-        sumStorage();
+        //sumStorage();
 
         //get Sum Plantaiton
         //sumPlantation();
@@ -143,26 +134,6 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                /* This method is called once with the initial value and again whenever data at this location is updated.*/
-                long value = dataSnapshot.getChildrenCount();
-
-                GenericTypeIndicator<List<Storage>> genericTypeIndicator = new GenericTypeIndicator<List<Storage>>() {
-                };
-
-                storageList = dataSnapshot.getValue(genericTypeIndicator);
-                for (int i = 0; i < storageList.size(); i++){
-                    System.out.println(storageList.get(i).getAmount());
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-            }
-        });
     }
 
 
@@ -236,7 +207,7 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-    public void sumStorage() {
+    /*public void sumStorage() {
         sumS = (TextView) findViewById(R.id.sum_storage);
         //update RecyclerView
         for (int i = 0; i < storageList.size(); i++) {
@@ -258,7 +229,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         }
         setupPieChartCoffee(am, typ);
-    }
+    }*/
 }
 
     /*public void sumPlantation() {
