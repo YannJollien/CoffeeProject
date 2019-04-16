@@ -25,6 +25,14 @@ public class Plantation {
         this.date = date;
     }
 
+    //Constructor
+    public Plantation(String id,String type, double hectare, String date) {
+        this.id=id;
+        this.type = type;
+        this.hectare = hectare;
+        this.date = date;
+    }
+
     public void setId(String id) {
         this.id = id;
     }

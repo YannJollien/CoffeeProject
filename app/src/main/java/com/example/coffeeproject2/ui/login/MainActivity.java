@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                 startActivity(intent);
+                addNotification();
                 /*progress = findViewById(R.id.load);
                 progress.setVisibility(View.VISIBLE);
                  email = inputEmail.getText().toString();
