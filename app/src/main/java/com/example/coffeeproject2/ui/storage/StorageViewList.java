@@ -39,7 +39,7 @@ public class StorageViewList extends AppCompatActivity {
     StorageAdapterView adapter;
 
     DatabaseReference databaseStorage;
-    StorageAdapter storageAdapter = new StorageAdapter();
+    //StorageAdapter storageAdapter = new StorageAdapter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class StorageViewList extends AppCompatActivity {
         final RecyclerView recyclerView = findViewById(R.id.recycler_view_storage);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        StorageAdapter storageAdapter = new StorageAdapter();
+        final StorageAdapter storageAdapter = new StorageAdapter();
         recyclerView.setAdapter(storageAdapter);
 
         storageList = new ArrayList<>();
@@ -66,7 +66,10 @@ public class StorageViewList extends AppCompatActivity {
                     for (int i = 0; i < storageList.size();i++){
                         System.out.println(storageList.get(i).getId());
                     }
+
                 }
+
+                storageAdapter.setStorage(storageList);
                 adapter = new StorageAdapterView(getApplicationContext(), storageList);
                 recyclerView.setAdapter(adapter);
             }
@@ -78,7 +81,7 @@ public class StorageViewList extends AppCompatActivity {
 
         });
 
-
+        storageAdapter.setStorage(storageList);
         // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
                 (Toolbar) findViewById(R.id.storage_toolbar);
@@ -111,13 +114,15 @@ public class StorageViewList extends AppCompatActivity {
         storageAdapter.setOnItemClickListener(new StorageAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Storage storage) {
-                System.out.println("CLick");
+                System.out.println("Click");
+                /*
                 Intent intent = new Intent(StorageViewList.this, StorageEditActivity.class);
-                /*intent.putExtra(StorageEditActivity.EXTRA_ID, storage.getId());
+                intent.putExtra(StorageEditActivity.EXTRA_ID, storage.getId());
                 intent.putExtra(StorageEditActivity.EXTRA_TYPE, storage.getType());
-                intent.putExtra(StorageEditActivity.EXTRA_AMOUNT, storage.getHectare() + "");
-                intent.putExtra(StorageEditActivity.EXTRA_DATE, storage.getDate());*/
+                intent.putExtra(StorageEditActivity.EXTRA_AMOUNT, storage.getAmount() + "");
+                intent.putExtra(StorageEditActivity.EXTRA_DATE, storage.getDate());
                 startActivityForResult(intent, EDIT_NOTE_REQUEST);
+                */
             }
         });
 

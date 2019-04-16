@@ -49,7 +49,13 @@ public class PlantationViewActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    System.out.println("Get Value: " +dataSnapshot1.getValue());
+                    System.out.println("Test2 " + dataSnapshot);
+                    System.out.println(dataSnapshot1.getValue(Plantation.class).getHectare());
                     Plantation plantation = dataSnapshot1.getValue(Plantation.class);
+                    System.out.println("Beim holen von Firebase:" + plantation.getHectare());
+                    System.out.println("Beim holen von Firebase DAtum:" + plantation.getDate());
+                    System.out.println("Beim holen von Firebase:" + plantation.getType());
                     plantationList.add(plantation);
                 }
                 adapter = new PlantationAdapterView(getApplicationContext(), plantationList);

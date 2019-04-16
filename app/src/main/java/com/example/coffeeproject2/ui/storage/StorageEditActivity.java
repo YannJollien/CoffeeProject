@@ -99,7 +99,6 @@ public class StorageEditActivity extends AppCompatActivity {
                     Toast.makeText(StorageEditActivity.this, "empty fields",
                             Toast.LENGTH_LONG).show();
                 } else {
-                    System.out.println("Text nicht leer");
                     if (dateCheck(dateEdit.getText().toString())) {
                         //saveStorage();
                     } else {
@@ -119,14 +118,14 @@ public class StorageEditActivity extends AppCompatActivity {
         //spinner.setSelection(getIndex(spinner, intent.getStringExtra(EXTRA_TYPE)));
     }
 
-    /*private void saveStorage() {
+    private void saveStorage() {
         String type = spinner.getSelectedItem().toString();
-        String hectare = hectareEdit.getText().toString();
+        String amount = amountEdit.getText().toString();
         String date = dateEdit.getText().toString();
 
         Intent data = new Intent();
         data.putExtra(EXTRA_TYPE, type);
-        data.putExtra(EXTRA_AMOUNT, hectare);
+        data.putExtra(EXTRA_AMOUNT, amount);
         data.putExtra(EXTRA_DATE, date);
 
         int id = getIntent().getIntExtra(EXTRA_ID, -1);
@@ -137,7 +136,7 @@ public class StorageEditActivity extends AppCompatActivity {
         setResult(RESULT_OK, data);
         finish();
 
-    }*/
+    }
 
     //set the camera item in Actionbar
     @Override

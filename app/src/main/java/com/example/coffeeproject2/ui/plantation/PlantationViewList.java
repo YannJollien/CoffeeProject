@@ -62,7 +62,7 @@ public class PlantationViewList extends AppCompatActivity {
                     Plantation plantation = dataSnapshot1.getValue(Plantation.class);
                     plantationList.add(plantation);
                     for (int i = 0; i < plantationList.size(); i++){
-                        System.out.println(plantationList.get(i).getId());
+                        System.out.println("ID von ViewList Plantation: " + plantationList.get(i).getId());
                     }
                 }
                 adapter = new PlantationAdapterView(getApplicationContext(), plantationList);

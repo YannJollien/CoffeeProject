@@ -131,9 +131,13 @@ public class PlantationAddActivity extends AppCompatActivity {
         double hectare = Double.parseDouble(hectareEdit.getText().toString());
         String date = dateEdit.getText().toString();
 
+        System.out.println("ADD" + hectare);
+
         String id = databasePlantation.push().getKey();
 
+
         Plantation plantation = new Plantation(type, hectare, date);
+
 
         databasePlantation.child(id).setValue(plantation);
         //storageViewModel.insert(recyclerView);
@@ -142,7 +146,7 @@ public class PlantationAddActivity extends AppCompatActivity {
                 Toast.LENGTH_LONG).show();
         hectareEdit.setText("");
         dateEdit.setText("");
-        System.out.println(id);
+        System.out.println("ID von PlantationAdd: " + id);
         startActivity(new Intent(getApplicationContext(), PlantationViewActivity.class));
 
     }
