@@ -67,6 +67,11 @@ public class StorageAdapterView extends RecyclerView.Adapter<StorageAdapterView.
 
     }
 
+    public Storage getStorage(int position){
+        Storage storage = storageList.get(position);
+        return storage;
+    }
+
 
 }
 

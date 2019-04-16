@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "480237609384-hj9qdigsc5eg6tmbscvgki436e6o3tba.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.coffeeproject2",
+            "certificate_hash": "4cc2efdc082880490205db4edb888732a372a31a"
+          }
+        },
+        {
           "client_id": "480237609384-mjkjbv6jjli5p23a038g8apui5t7dgjb.apps.googleusercontent.com",
           "client_type": 3
         }
