@@ -15,6 +15,13 @@ public class Storage {
 
     }
     //Constructor
+    public Storage(String id, String type, double amount, String date) {
+        this.id=id;
+        this.type = type;
+        this.amount = amount;
+        this.date = date;
+    }
+
     public Storage(String type, double amount, String date) {
         this.type = type;
         this.amount = amount;
