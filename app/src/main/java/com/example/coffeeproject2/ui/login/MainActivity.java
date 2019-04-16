@@ -55,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progress = findViewById(R.id.load);
+                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                startActivity(intent);
+                /*progress = findViewById(R.id.load);
                 progress.setVisibility(View.VISIBLE);
                  email = inputEmail.getText().toString();
                  password = inputPassword.getText().toString();
@@ -85,12 +87,13 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 } else {
                                     progress.setVisibility(View.GONE);
+                                    addNotification();
                                     Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }
                             }
-                        });
+                        });*/
             }
         });
         btnSignUp.setOnClickListener(new View.OnClickListener() {
