@@ -138,7 +138,7 @@ public class StorageAddActivity extends AppCompatActivity {
 
         String id = databaseStorage.push().getKey();
 
-        Storage storage = new Storage(type, amount, date);
+        Storage storage = new Storage(id,type, amount, date);
 
         databaseStorage.child(id).setValue(storage);
         //storageViewModel.insert(recyclerView);
