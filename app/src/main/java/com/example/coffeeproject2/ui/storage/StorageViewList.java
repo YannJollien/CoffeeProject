@@ -98,19 +98,13 @@ public class StorageViewList extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                int position = viewHolder.getAdapterPosition();
 
-                int position = viewHolder.getAdapterPosition(); // this is how you can get the position
-                System.out.println(position);
-                Storage store = storageList.get(position);
-                System.out.println(store.getId() + " ist die ID und " + store.getAmount() + " ist die Menge");
+                Storage storage = adapter.getStorage(position);
 
-                Storage storage = adapter.getStorage(position); // You will have your own class ofcourse.
-                System.out.println(storage.getId());
-
-                // then you can delete the object
-                reference.child("Storage").child(storage.getId()).setValue(null);// setting the value to null will just delete it from the database.
+                reference.child(storage.getId()).removeValue();
                 startActivity(new Intent(StorageViewList.this, StorageViewActivity.class));
+                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
 
