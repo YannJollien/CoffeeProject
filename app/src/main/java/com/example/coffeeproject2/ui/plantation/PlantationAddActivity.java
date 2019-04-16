@@ -133,7 +133,7 @@ public class PlantationAddActivity extends AppCompatActivity {
 
         String id = databasePlantation.push().getKey();
 
-        Plantation plantation = new Plantation(id,type, hectare, date);
+        Plantation plantation = new Plantation(type, hectare, date);
 
         databasePlantation.child(id).setValue(plantation);
         //storageViewModel.insert(recyclerView);

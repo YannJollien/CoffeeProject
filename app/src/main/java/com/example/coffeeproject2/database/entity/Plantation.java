@@ -41,7 +41,7 @@ public class Plantation {
         this.type = type;
     }
 
-    public void setHectare(double amount) {
+    public void setHectare(double hectare) {
         this.hectare = hectare;
     }
 
