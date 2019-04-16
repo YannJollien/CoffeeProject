@@ -96,8 +96,13 @@ public class PlantationViewList extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                int position = viewHolder.getAdapterPosition();
+
+                Plantation plantation = adapter.getPlantation(position);
+
+                reference.child(plantation.getId()).removeValue();
                 startActivity(new Intent(PlantationViewList.this, PlantationViewActivity.class));
+                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
 
             }
         }).attachToRecyclerView(recyclerView);

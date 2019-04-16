@@ -59,4 +59,9 @@ public class PlantationAdapterView extends RecyclerView.Adapter<PlantationAdapte
         }
 
     }
+
+    public Plantation getPlantation(int position){
+        Plantation plantation = plantationList.get(position);
+        return plantation;
+    }
 }
