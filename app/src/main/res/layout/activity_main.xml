@@ -40,8 +40,7 @@
         android:textColorHint="#999999"
         android:textColor="#ffffff"
         android:ems="10"
-        android:hint="E-mail or username"
-        android:inputType="textEmailAddress" />
+        android:hint="@string/hint_email" />
 
     <TextView
         android:id="@+id/viewPass"
@@ -51,9 +50,8 @@
         android:layout_marginTop="40dp"
         android:layout_marginRight="5dp"
         android:textColor="#ffffff"
-        android:ems="10"
-        android:inputType="textPersonName"
         android:text="@string/view_pass" />
+
 
     <EditText
         android:id="@+id/inPass"
@@ -65,7 +63,7 @@
         android:layout_marginRight="5dp"
         android:textColorHint="#999999"
         android:ems="10"
-        android:hint="password"
+        android:hint="@string/hint_password"
         android:inputType="textPassword" />
 
     <Button

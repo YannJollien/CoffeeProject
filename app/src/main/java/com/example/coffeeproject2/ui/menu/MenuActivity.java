@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.entity.Plantation;
 import com.example.coffeeproject2.database.entity.Storage;
+import com.example.coffeeproject2.settings.ContactActivity;
 import com.example.coffeeproject2.settings.ProfileActivity;
 import com.example.coffeeproject2.settings.SettingsAboutActivity;
 import com.example.coffeeproject2.settings.SettingsActivity;
@@ -141,7 +142,7 @@ public class MenuActivity extends AppCompatActivity {
                 for (int i = 0; i < hectareList.size();i++){
                     sumPlantation += hectareList.get(i).getHectare();
 
-                    sumP.setText("Plantation: " + String.valueOf(sumStorage) + " Kg");
+                    sumP.setText("Plantation: " + String.valueOf(sumPlantation) + " Kg");
                     System.out.println(sumPlantation);
 
                     switch (hectareList.get(i).getType()) {
@@ -197,14 +198,20 @@ public class MenuActivity extends AppCompatActivity {
                             case R.id.nav_logout:
                                 Intent i4 = new Intent(MenuActivity.this, MainActivity.class);
                                 startActivity(i4);
-                                Toast.makeText(MenuActivity.this, "Logged uot",
+                                Toast.makeText(MenuActivity.this, "Logged out",
                                         Toast.LENGTH_LONG).show();
                                 break;
                             case R.id.nav_about:
                                 Intent i5 = new Intent(MenuActivity.this, SettingsAboutActivity.class);
                                 startActivity(i5);
                                 break;
+                            case R.id.nav_contact:
+                                System.out.println(R.id.nav_contact);
+                                Intent i6 = new Intent(MenuActivity.this, ContactActivity.class);
+                                startActivity(i6);
+                                break;
                             case R.id.nav_lang:
+                                System.out.println(R.id.nav_lang);
                                 //calling changing langugage method
                                 setLocale("de");
                         }

@@ -12,6 +12,9 @@
     <string name="view_lastname">Nachname</string>
     <string name="mail_register">E-mail odre Benutzername</string>
     <string name="button_saveRegister">Speichern</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_email">E-mail</string>
+
     <!-- Strings related to menu -->
     <string name="button_storage">Lager</string>
     <string name="button_plantation">Plantage</string>
@@ -20,6 +23,10 @@
     <string name="action_Profile">Profil</string>
     <string name="button_info">Info</string>
     <string name="button_lang">Sprache ändern(EN-DE)</string>
+    <string name="button_contact">Kontaktiert uns</string>
+
+    <string name="sum_sorage">Lager: kg</string>
+    <string name="sum_hectare">Plantage: ha</string>
 
     <!-- Strings related to storage -->
     <string name="button_storage_edit">Lager ändern</string>
@@ -30,17 +37,27 @@
     <string name="storage_date">Datum angeben</string>
     <string name="storage_save">Speichern</string>
     <string name="storage_qr">Qr Scanner</string>
+    <string name="storage_add_add">Neu</string>
+    <string name="button_storage_edit_edit">Ändern</string>
 
     <!-- Strings related to plantation -->
     <string name="plantation_type">Art auswählen</string>
     <string name="plantation_hectare">Hektare angeben</string>
     <string name="plantation_date">Datum angeben</string>
     <string name="plantation_add">Speichern</string>
+    <string name="plantation_add_add">Neu</string>
     <string name="button_plantation_edit">Plantage ändern</string>
+    <string name="button_plantation_edit_edit">Ändern</string>
     <string name="button_plantation_add">Plantage hinzufügen</string>
     <string name="button_plantation_show">Plantage anzeigen</string>
 
     <string name="add_button">Hinzufügen</string>
+
+    <!-- Strings related to contact -->
+    <string name="mail_address">jollienyann@yahoo.fr</string>
+    <string name="hint_message">Nachricht</string>
+    <string name="send_mail">Senden</string>
+    <string name="hint_subject">Objekt</string>
 
 
     <!-- Strings related to type -->

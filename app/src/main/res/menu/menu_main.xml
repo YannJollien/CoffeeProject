@@ -25,7 +25,10 @@
             android:id="@+id/nav_lang"
             android:icon="@drawable/ic_language_black_24dp"
             android:title="@string/button_lang"/>
-
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/ic_email_black_24dp"
+            android:title="@string/button_contact"/>
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_arrow_back_black_24dp"

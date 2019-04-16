@@ -12,6 +12,8 @@
     <string name="view_lastname">Enter last name</string>
     <string name="mail_register">E-mail or username</string>
     <string name="button_saveRegister">Save</string>
+    <string name="hint_password">password</string>
+    <string name="hint_email">E-mail</string>
     <!-- Strings related to menu -->
     <string name="button_storage">Storage</string>
     <string name="button_plantation">Plantation</string>
@@ -20,6 +22,10 @@
     <string name="action_Profile">Profile</string>
     <string name="button_info">About</string>
     <string name="button_lang">Change Language(EN-DE)</string>
+    <string name="button_contact">Contact us</string>
+
+    <string name="sum_sorage">Storage: kg</string>
+    <string name="sum_hectare">Plantation: ha</string>
 
     <!-- Strings related to storage -->
     <string name="button_storage_edit">Edit Storage</string>
@@ -30,17 +36,31 @@
     <string name="storage_date">Enter date</string>
     <string name="storage_save">Save</string>
     <string name="storage_qr">Qr Scanner</string>
+    <string name="storage_add_add">Add</string>
+    <string name="button_storage_edit_edit">Edit</string>
 
     <!-- Strings related to plantation -->
     <string name="plantation_type">Chose type</string>
     <string name="plantation_hectare">Enter hectare</string>
     <string name="plantation_date">Enter date</string>
     <string name="plantation_add">Save</string>
+    <string name="plantation_add_add">Add</string>
     <string name="button_plantation_edit">Edit Plantation</string>
+    <string name="button_plantation_edit_edit">Edit</string>
     <string name="button_plantation_add">Add Plantation</string>
     <string name="button_plantation_show">Show Plantation</string>
 
+    <!-- Strings related to contact -->
+    <string name="mail_address">jollienyann@yahoo.fr</string>
+    <string name="hint_message">Message</string>
+    <string name="send_mail">Send</string>
+    <string name="hint_subject">Subject</string>
+
+
+
     <string name="add_button">Add</string>
+
+
 
 
     <!-- Strings related to type -->
