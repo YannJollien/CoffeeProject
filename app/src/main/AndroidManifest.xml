@@ -65,7 +65,7 @@
             android:parentActivityName=".ui.plantation.PlantationViewList"/>
         <activity
             android:name=".settings.ContactActivity"
-            android:parentActivityName=".ui.menu.MenuActivity"/>
+            android:parentActivityName=".settings.SettingsAboutActivity"/>
     </application>
 
 </manifest>

@@ -205,11 +205,6 @@ public class MenuActivity extends AppCompatActivity {
                                 Intent i5 = new Intent(MenuActivity.this, SettingsAboutActivity.class);
                                 startActivity(i5);
                                 break;
-                            case R.id.nav_contact:
-                                System.out.println(R.id.nav_contact);
-                                Intent i6 = new Intent(MenuActivity.this, ContactActivity.class);
-                                startActivity(i6);
-                                break;
                             case R.id.nav_lang:
                                 System.out.println(R.id.nav_lang);
                                 //calling changing langugage method
