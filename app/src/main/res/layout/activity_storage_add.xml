@@ -64,7 +64,7 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="30dp"
@@ -72,17 +72,33 @@
         android:text="@string/storage_date"
         android:textColor="#ffffff" />
 
-    <EditText
-        android:id="@+id/add_date"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        android:ems="10"
-        android:hint="dd.mm.yyyy"
-        android:textColor="#ffffff"
-        android:textColorHint="#999999" />
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/add_date"
+            android:layout_width="348dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:ems="10"
+            android:hint="dd.mm.yyyy"
+            android:textColor="#ffffff"
+            android:textColorHint="#999999" />
+
+        <Button
+            android:id="@+id/date_choser"
+            android:layout_width="47dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_date_range_white_24dp" />
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/save_add_storage"

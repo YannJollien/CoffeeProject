@@ -1,5 +1,6 @@
 package com.example.coffeeproject2.ui.plantation;
 
+import android.app.DatePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.entity.Plantation;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class PlantationEditActivity extends AppCompatActivity {
@@ -34,6 +37,12 @@ public class PlantationEditActivity extends AppCompatActivity {
     public EditText hectareEdit;
     public EditText dateEdit;
     Button save;
+
+    Button date;
+
+    DatePickerDialog dpd;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +85,9 @@ public class PlantationEditActivity extends AppCompatActivity {
         //Get the info by id
         save = (Button) findViewById(R.id.save_add_plantation);
 
+        date = (Button)findViewById(R.id.date_choser);
+
+
         hectareEdit = (EditText) findViewById(R.id.add_hectare);
         dateEdit = (EditText) findViewById(R.id.add_date);
 
@@ -97,6 +109,24 @@ public class PlantationEditActivity extends AppCompatActivity {
             }
         });
         spinner.setSelection(getIndex(spinner, intent.getStringExtra(EXTRA_TYPE)));
+
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c = Calendar.getInstance();
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                int month = c.get(Calendar.MONTH);
+                int year = c.get(Calendar.YEAR);
+
+                dpd = new DatePickerDialog(PlantationEditActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int mYear, int mMonth, int mDayOfMonth) {
+                        dateEdit.setText(mDayOfMonth + "." +mMonth+ "." + mYear);
+                    }
+                }, year, month, day);
+                dpd.show();
+            }
+        });
 
     }
 

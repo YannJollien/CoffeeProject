@@ -1,5 +1,6 @@
 package com.example.coffeeproject2.ui.plantation;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class PlantationAddActivity extends AppCompatActivity {
 
@@ -33,8 +36,11 @@ public class PlantationAddActivity extends AppCompatActivity {
 
     DatabaseReference databasePlantation;
 
+    DatePickerDialog dpd;
+
 
     Button save;
+    Button date;
     //StorageDatabase storageDatabase;
 
     public static TextView result;
@@ -74,6 +80,7 @@ public class PlantationAddActivity extends AppCompatActivity {
 
         //Get the info by id
         save = (Button) findViewById(R.id.save_add_plantation);
+        date = (Button)findViewById(R.id.date_choser);
 
         hectareEdit = (EditText) findViewById(R.id.add_hectare);
         dateEdit = (EditText) findViewById(R.id.add_date);
@@ -96,6 +103,24 @@ public class PlantationAddActivity extends AppCompatActivity {
                     }
                 }
 
+            }
+        });
+
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c = Calendar.getInstance();
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                int month = c.get(Calendar.MONTH);
+                int year = c.get(Calendar.YEAR);
+
+                dpd = new DatePickerDialog(PlantationAddActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int mYear, int mMonth, int mDayOfMonth) {
+                        dateEdit.setText(mDayOfMonth + "." +mMonth+ "." + mYear);
+                    }
+                }, year, month, day);
+                dpd.show();
             }
         });
 

@@ -1,6 +1,7 @@
 package com.example.coffeeproject2.ui.storage;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.arch.persistence.room.Room;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.ScanActivity;
 
 
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -45,6 +48,9 @@ public class StorageEditActivity extends AppCompatActivity {
 
     Button save;
     Button cancel;
+    Button date;
+
+    DatePickerDialog dpd;
 
 
     @SuppressLint("WrongViewCast")
@@ -87,7 +93,8 @@ public class StorageEditActivity extends AppCompatActivity {
 
         //Get the info by id
         save = (Button) findViewById(R.id.save_add_storage);
-        cancel = (Button) findViewById(R.id.btn_cancel);
+
+        date = (Button)findViewById(R.id.date_choser);
 
         amountEdit = (EditText) findViewById(R.id.add_amount);
         dateEdit = (EditText) findViewById(R.id.add_date);
@@ -116,6 +123,24 @@ public class StorageEditActivity extends AppCompatActivity {
             }
         });
         //spinner.setSelection(getIndex(spinner, intent.getStringExtra(EXTRA_TYPE)));
+
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c = Calendar.getInstance();
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                int month = c.get(Calendar.MONTH);
+                int year = c.get(Calendar.YEAR);
+
+                dpd = new DatePickerDialog(StorageEditActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int mYear, int mMonth, int mDayOfMonth) {
+                        dateEdit.setText(mDayOfMonth + "." +mMonth+ "." + mYear);
+                    }
+                }, year, month, day);
+                dpd.show();
+            }
+        });
     }
 
     private void saveStorage() {

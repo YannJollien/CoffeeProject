@@ -72,22 +72,33 @@
         android:text="@string/storage_date"
         android:textColor="#ffffff" />
 
-    <EditText
-        android:id="@+id/add_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        android:ems="10"
-        android:hint="dd.mm.yyyy"
-        android:textColor="#ffffff"
-        android:textColorHint="#999999" />
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/add_date"
+            android:layout_width="348dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:ems="10"
+            android:hint="dd.mm.yyyy"
+            android:textColor="#ffffff"
+            android:textColorHint="#999999" />
+
+        <Button
+            android:id="@+id/date_choser"
+            android:layout_width="47dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_date_range_white_24dp" />
+
+    </LinearLayout>
+
 
         <Button
             android:id="@+id/save_add_storage"
@@ -100,15 +111,5 @@
             android:background="@drawable/round_button"
             android:text="@string/storage_save"
             android:textColor="#b70f0f" />
-
-        <Button
-            android:id="@+id/btn_cancel"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/round_button"
-            android:text="Cancel"
-            android:textColor="#b70f0f" />
-    </LinearLayout>
 
 </LinearLayout>

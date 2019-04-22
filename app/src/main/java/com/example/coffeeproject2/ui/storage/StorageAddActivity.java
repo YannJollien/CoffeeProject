@@ -1,17 +1,19 @@
 package com.example.coffeeproject2.ui.storage;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,11 +28,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
 
 
-public class StorageAddActivity extends AppCompatActivity {
+public class StorageAddActivity extends AppCompatActivity{
 
     public static Spinner spinner;
     public static EditText amountEdit;
@@ -38,7 +41,10 @@ public class StorageAddActivity extends AppCompatActivity {
 
     DatabaseReference databaseStorage;
 
+    DatePickerDialog dpd;
 
+
+    Button date;
     Button save;
     //StorageDatabase storageDatabase;
 
@@ -80,6 +86,8 @@ public class StorageAddActivity extends AppCompatActivity {
         //Get the info by id
         save = (Button) findViewById(R.id.save_add_storage);
 
+        date = (Button)findViewById(R.id.date_choser);
+
         amountEdit = (EditText) findViewById(R.id.add_amount);
         dateEdit = (EditText) findViewById(R.id.add_date);
 
@@ -101,6 +109,24 @@ public class StorageAddActivity extends AppCompatActivity {
                     }
                 }
 
+            }
+        });
+
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c = Calendar.getInstance();
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                int month = c.get(Calendar.MONTH);
+                int year = c.get(Calendar.YEAR);
+
+                dpd = new DatePickerDialog(StorageAddActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int mYear, int mMonth, int mDayOfMonth) {
+                        dateEdit.setText(mDayOfMonth + "." +mMonth+ "." + mYear);
+                    }
+                }, year, month, day);
+                dpd.show();
             }
         });
 
@@ -211,6 +237,7 @@ public class StorageAddActivity extends AppCompatActivity {
         }
         return false;
     }
+
 
 
 }
