@@ -5,20 +5,24 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.coffeeproject2.database.entity.Plantation;
+import com.example.coffeeproject2.database.entity.Storage;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-public class PlantationLiveData extends LiveData<Plantation> {
+import java.util.ArrayList;
+import java.util.List;
 
-    private static final String TAG = "PlantationLiveData";
+public class StorageListLiveData extends LiveData<List<Storage>> {
+
+    private static final String TAG = "StorageListLiveData";
 
     private final DatabaseReference reference;
-    private final PlantationLiveData.MyValueEventListener listener = new PlantationLiveData.MyValueEventListener();
+    private final StorageListLiveData.MyValueEventListener listener = new StorageListLiveData.MyValueEventListener();
 
-    public PlantationLiveData(DatabaseReference reference) {
-        this.reference = reference;
+    public StorageListLiveData(DatabaseReference reference, String showName) {
+        this.reference= reference;
     }
 
     @Override
@@ -35,12 +39,7 @@ public class PlantationLiveData extends LiveData<Plantation> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            Plantation entity = dataSnapshot.getValue(Plantation.class);
-            try {
-                entity.setId(dataSnapshot.getKey());
-                setValue(entity);
-            }
-            catch (NullPointerException e){}
+            setValue(toAccounts(dataSnapshot));
         }
 
         @Override
@@ -48,4 +47,15 @@ public class PlantationLiveData extends LiveData<Plantation> {
             Log.e(TAG, "Can't listen to query " + reference, databaseError.toException());
         }
     }
+
+    private List<Storage> toAccounts(DataSnapshot snapshot) {
+        List<Storage> storages = new ArrayList<>();
+        for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+            Storage entity = childSnapshot.getValue(Storage.class);
+            entity.setId(childSnapshot.getKey());
+            storages.add(entity);
+        }
+        return storages;
+    }
+
 }

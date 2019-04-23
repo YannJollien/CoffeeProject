@@ -116,12 +116,12 @@ public class StorageEditActivity extends AppCompatActivity {
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
+        /*cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
-        });
+        });*/
         //spinner.setSelection(getIndex(spinner, intent.getStringExtra(EXTRA_TYPE)));
 
         date.setOnClickListener(new View.OnClickListener() {

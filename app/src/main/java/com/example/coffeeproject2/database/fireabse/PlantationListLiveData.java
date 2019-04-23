@@ -15,15 +15,13 @@ import java.util.List;
 
 public class PlantationListLiveData extends LiveData<List<Plantation>> {
 
-    private static final String TAG = "PlantationtListLiveData";
+    private static final String TAG = "PlantationListLiveData";
 
     private final DatabaseReference reference;
-    private final String owner;
     private final MyValueEventListener listener = new MyValueEventListener();
 
-    public PlantationListLiveData(DatabaseReference ref, String owner) {
-        reference = ref;
-        this.owner = owner;
+    public PlantationListLiveData(DatabaseReference reference, String showName) {
+        this.reference= reference;
     }
 
     @Override
@@ -40,7 +38,7 @@ public class PlantationListLiveData extends LiveData<List<Plantation>> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setValue(toPlantation(dataSnapshot));
+            setValue(toAccounts(dataSnapshot));
         }
 
         @Override
@@ -49,15 +47,13 @@ public class PlantationListLiveData extends LiveData<List<Plantation>> {
         }
     }
 
-    private List<Plantation> toPlantation(DataSnapshot snapshot) {
-        List<Plantation> plantation = new ArrayList<>();
+    private List<Plantation> toAccounts(DataSnapshot snapshot) {
+        List<Plantation> plantations = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
             Plantation entity = childSnapshot.getValue(Plantation.class);
             entity.setId(childSnapshot.getKey());
-            plantation.add(entity);
+            plantations.add(entity);
         }
-        return plantation;
+        return plantations;
     }
-
-
 }

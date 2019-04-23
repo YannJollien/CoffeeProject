@@ -4,20 +4,20 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.coffeeproject2.database.entity.Plantation;
+import com.example.coffeeproject2.database.entity.Storage;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-public class PlantationLiveData extends LiveData<Plantation> {
+public class StorageLiveData extends LiveData<Storage> {
 
-    private static final String TAG = "PlantationLiveData";
+    private static final String TAG = "StorageLiveData";
 
     private final DatabaseReference reference;
-    private final PlantationLiveData.MyValueEventListener listener = new PlantationLiveData.MyValueEventListener();
+    private final StorageLiveData.MyValueEventListener listener = new StorageLiveData.MyValueEventListener();
 
-    public PlantationLiveData(DatabaseReference reference) {
+    public StorageLiveData(DatabaseReference reference) {
         this.reference = reference;
     }
 
@@ -35,7 +35,7 @@ public class PlantationLiveData extends LiveData<Plantation> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            Plantation entity = dataSnapshot.getValue(Plantation.class);
+            Storage entity = dataSnapshot.getValue(Storage.class);
             try {
                 entity.setId(dataSnapshot.getKey());
                 setValue(entity);
@@ -48,4 +48,5 @@ public class PlantationLiveData extends LiveData<Plantation> {
             Log.e(TAG, "Can't listen to query " + reference, databaseError.toException());
         }
     }
+
 }

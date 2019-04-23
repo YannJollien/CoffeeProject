@@ -71,7 +71,7 @@ public class StorageViewList extends AppCompatActivity {
 
                 storageAdapter.setStorage(storageList);
                 adapter = new StorageAdapterView(getApplicationContext(), storageList);
-                recyclerView.setAdapter(adapter);
+                recyclerView.setAdapter(storageAdapter);
             }
 
             @Override
@@ -115,14 +115,15 @@ public class StorageViewList extends AppCompatActivity {
             @Override
             public void onItemClick(Storage storage) {
                 System.out.println("Click");
-                /*
+                //startActivity(new Intent(StorageViewList.this, StorageEditActivity.class));
+
                 Intent intent = new Intent(StorageViewList.this, StorageEditActivity.class);
                 intent.putExtra(StorageEditActivity.EXTRA_ID, storage.getId());
                 intent.putExtra(StorageEditActivity.EXTRA_TYPE, storage.getType());
                 intent.putExtra(StorageEditActivity.EXTRA_AMOUNT, storage.getAmount() + "");
                 intent.putExtra(StorageEditActivity.EXTRA_DATE, storage.getDate());
                 startActivityForResult(intent, EDIT_NOTE_REQUEST);
-                */
+
             }
         });
 
