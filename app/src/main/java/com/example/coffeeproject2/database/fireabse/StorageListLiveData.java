@@ -4,7 +4,6 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.coffeeproject2.database.entity.Plantation;
 import com.example.coffeeproject2.database.entity.Storage;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,7 +38,7 @@ public class StorageListLiveData extends LiveData<List<Storage>> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setValue(toAccounts(dataSnapshot));
+            setValue(toStorages(dataSnapshot));
         }
 
         @Override
@@ -48,7 +47,7 @@ public class StorageListLiveData extends LiveData<List<Storage>> {
         }
     }
 
-    private List<Storage> toAccounts(DataSnapshot snapshot) {
+    private List<Storage> toStorages(DataSnapshot snapshot) {
         List<Storage> storages = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
             Storage entity = childSnapshot.getValue(Storage.class);

@@ -5,6 +5,7 @@ import android.arch.lifecycle.LiveData;
 import com.example.coffeeproject2.database.entity.Storage;
 import com.example.coffeeproject2.database.fireabse.StorageListLiveData;
 import com.example.coffeeproject2.database.fireabse.StorageLiveData;
+import com.example.coffeeproject2.util.OnAsyncEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,24 +29,24 @@ public class StorageRepository {
         return instance;
     }
 
-    public LiveData<Storage> getShow(final String name) {
+    public LiveData<Storage> getStorage(final String name) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("storage")
                 .child(name);
         return new StorageLiveData(reference);
     }
 
-    public LiveData<List<Storage>> getAllShows() {
+    public LiveData<List<Storage>> getAllStorages() {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("storage");
         return new StorageListLiveData(reference);
     }
 
-    public void insert(final Storage show, final OnAsyncEventListener callback) {
+    public void insert(final Storage storage, final OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("storage")
-                .child(show.getName())
-                .setValue(show, (databaseError, databaseReference) -> {
+                .child(storage.getName())
+                .setValue(storage, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
                     } else {
@@ -54,11 +55,11 @@ public class StorageRepository {
                 });
     }
 
-    public void update(final Show show, OnAsyncEventListener callback) {
+    public void update(final Storage storage, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("storage")
-                .child(show.getName())
-                .updateChildren(show.toMap(), (databaseError, databaseReference) -> {
+                .child(storage.getName())
+                .updateChildren(storage.toMap(), (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
                     } else {
@@ -67,10 +68,10 @@ public class StorageRepository {
                 });
     }
 
-    public void delete(final Show show, OnAsyncEventListener callback) {
+    public void delete(final Storage storage, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("storage")
-                .child(show.getName())
+                .child(storage.getName())
                 .removeValue((databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());

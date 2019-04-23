@@ -38,7 +38,7 @@ public class PlantationListLiveData extends LiveData<List<Plantation>> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setValue(toAccounts(dataSnapshot));
+            setValue(toPlantations(dataSnapshot));
         }
 
         @Override
@@ -47,7 +47,7 @@ public class PlantationListLiveData extends LiveData<List<Plantation>> {
         }
     }
 
-    private List<Plantation> toAccounts(DataSnapshot snapshot) {
+    private List<Plantation> toPlantations(DataSnapshot snapshot) {
         List<Plantation> plantations = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
             Plantation entity = childSnapshot.getValue(Plantation.class);

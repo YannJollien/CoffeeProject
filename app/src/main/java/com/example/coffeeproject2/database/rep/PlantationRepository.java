@@ -5,6 +5,7 @@ import android.arch.lifecycle.LiveData;
 import com.example.coffeeproject2.database.entity.Plantation;
 import com.example.coffeeproject2.database.fireabse.PlantationListLiveData;
 import com.example.coffeeproject2.database.fireabse.PlantationLiveData;
+import com.example.coffeeproject2.util.OnAsyncEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,24 +29,24 @@ public class PlantationRepository {
         return instance;
     }
 
-    public LiveData<Plantation> getShow(final String name) {
+    public LiveData<Plantation> getPlantation(final String name) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("plantation")
                 .child(name);
         return new PlantationLiveData(reference);
     }
 
-    public LiveData<List<Plantation>> getAllShows() {
+    public LiveData<List<Plantation>> getAllPlantations() {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("plantation");
         return new PlantationListLiveData(reference);
     }
 
-    public void insert(final Plantation show, final OnAsyncEventListener callback) {
+    public void insert(final Plantation plantation, final OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("plantation")
-                .child(show.getName())
-                .setValue(show, (databaseError, databaseReference) -> {
+                .child(plantation.getName())
+                .setValue(plantation, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
                     } else {
@@ -54,11 +55,11 @@ public class PlantationRepository {
                 });
     }
 
-    public void update(final Plantation show, OnAsyncEventListener callback) {
+    public void update(final Plantation plantation, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("plantation")
-                .child(show.getName())
-                .updateChildren(show.toMap(), (databaseError, databaseReference) -> {
+                .child(plantation.getName())
+                .updateChildren(plantation.toMap(), (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
                     } else {
@@ -67,10 +68,10 @@ public class PlantationRepository {
                 });
     }
 
-    public void delete(final Show show, OnAsyncEventListener callback) {
+    public void delete(final Plantation plantation, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("plantation")
-                .child(show.getName())
+                .child(plantation.getName())
                 .removeValue((databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
