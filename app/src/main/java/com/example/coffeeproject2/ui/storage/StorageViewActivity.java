@@ -17,6 +17,7 @@ import android.widget.Button;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.adapter.StorageAdapterView;
 import com.example.coffeeproject2.database.entity.Storage;
+import com.example.coffeeproject2.viewmodel.storage.StorageViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +36,7 @@ public class StorageViewActivity extends AppCompatActivity {
 
     ArrayList<Storage> storageList;
     StorageAdapterView adapter;
+    StorageViewModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

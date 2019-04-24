@@ -32,7 +32,7 @@ public class PlantationListViewModel extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableEpisodes.setValue(null);
 
-        LiveData<List<Plantation>> episodes = repository.getAllEpisodes(showName);
+        LiveData<List<Plantation>> episodes = repository.getAllPlantation(showName);
 
         // observe the changes of the entities from the database and forward them
         observableEpisodes.addSource(episodes, observableEpisodes::setValue);
@@ -51,7 +51,7 @@ public class PlantationListViewModel extends AndroidViewModel {
         public Factory(@NonNull Application application, String showName) {
             this.application = application;
             this.showName = showName;
-            repository = ((BaseApp) application).getEpisodeRepository();
+            repository = ((BaseApp) application).getPlantationRepository();
         }
 
         @Override
@@ -69,7 +69,7 @@ public class PlantationListViewModel extends AndroidViewModel {
     }
 
     public void deleteEpisode(Plantation episode, OnAsyncEventListener callback) {
-        ((BaseApp) getApplication()).getEpisodeRepository()
+        ((BaseApp) getApplication()).getPlantationRepository()
                 .delete(episode, callback);
     }
 

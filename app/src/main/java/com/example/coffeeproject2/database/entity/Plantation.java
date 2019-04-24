@@ -4,6 +4,9 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Plantation {
 
@@ -27,7 +30,7 @@ public class Plantation {
 
     //Constructor
     public Plantation(String id,String type, double hectare, String date) {
-        this.id=id;
+        this.id = id;
         this.type = type;
         this.hectare = hectare;
         this.date = date;
@@ -63,5 +66,14 @@ public class Plantation {
 
     public String getDate() {
         return date;
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("type", type);
+        result.put("hectare", hectare);
+        result.put("id", id);
+
+        return result;
     }
 }

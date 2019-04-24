@@ -45,7 +45,7 @@ public class PlantationRepository {
     public void insert(final Plantation plantation, final OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("plantation")
-                .child(plantation.getName())
+                .child(plantation.getId())
                 .setValue(plantation, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
@@ -58,7 +58,7 @@ public class PlantationRepository {
     public void update(final Plantation plantation, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("plantation")
-                .child(plantation.getName())
+                .child(plantation.getId())
                 .updateChildren(plantation.toMap(), (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
@@ -71,7 +71,7 @@ public class PlantationRepository {
     public void delete(final Plantation plantation, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("plantation")
-                .child(plantation.getName())
+                .child(plantation.getId())
                 .removeValue((databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
@@ -81,4 +81,9 @@ public class PlantationRepository {
                 });
     }
 
+    public LiveData<List<Plantation>> getAllPlantation(String showName) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("plantation");
+        return new PlantationListLiveData(reference);
+    }
 }

@@ -24,6 +24,10 @@ public class PlantationListLiveData extends LiveData<List<Plantation>> {
         this.reference= reference;
     }
 
+    public PlantationListLiveData(DatabaseReference reference) {
+        this.reference= reference;
+    }
+
     @Override
     protected void onActive() {
         Log.d(TAG, "onActive");

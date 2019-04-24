@@ -36,7 +36,7 @@ public class StorageRepository {
         return new StorageLiveData(reference);
     }
 
-    public LiveData<List<Storage>> getAllStorages() {
+    public StorageListLiveData getAllStorages() {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("storage");
         return new StorageListLiveData(reference);
@@ -45,7 +45,7 @@ public class StorageRepository {
     public void insert(final Storage storage, final OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("storage")
-                .child(storage.getName())
+                .child(storage.getId())
                 .setValue(storage, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
@@ -58,7 +58,7 @@ public class StorageRepository {
     public void update(final Storage storage, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("storage")
-                .child(storage.getName())
+                .child(storage.getId())
                 .updateChildren(storage.toMap(), (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
@@ -71,7 +71,7 @@ public class StorageRepository {
     public void delete(final Storage storage, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("storage")
-                .child(storage.getName())
+                .child(storage.getId())
                 .removeValue((databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
@@ -79,5 +79,11 @@ public class StorageRepository {
                         callback.onSuccess();
                     }
                 });
+    }
+
+    public LiveData<List<Storage>> getAllEpisodes(String showName) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("storage");
+        return new StorageListLiveData(reference);
     }
 }
