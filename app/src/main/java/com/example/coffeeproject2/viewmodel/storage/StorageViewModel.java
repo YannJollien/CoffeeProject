@@ -10,16 +10,17 @@ import android.support.annotation.NonNull;
 
 import com.example.coffeeproject2.BaseApp;
 import com.example.coffeeproject2.database.entity.Storage;
+import com.example.coffeeproject2.database.rep.PlantationRepository;
 import com.example.coffeeproject2.database.rep.StorageRepository;
 import com.example.coffeeproject2.util.OnAsyncEventListener;
 
 public class StorageViewModel extends AndroidViewModel {
 
     private StorageRepository repository;
-    private final MediatorLiveData<Storage> observableEpisode;
+    private MediatorLiveData<Storage> observableEpisode;
 
-    public PlantationViewModel(@NonNull Application application,
-                               final String idEpisode, final String showName, StorageRepository repository) {
+    public StorageViewModel(@NonNull Application application,
+                            final String idEpisode, final String showName, StorageRepository repository) {
         super(application);
 
         this.repository = repository;
@@ -27,12 +28,18 @@ public class StorageViewModel extends AndroidViewModel {
         observableEpisode = new MediatorLiveData<>();
         observableEpisode.setValue(null);
 
-        if (idEpisode != null){
-            LiveData<Storage> account = repository.getEpisode(idEpisode, showName);
+       // if (idEpisode != null){
+            LiveData<Storage> account = repository.getStorage(idEpisode);
             observableEpisode.addSource(account, observableEpisode::setValue);
-        }
+
+       // }
+
     }
 
+   /* public StorageViewModel(@NonNull Application application, String idEpisode, String showName, PlantationRepository repository) {
+        super(application);
+    }
+*/
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
         @NonNull

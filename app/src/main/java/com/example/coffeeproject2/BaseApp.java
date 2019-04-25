@@ -7,9 +7,14 @@ import com.example.coffeeproject2.database.rep.StorageRepository;
 
 public class BaseApp extends Application {
 
-    public PlantationRepository getEpisodeRepository() {
+    public PlantationRepository getPlantationRepository() {
         return PlantationRepository.getInstance();
     }
+
+    public StorageRepository getEpisodeRepository() {
+        return StorageRepository.getInstance();
+    }
+
 
     public StorageRepository getShowRepository() {
         return StorageRepository.getInstance();

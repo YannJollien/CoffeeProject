@@ -7,9 +7,12 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,8 +27,17 @@ import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.ScanActivity;
+import com.example.coffeeproject2.adapter.StorageAdapter;
+import com.example.coffeeproject2.adapter.StorageAdapterView;
+import com.example.coffeeproject2.database.entity.Storage;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -45,6 +57,7 @@ public class StorageEditActivity extends AppCompatActivity {
     public Spinner spinner;
     public EditText amountEdit;
     public EditText dateEdit;
+    public String id_selected;
 
     Button save;
     Button cancel;
@@ -52,16 +65,94 @@ public class StorageEditActivity extends AppCompatActivity {
 
     DatePickerDialog dpd;
 
+    DatabaseReference reference;
+    DatabaseReference databaseStorage;
+    ArrayList<Storage> storageList;
+
+
 
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage_edit);
-
+/**
+        final RecyclerView recyclerView = findViewById(R.id.recycler_view_storage);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+        final StorageAdapter storageAdapter = new StorageAdapter();
+        recyclerView.setAdapter(storageAdapter);
+*/
         dateEdit = findViewById(R.id.add_date);
         amountEdit = findViewById(R.id.add_amount);
         spinner = findViewById(R.id.spinner);
+
+        // Create  an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(StorageEditActivity.this, R.array.types_array, R.layout.custom_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+        databaseStorage = FirebaseDatabase.getInstance().getReference("storage");
+        reference = FirebaseDatabase.getInstance().getReference().child("storage");
+
+        storageList = new ArrayList<>();
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String id_test = "";
+                Intent intent = getIntent();
+                id_test = intent.getStringExtra(EXTRA_ID);
+                id_selected = id_test;
+                System.out.println("--------------------------------------------------------------------------");
+                System.out.println(id_test);
+                amountEdit.setText(intent.getStringExtra(EXTRA_AMOUNT));
+                dateEdit.setText(intent.getStringExtra(EXTRA_DATE));
+
+
+
+                String type_spinner = intent.getStringExtra(EXTRA_TYPE);
+
+
+                switch(type_spinner){
+                    case "Arabica":
+                        spinner.setSelection(0);
+                        break;
+                    case "Robusta":
+                        spinner.setSelection(1);
+                        break;
+                    case "Liberica":
+                        spinner.setSelection(2);
+                        break;
+                }
+
+                System.out.println(intent.getStringExtra(EXTRA_TYPE));
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+
+                    Storage storage = dataSnapshot1.getValue(Storage.class);
+
+                    storageList.add(storage);
+                    for (int i = 0; i < storageList.size();i++){
+                        System.out.println(storageList.get(i).getId());
+                    }
+
+                }
+
+/**
+                storageAdapter.setStorage(storageList);
+                adapter = new StorageAdapterView(getApplicationContext(), storageList);
+                recyclerView.setAdapter(storageAdapter);
+ */
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+
+        });
 
         // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
@@ -74,22 +165,18 @@ public class StorageEditActivity extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-        Intent intent = getIntent();
+        //------------------ test- --------------------
+
+
+
+        System.out.println("--------------------------------------------------------------------------");
 
         setTitle("Edit Coffee");
 
-        spinner.setSelection(2);
+        //spinner.setSelection(2);
 
 
 
-        // Create  an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(StorageEditActivity.this, R.array.types_array, R.layout.custom_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-
-
-        spinner.setAdapter(adapter);
 
         //Get the info by id
         save = (Button) findViewById(R.id.save_add_storage);
@@ -107,7 +194,7 @@ public class StorageEditActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 } else {
                     if (dateCheck(dateEdit.getText().toString())) {
-                        //saveStorage();
+                        saveStorage();
                     } else {
                         Toast.makeText(StorageEditActivity.this, "date not correct",
                                 Toast.LENGTH_LONG).show();
@@ -148,11 +235,28 @@ public class StorageEditActivity extends AppCompatActivity {
         String amount = amountEdit.getText().toString();
         String date = dateEdit.getText().toString();
 
-        Intent data = new Intent();
-        data.putExtra(EXTRA_TYPE, type);
-        data.putExtra(EXTRA_AMOUNT, amount);
-        data.putExtra(EXTRA_DATE, date);
 
+        Storage storage = new Storage( id_selected,  type,  Double. parseDouble(amount), date);
+        for(int i = 0; i < storageList.size(); i++){
+            if(storageList.get(i).getId().equals(id_selected)){
+                storageList.set(i, storage);
+
+            }
+        }
+
+        reference.child(storage.getId()).setValue(storage);
+
+        startActivity(new Intent(StorageEditActivity.this, StorageViewActivity.class));
+        Toast.makeText(StorageEditActivity.this, "Saved",
+                Toast.LENGTH_LONG).show();
+        amountEdit.setText("");
+        dateEdit.setText("");
+        startActivity(new Intent(getApplicationContext(), StorageViewActivity.class));
+        Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
+        finish();
+
+
+/**
         int id = getIntent().getIntExtra(EXTRA_ID, -1);
         if (id != -1) {
             data.putExtra(EXTRA_ID, id);
@@ -160,7 +264,7 @@ public class StorageEditActivity extends AppCompatActivity {
 
         setResult(RESULT_OK, data);
         finish();
-
+*/
     }
 
     //set the camera item in Actionbar

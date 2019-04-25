@@ -18,6 +18,7 @@ import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.adapter.StorageAdapter;
 import com.example.coffeeproject2.adapter.StorageAdapterView;
 import com.example.coffeeproject2.database.entity.Storage;
+import com.example.coffeeproject2.viewmodel.storage.StorageListViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +38,8 @@ public class StorageViewList extends AppCompatActivity {
 
     ArrayList<Storage> storageList;
     StorageAdapterView adapter;
+
+    StorageListViewModel model;
 
     DatabaseReference databaseStorage;
     //StorageAdapter storageAdapter = new StorageAdapter();
@@ -61,6 +64,8 @@ public class StorageViewList extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    System.out.println("Datasnapshot1 get Key----->:" + dataSnapshot1.getKey());
+                    System.out.println("Datasnapshot1 get Key----->:" + dataSnapshot1.getValue());
                     Storage storage = dataSnapshot1.getValue(Storage.class);
                     storageList.add(storage);
                     for (int i = 0; i < storageList.size();i++){
@@ -103,6 +108,7 @@ public class StorageViewList extends AppCompatActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
                 int position = viewHolder.getAdapterPosition();
 
+
                 Storage storage = adapter.getStorage(position);
 
                 reference.child(storage.getId()).removeValue();
@@ -119,6 +125,10 @@ public class StorageViewList extends AppCompatActivity {
 
                 Intent intent = new Intent(StorageViewList.this, StorageEditActivity.class);
                 intent.putExtra(StorageEditActivity.EXTRA_ID, storage.getId());
+                System.out.println(storage.getType());
+                System.out.println(storage.getId());
+                System.out.println(storage.getAmount());
+                System.out.println(storage.getDate());
                 intent.putExtra(StorageEditActivity.EXTRA_TYPE, storage.getType());
                 intent.putExtra(StorageEditActivity.EXTRA_AMOUNT, storage.getAmount() + "");
                 intent.putExtra(StorageEditActivity.EXTRA_DATE, storage.getDate());

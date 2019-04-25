@@ -47,7 +47,7 @@ public class PlantationViewList extends AppCompatActivity {
         final RecyclerView recyclerView = findViewById(R.id.recycler_view_plantation);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        PlantationAdapter plantationAdapter = new PlantationAdapter();
+        final PlantationAdapter plantationAdapter = new PlantationAdapter();
         recyclerView.setAdapter(plantationAdapter);
 
         plantationList = new ArrayList<>();
@@ -59,14 +59,20 @@ public class PlantationViewList extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    System.out.println("Datasnapshot1 get Key----->:" + dataSnapshot1.getKey());
+                    System.out.println("Datasnapshot1 get Key----->:" + dataSnapshot1.getValue());
                     Plantation plantation = dataSnapshot1.getValue(Plantation.class);
+                    plantation.setId(dataSnapshot1.getKey());
+                    System.out.println("ID von Plantation nach snapshot:" + plantation);
                     plantationList.add(plantation);
                     for (int i = 0; i < plantationList.size(); i++){
                         System.out.println("ID von ViewList Plantation: " + plantationList.get(i).getId());
                     }
                 }
+                plantationAdapter.setPlantation(plantationList);
                 adapter = new PlantationAdapterView(getApplicationContext(), plantationList);
-                recyclerView.setAdapter(adapter);
+                recyclerView.setAdapter(plantationAdapter);
+
             }
 
             @Override
@@ -97,9 +103,11 @@ public class PlantationViewList extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
                 int position = viewHolder.getAdapterPosition();
+                System.out.println("--------------------------" + position);
 
                 Plantation plantation = adapter.getPlantation(position);
 
+                System.out.println("----------------------id-----" + plantation.getId());
                 reference.child(plantation.getId()).removeValue();
                 startActivity(new Intent(PlantationViewList.this, PlantationViewActivity.class));
                 Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
@@ -110,12 +118,18 @@ public class PlantationViewList extends AppCompatActivity {
         plantationAdapter.setOnItemClickListener(new PlantationAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Plantation plantation) {
-                System.out.println("CLick");
+                System.out.println("Click");
+                //startActivity(new Intent(StorageViewList.this, StorageEditActivity.class));
+
                 Intent intent = new Intent(PlantationViewList.this, PlantationEditActivity.class);
-                /*intent.putExtra(StorageEditActivity.EXTRA_ID, storage.getId());
-                intent.putExtra(StorageEditActivity.EXTRA_TYPE, storage.getType());
-                intent.putExtra(StorageEditActivity.EXTRA_AMOUNT, storage.getHectare() + "");
-                intent.putExtra(StorageEditActivity.EXTRA_DATE, storage.getDate());*/
+                intent.putExtra(PlantationEditActivity.EXTRA_ID, plantation.getId());
+                System.out.println(plantation.getType());
+                System.out.println(plantation.getId());
+                System.out.println(plantation.getHectare());
+                System.out.println(plantation.getDate());
+                intent.putExtra(PlantationEditActivity.EXTRA_TYPE, plantation.getType());
+                intent.putExtra(PlantationEditActivity.EXTRA_HECTARE, plantation.getHectare() + "");
+                intent.putExtra(PlantationEditActivity.EXTRA_DATE, plantation.getDate());
                 startActivityForResult(intent, EDIT_NOTE_REQUEST);
             }
         });

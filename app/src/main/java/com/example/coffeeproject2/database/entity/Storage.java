@@ -1,5 +1,8 @@
 package com.example.coffeeproject2.database.entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 //Storage entity
 public class Storage {
 
@@ -58,5 +61,14 @@ public class Storage {
 
     public String getDate() {
         return date;
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("type", type);
+        result.put("amount", amount);
+        result.put("id", id);
+
+        return result;
     }
 }

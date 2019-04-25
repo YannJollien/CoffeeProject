@@ -24,6 +24,9 @@ public class StorageListLiveData extends LiveData<List<Storage>> {
         this.reference= reference;
     }
 
+    public StorageListLiveData(DatabaseReference reference) {
+        this.reference= reference;
+    }
     @Override
     protected void onActive() {
         Log.d(TAG, "onActive");
