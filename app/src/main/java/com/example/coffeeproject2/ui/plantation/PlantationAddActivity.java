@@ -1,6 +1,7 @@
 package com.example.coffeeproject2.ui.plantation;
 
 import android.app.DatePickerDialog;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.entity.Plantation;
+import com.example.coffeeproject2.util.OnAsyncEventListener;
 import com.example.coffeeproject2.viewmodel.plantation.PlantationViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +38,9 @@ public class PlantationAddActivity extends AppCompatActivity {
     public static EditText dateEdit;
 
     DatabaseReference databasePlantation;
-    
+
+    PlantationViewModel viewModel;
+
 
     DatePickerDialog dpd;
 
@@ -119,7 +123,7 @@ public class PlantationAddActivity extends AppCompatActivity {
                 dpd = new DatePickerDialog(PlantationAddActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int mYear, int mMonth, int mDayOfMonth) {
-                        dateEdit.setText(mDayOfMonth + "." +mMonth+ "." + mYear);
+                        dateEdit.setText(mDayOfMonth + ".0" +mMonth+ "." + mYear);
                     }
                 }, year, month, day);
                 dpd.show();
@@ -162,7 +166,21 @@ public class PlantationAddActivity extends AppCompatActivity {
 
         Plantation plantation = new Plantation(id, type, hectare, date);
 
-        databasePlantation.child(id).setValue(plantation);
+        PlantationViewModel.Factory factory = new PlantationViewModel.Factory(getApplication(), id);
+        viewModel = ViewModelProviders.of(this,factory).get(PlantationViewModel.class);
+        viewModel.createPlantation(plantation, new OnAsyncEventListener() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+
+            }
+        });
+
+        //databasePlantation.child(id).setValue(plantation);
         //storageViewModel.insert(recyclerView);
         startActivity(new Intent(PlantationAddActivity.this, PlantationViewActivity.class));
         Toast.makeText(PlantationAddActivity.this, "Saved",

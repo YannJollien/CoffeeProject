@@ -1,5 +1,6 @@
 package com.example.coffeeproject2.ui.plantation;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +16,12 @@ import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.adapter.PlantationAdapter;
 import com.example.coffeeproject2.adapter.PlantationAdapterView;
 import com.example.coffeeproject2.database.entity.Plantation;
+import com.example.coffeeproject2.ui.storage.StorageViewActivity;
+import com.example.coffeeproject2.ui.storage.StorageViewList;
+import com.example.coffeeproject2.util.OnAsyncEventListener;
+import com.example.coffeeproject2.viewmodel.plantation.PlantationListViewModel;
+import com.example.coffeeproject2.viewmodel.storage.StorageListViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +43,8 @@ public class PlantationViewList extends AppCompatActivity {
 
     DatabaseReference databaseStorage;
     PlantationAdapter plantationAdapter = new PlantationAdapter();
+
+    PlantationListViewModel model;
 
 
 
@@ -137,8 +146,23 @@ public class PlantationViewList extends AppCompatActivity {
 
     }
 
-    public void deleteStorage(String id){
+    public void deletePlantation(Plantation plantation){
+        PlantationListViewModel.Factory factory = new PlantationListViewModel.Factory(
+                getApplication(), FirebaseAuth.getInstance().getCurrentUser().getUid());
+        model = ViewModelProviders.of(this, factory).get(PlantationListViewModel.class);
+        model.deletePlantation(plantation, new OnAsyncEventListener() {
+            @Override
+            public void onSuccess() {
 
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+
+            }
+        });
+        startActivity(new Intent(PlantationViewList.this, PlantationViewActivity.class));
+        Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -17,20 +17,20 @@ import com.example.coffeeproject2.util.OnAsyncEventListener;
 public class StorageViewModel extends AndroidViewModel {
 
     private StorageRepository repository;
-    private MediatorLiveData<Storage> observableEpisode;
+    private MediatorLiveData<Storage> observableStorage;
 
     public StorageViewModel(@NonNull Application application,
-                            final String idEpisode, StorageRepository repository) {
+                            final String idStorage, StorageRepository repository) {
         super(application);
 
         this.repository = repository;
 
-        observableEpisode = new MediatorLiveData<>();
-        observableEpisode.setValue(null);
+        observableStorage = new MediatorLiveData<>();
+        observableStorage.setValue(null);
 
-        if (idEpisode != null){
-            LiveData<Storage> account = repository.getStorage(idEpisode);
-            observableEpisode.addSource(account, observableEpisode::setValue);
+        if (idStorage != null){
+            LiveData<Storage> storage = repository.getStorage(idStorage);
+            observableStorage.addSource(storage, observableStorage::setValue);
 
         }
 
@@ -45,29 +45,29 @@ public class StorageViewModel extends AndroidViewModel {
 
         @NonNull
         private final Application application;
-        private final String idEpisode;
+        private final String idStorage;
         private final StorageRepository repository;
 
-        public Factory(@NonNull Application application, String idEpisode) {
+        public Factory(@NonNull Application application, String idStorage) {
             this.application = application;
-            this.idEpisode = idEpisode;
+            this.idStorage = idStorage;
             repository = ((BaseApp) application).getEpisodeRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new StorageViewModel(application, idEpisode, repository);
+            return (T) new StorageViewModel(application, idStorage, repository);
         }
     }
 
-    public LiveData<Storage> getEpisode() {
-        return observableEpisode;
+    public LiveData<Storage> getStorage() {
+        return observableStorage;
     }
 
-    public void createEpisode(Storage episode, OnAsyncEventListener callback) {
+    public void createStorage(Storage storage, OnAsyncEventListener callback) {
         ((BaseApp) getApplication()).getEpisodeRepository()
-                .insert(episode, callback);
+                .insert(storage, callback);
     }
 
 }

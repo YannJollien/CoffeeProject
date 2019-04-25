@@ -20,7 +20,7 @@ public class PlantationListViewModel extends AndroidViewModel {
     private PlantationRepository repository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<List<Plantation>> observableEpisodes;
+    private final MediatorLiveData<List<Plantation>> observablePlantation;
 
     public PlantationListViewModel(@NonNull Application application,
                                 final String showName, PlantationRepository repository) {
@@ -28,11 +28,11 @@ public class PlantationListViewModel extends AndroidViewModel {
 
         this.repository = repository;
 
-        observableEpisodes = new MediatorLiveData<>();
+        observablePlantation = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        observableEpisodes.setValue(null);
+        observablePlantation.setValue(null);
 
-        LiveData<List<Plantation>> episodes = repository.getAllPlantation(showName);
+        LiveData<List<Plantation>> plantations = repository.getAllPlantation(showName);
 
         // observe the changes of the entities from the database and forward them
         //observableEpisodes.addSource(episodes, observableEpisodes::setValue);
@@ -64,18 +64,18 @@ public class PlantationListViewModel extends AndroidViewModel {
     /**
      * Expose the LiveData ClientEntities query so the UI can observe it.
      */
-    public LiveData<List<Plantation>> getEpisodes() {
-        return observableEpisodes;
+    public LiveData<List<Plantation>> getPlantation() {
+        return observablePlantation;
     }
 
-    public void deleteEpisode(Plantation episode, OnAsyncEventListener callback) {
+    public void deletePlantation(Plantation plantation, OnAsyncEventListener callback) {
         ((BaseApp) getApplication()).getPlantationRepository()
-                .delete(episode, callback);
+                .delete(plantation, callback);
     }
 
-    public void updateEpisode(Plantation episode, OnAsyncEventListener callback) {
+    public void updatePlantation(Plantation plantation, OnAsyncEventListener callback) {
         ((BaseApp) getApplication()).getPlantationRepository()
-                .update(episode, callback);
+                .update(plantation, callback);
     }
 
 

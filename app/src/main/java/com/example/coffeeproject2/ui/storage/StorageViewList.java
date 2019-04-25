@@ -149,7 +149,7 @@ public class StorageViewList extends AppCompatActivity {
         StorageListViewModel.Factory factory = new StorageListViewModel.Factory(
                 getApplication(), FirebaseAuth.getInstance().getCurrentUser().getUid());
         model = ViewModelProviders.of(this, factory).get(StorageListViewModel.class);
-        model.deleteEpisode(storage, new OnAsyncEventListener() {
+        model.deleteStorage(storage, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
 

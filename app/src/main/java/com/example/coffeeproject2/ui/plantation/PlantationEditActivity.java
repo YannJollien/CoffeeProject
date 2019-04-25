@@ -1,6 +1,7 @@
 package com.example.coffeeproject2.ui.plantation;
 
 import android.app.DatePickerDialog;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,6 +20,8 @@ import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.entity.Plantation;
 import com.example.coffeeproject2.ui.storage.StorageEditActivity;
 import com.example.coffeeproject2.ui.storage.StorageViewActivity;
+import com.example.coffeeproject2.util.OnAsyncEventListener;
+import com.example.coffeeproject2.viewmodel.plantation.PlantationListViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,6 +54,8 @@ public class PlantationEditActivity extends AppCompatActivity {
     DatabaseReference reference;
     DatabaseReference databasePlantation;
     ArrayList<Plantation> plantationList;
+
+    PlantationListViewModel model;
 
 
     @Override
@@ -188,7 +193,7 @@ public class PlantationEditActivity extends AppCompatActivity {
                 dpd = new DatePickerDialog(PlantationEditActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int mYear, int mMonth, int mDayOfMonth) {
-                        dateEdit.setText(mDayOfMonth + "." +mMonth+ "." + mYear);
+                        dateEdit.setText(mDayOfMonth + ".0" +mMonth+ "." + mYear);
                     }
                 }, year, month, day);
                 dpd.show();
@@ -202,12 +207,6 @@ public class PlantationEditActivity extends AppCompatActivity {
         String hectare = hectareEdit.getText().toString();
         String date = dateEdit.getText().toString();
 
-        System.out.println("----------------- Object -----------------");
-        System.out.println(id_selected);
-        System.out.println(type);
-        System.out.println(hectare);
-        System.out.println(date);
-
 
         Plantation plantation = new Plantation( id_selected,  type,  Double. parseDouble(hectare), date);
         for(int i = 0; i < plantationList.size(); i++){
@@ -217,8 +216,20 @@ public class PlantationEditActivity extends AppCompatActivity {
             }
         }
 
-        reference.child(plantation.getId()).setValue(plantation);
+        //reference.child(plantation.getId()).setValue(plantation);
+        PlantationListViewModel.Factory factory = new PlantationListViewModel.Factory(getApplication(), id_selected);
+        model = ViewModelProviders.of(this,factory).get(PlantationListViewModel.class);
+        model.updatePlantation(plantation, new OnAsyncEventListener() {
+            @Override
+            public void onSuccess() {
 
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+
+            }
+        });
         startActivity(new Intent(PlantationEditActivity.this, PlantationViewActivity.class));
         Toast.makeText(PlantationEditActivity.this, "Saved",
                 Toast.LENGTH_LONG).show();

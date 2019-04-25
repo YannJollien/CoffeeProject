@@ -81,7 +81,7 @@ public class StorageRepository {
                 });
     }
 
-    public LiveData<List<Storage>> getAllEpisodes(String showName) {
+    public LiveData<List<Storage>> getAllStorages(String showName) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("storage");
         return new StorageListLiveData(reference);

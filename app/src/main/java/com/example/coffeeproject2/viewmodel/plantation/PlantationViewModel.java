@@ -10,59 +10,65 @@ import android.support.annotation.NonNull;
 
 import com.example.coffeeproject2.BaseApp;
 import com.example.coffeeproject2.database.entity.Plantation;
+import com.example.coffeeproject2.database.entity.Storage;
 import com.example.coffeeproject2.database.rep.PlantationRepository;
+import com.example.coffeeproject2.database.rep.StorageRepository;
 import com.example.coffeeproject2.util.OnAsyncEventListener;
 
 public class PlantationViewModel extends AndroidViewModel {
 
     private PlantationRepository repository;
-    private final MediatorLiveData<Plantation> observableEpisode;
+    private MediatorLiveData<Plantation> observablePlantation;
 
     public PlantationViewModel(@NonNull Application application,
-                            final String idEpisode, final String showName, PlantationRepository repository) {
+                            final String idPlantation, PlantationRepository repository) {
         super(application);
 
         this.repository = repository;
 
-        observableEpisode = new MediatorLiveData<>();
-        observableEpisode.setValue(null);
+        observablePlantation = new MediatorLiveData<>();
+        observablePlantation.setValue(null);
 
-        if (idEpisode != null){
-            LiveData<Plantation> account = repository.getPlantation(idEpisode);
-            //observableEpisode.addSource(account, observableEpisode::setValue);
+        if (idPlantation != null){
+            LiveData<Plantation> account = repository.getPlantation(idPlantation);
+            observablePlantation.addSource(account, observablePlantation::setValue);
+
         }
+
     }
 
+
+    /* public StorageViewModel(@NonNull Application application, String idEpisode, String showName, PlantationRepository repository) {
+         super(application);
+     }
+ */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
         @NonNull
         private final Application application;
-        private final String idEpisode;
-        private final String showName;
+        private final String idPlantation;
         private final PlantationRepository repository;
 
-        public Factory(@NonNull Application application, String idEpisode, String showName) {
+        public Factory(@NonNull Application application, String idPlantation) {
             this.application = application;
-            this.idEpisode = idEpisode;
-            this.showName = showName;
+            this.idPlantation = idPlantation;
             repository = ((BaseApp) application).getPlantationRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new PlantationViewModel(application, idEpisode, showName, repository);
+            return (T) new PlantationViewModel(application, idPlantation, repository);
         }
     }
 
-    public LiveData<Plantation> getEpisode() {
-        return observableEpisode;
+    public LiveData<Plantation> getPlantation() {
+        return observablePlantation;
     }
 
-    public void createEpisode(Plantation episode, OnAsyncEventListener callback) {
+    public void createPlantation(Plantation plantation, OnAsyncEventListener callback) {
         ((BaseApp) getApplication()).getPlantationRepository()
-                .insert(episode, callback);
+                .insert(plantation, callback);
     }
-
 
 }

@@ -129,7 +129,7 @@ public class StorageAddActivity extends AppCompatActivity{
                 dpd = new DatePickerDialog(StorageAddActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int mYear, int mMonth, int mDayOfMonth) {
-                        dateEdit.setText(mDayOfMonth + "." +mMonth+ "." + mYear);
+                        dateEdit.setText(mDayOfMonth + ".0" +mMonth+ "." + mYear);
                     }
                 }, year, month, day);
                 dpd.show();
@@ -175,7 +175,7 @@ public class StorageAddActivity extends AppCompatActivity{
 
         StorageViewModel.Factory factory = new StorageViewModel.Factory(getApplication(), id);
         viewModel = ViewModelProviders.of(this,factory).get(StorageViewModel.class);
-        viewModel.createEpisode(storage, new OnAsyncEventListener() {
+        viewModel.createStorage(storage, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
 

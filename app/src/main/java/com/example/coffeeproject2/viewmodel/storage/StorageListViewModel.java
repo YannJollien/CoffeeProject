@@ -20,7 +20,7 @@ public class StorageListViewModel extends AndroidViewModel {
     private StorageRepository repository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<List<Storage>> observableEpisodes;
+    private final MediatorLiveData<List<Storage>> observableStorage;
 
     public StorageListViewModel(@NonNull Application application,
                                    final String showName, StorageRepository repository) {
@@ -28,11 +28,11 @@ public class StorageListViewModel extends AndroidViewModel {
 
         this.repository = repository;
 
-        observableEpisodes = new MediatorLiveData<>();
+        observableStorage = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        observableEpisodes.setValue(null);
+        observableStorage.setValue(null);
 
-        LiveData<List<Storage>> episodes = repository.getAllEpisodes(showName);
+        LiveData<List<Storage>> storages = repository.getAllStorages(showName);
 
         // observe the changes of the entities from the database and forward them
         //observableEpisodes.addSource(episodes, observableEpisodes::setValue);
@@ -64,18 +64,18 @@ public class StorageListViewModel extends AndroidViewModel {
     /**
      * Expose the LiveData ClientEntities query so the UI can observe it.
      */
-    public LiveData<List<Storage>> getEpisodes() {
-        return observableEpisodes;
+    public LiveData<List<Storage>> getStorages() {
+        return observableStorage;
     }
 
-    public void deleteEpisode(Storage episode, OnAsyncEventListener callback) {
+    public void deleteStorage(Storage storage, OnAsyncEventListener callback) {
         ((BaseApp) getApplication()).getEpisodeRepository()
-                .delete(episode, callback);
+                .delete(storage, callback);
     }
 
-    public void updateEpisode(Storage episode, OnAsyncEventListener callback) {
+    public void updateStorage(Storage storage, OnAsyncEventListener callback) {
         ((BaseApp) getApplication()).getEpisodeRepository()
-                .update(episode, callback);
+                .update(storage, callback);
     }
 
 
