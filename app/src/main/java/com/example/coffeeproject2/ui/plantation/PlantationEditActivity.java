@@ -86,8 +86,6 @@ public class PlantationEditActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 id_test = intent.getStringExtra(EXTRA_ID);
                 id_selected = id_test;
-                System.out.println("--------------------------------------------------------------------------");
-                System.out.println(id_test);
                 hectareEdit.setText(intent.getStringExtra(EXTRA_HECTARE));
                 dateEdit.setText(intent.getStringExtra(EXTRA_DATE));
 
@@ -119,7 +117,6 @@ public class PlantationEditActivity extends AppCompatActivity {
                     }
 
                 }
-
 
             }
 

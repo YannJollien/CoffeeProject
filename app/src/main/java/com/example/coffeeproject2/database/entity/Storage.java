@@ -68,6 +68,7 @@ public class Storage {
         result.put("type", type);
         result.put("amount", amount);
         result.put("id", id);
+        result.put("date", date);
 
         return result;
     }

@@ -38,16 +38,11 @@ public class PlantationAddActivity extends AppCompatActivity {
     public static EditText dateEdit;
 
     DatabaseReference databasePlantation;
-
     PlantationViewModel viewModel;
-
-
     DatePickerDialog dpd;
-
 
     Button save;
     Button date;
-    //StorageDatabase storageDatabase;
 
     public static TextView result;
 
@@ -63,7 +58,6 @@ public class PlantationAddActivity extends AppCompatActivity {
 
         setTitle("Add Plantation");
 
-        // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
                 (Toolbar) findViewById(R.id.plantation_toolbar);
         setSupportActionBar(myChildToolbar);
@@ -73,8 +67,6 @@ public class PlantationAddActivity extends AppCompatActivity {
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
-
-        //storageDatabase = Room.databaseBuilder(getApplicationContext(), StorageDatabase.class, "recyclerView").allowMainThreadQueries().build();
 
         spinner = (Spinner) findViewById(R.id.spinner);
         // Create  an ArrayAdapter using the string array and a default spinner layout
@@ -90,7 +82,6 @@ public class PlantationAddActivity extends AppCompatActivity {
 
         hectareEdit = (EditText) findViewById(R.id.add_hectare);
         dateEdit = (EditText) findViewById(R.id.add_date);
-
 
         plantationList = new ArrayList<>();
 
@@ -180,8 +171,6 @@ public class PlantationAddActivity extends AppCompatActivity {
             }
         });
 
-        //databasePlantation.child(id).setValue(plantation);
-        //storageViewModel.insert(recyclerView);
         startActivity(new Intent(PlantationAddActivity.this, PlantationViewActivity.class));
         Toast.makeText(PlantationAddActivity.this, "Saved",
                 Toast.LENGTH_LONG).show();

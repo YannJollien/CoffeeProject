@@ -238,6 +238,8 @@ public class StorageEditActivity extends AppCompatActivity {
         String amount = amountEdit.getText().toString();
         String date = dateEdit.getText().toString();
 
+        System.out.println("--------------------------------------------------------------Datum in SaveStorage: " + date);
+
 
         Storage storage = new Storage( id_selected,  type,  Double. parseDouble(amount), date);
         for(int i = 0; i < storageList.size(); i++){
@@ -247,7 +249,6 @@ public class StorageEditActivity extends AppCompatActivity {
             }
         }
 
-        //reference.child(storage.getId()).setValue(storage);
         StorageListViewModel.Factory factory = new StorageListViewModel.Factory(getApplication(), id_selected);
         model = ViewModelProviders.of(this,factory).get(StorageListViewModel.class);
         model.updateStorage(storage, new OnAsyncEventListener() {
@@ -262,6 +263,7 @@ public class StorageEditActivity extends AppCompatActivity {
             }
         });
 
+        System.out.println("--------------------------------------------------------------Datum in SaveStorage: " + storage.getDate());
         startActivity(new Intent(StorageEditActivity.this, StorageViewActivity.class));
         Toast.makeText(StorageEditActivity.this, "Saved",
                 Toast.LENGTH_LONG).show();

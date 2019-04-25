@@ -84,19 +84,14 @@ public class StorageViewActivity extends AppCompatActivity {
                 startActivity(new Intent(StorageViewActivity.this, StorageAddActivity.class));
             }
         });
-        //set Titel of View
+
         setTitle("Coffee");
 
-
-        // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
                 (Toolbar) findViewById(R.id.storage_toolbar);
         setSupportActionBar(myChildToolbar);
-        //myChildToolbar.setTitleTextColor(0xFFFFFFFF);
-        // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
 
-        // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
     }

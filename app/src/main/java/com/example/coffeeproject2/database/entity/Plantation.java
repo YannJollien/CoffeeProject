@@ -73,6 +73,7 @@ public class Plantation {
         result.put("type", type);
         result.put("hectare", hectare);
         result.put("id", id);
+        result.put("date", date);
 
         return result;
     }

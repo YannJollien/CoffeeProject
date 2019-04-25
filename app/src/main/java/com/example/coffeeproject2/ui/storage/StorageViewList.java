@@ -125,15 +125,8 @@ public class StorageViewList extends AppCompatActivity {
         storageAdapter.setOnItemClickListener(new StorageAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Storage storage) {
-                System.out.println("Click");
-                //startActivity(new Intent(StorageViewList.this, StorageEditActivity.class));
-
                 Intent intent = new Intent(StorageViewList.this, StorageEditActivity.class);
                 intent.putExtra(StorageEditActivity.EXTRA_ID, storage.getId());
-                System.out.println(storage.getType());
-                System.out.println(storage.getId());
-                System.out.println(storage.getAmount());
-                System.out.println(storage.getDate());
                 intent.putExtra(StorageEditActivity.EXTRA_TYPE, storage.getType());
                 intent.putExtra(StorageEditActivity.EXTRA_AMOUNT, storage.getAmount() + "");
                 intent.putExtra(StorageEditActivity.EXTRA_DATE, storage.getDate());
@@ -173,7 +166,6 @@ public class StorageViewList extends AppCompatActivity {
             String spinner = data.getStringExtra(StorageEditActivity.EXTRA_TYPE);
 
             Storage storage = new Storage(spinner, Double.parseDouble(amount), date);
-            //storageViewModel.insert(recyclerView);
         } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK) {
             int id = data.getIntExtra(EXTRA_ID, -1);
 
@@ -187,10 +179,8 @@ public class StorageViewList extends AppCompatActivity {
             String amount = data.getStringExtra(StorageEditActivity.EXTRA_AMOUNT);
             String spinner = data.getStringExtra(StorageEditActivity.EXTRA_TYPE);
 
-            //double amount2 = Double.parseDouble(hectare);
 
             Storage storage = new Storage(spinner, Double.parseDouble(amount), date);
-            //storageViewModel.update(recyclerView);
         }
     }
 }

@@ -112,11 +112,9 @@ public class PlantationViewList extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
                 int position = viewHolder.getAdapterPosition();
-                System.out.println("--------------------------" + position);
 
                 Plantation plantation = adapter.getPlantation(position);
 
-                System.out.println("----------------------id-----" + plantation.getId());
                 reference.child(plantation.getId()).removeValue();
                 startActivity(new Intent(PlantationViewList.this, PlantationViewActivity.class));
                 Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
@@ -127,15 +125,8 @@ public class PlantationViewList extends AppCompatActivity {
         plantationAdapter.setOnItemClickListener(new PlantationAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Plantation plantation) {
-                System.out.println("Click");
-                //startActivity(new Intent(StorageViewList.this, StorageEditActivity.class));
-
                 Intent intent = new Intent(PlantationViewList.this, PlantationEditActivity.class);
                 intent.putExtra(PlantationEditActivity.EXTRA_ID, plantation.getId());
-                System.out.println(plantation.getType());
-                System.out.println(plantation.getId());
-                System.out.println(plantation.getHectare());
-                System.out.println(plantation.getDate());
                 intent.putExtra(PlantationEditActivity.EXTRA_TYPE, plantation.getType());
                 intent.putExtra(PlantationEditActivity.EXTRA_HECTARE, plantation.getHectare() + "");
                 intent.putExtra(PlantationEditActivity.EXTRA_DATE, plantation.getDate());

@@ -43,15 +43,11 @@ public class StorageAddActivity extends AppCompatActivity{
     public static EditText dateEdit;
 
     DatabaseReference databaseStorage;
-
     DatePickerDialog dpd;
-
     StorageViewModel viewModel;
-
 
     Button date;
     Button save;
-    //StorageDatabase storageDatabase;
 
     public static TextView result;
 
@@ -67,36 +63,22 @@ public class StorageAddActivity extends AppCompatActivity{
 
         setTitle("Add Coffee");
 
-        // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
                 (Toolbar) findViewById(R.id.storage_toolbar);
         setSupportActionBar(myChildToolbar);
-
-        // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
-
-        // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-        //storageDatabase = Room.databaseBuilder(getApplicationContext(), StorageDatabase.class, "recyclerView").allowMainThreadQueries().build();
-
         spinner = (Spinner) findViewById(R.id.spinner);
-        // Create  an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(StorageAddActivity.this, R.array.types_array, R.layout.custom_spinner_item);
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
         //Get the info by id
         save = (Button) findViewById(R.id.save_add_storage);
-
         date = (Button)findViewById(R.id.date_choser);
-
         amountEdit = (EditText) findViewById(R.id.add_amount);
         dateEdit = (EditText) findViewById(R.id.add_date);
-
-
 
         storageList = new ArrayList<>();
 
@@ -153,7 +135,6 @@ public class StorageAddActivity extends AppCompatActivity{
                     Storage strage = storageSnapshot.getValue(Storage.class);
                     storageList.add(strage);
                 }
-
             }
 
             @Override
@@ -169,9 +150,7 @@ public class StorageAddActivity extends AppCompatActivity{
         String date = dateEdit.getText().toString();
 
         String id = databaseStorage.push().getKey();
-
         Storage storage = new Storage(id,type, amount, date);
-
 
         StorageViewModel.Factory factory = new StorageViewModel.Factory(getApplication(), id);
         viewModel = ViewModelProviders.of(this,factory).get(StorageViewModel.class);
@@ -186,8 +165,7 @@ public class StorageAddActivity extends AppCompatActivity{
 
             }
         });
-        //databaseStorage.child(id).setValue(storage);
-        //storageViewModel.insert(recyclerView);
+
         startActivity(new Intent(StorageAddActivity.this, StorageViewActivity.class));
         Toast.makeText(StorageAddActivity.this, "Saved",
                 Toast.LENGTH_LONG).show();
@@ -198,14 +176,12 @@ public class StorageAddActivity extends AppCompatActivity{
 
     }
 
-    //set the camera item in Actionbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.scanner_button, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
-    //When camera icon clicked open qr scanner
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -215,10 +191,7 @@ public class StorageAddActivity extends AppCompatActivity{
                 return true;
 
             default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
@@ -257,7 +230,4 @@ public class StorageAddActivity extends AppCompatActivity{
         }
         return false;
     }
-
-
-
 }
