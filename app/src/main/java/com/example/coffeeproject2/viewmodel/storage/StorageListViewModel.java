@@ -35,7 +35,7 @@ public class StorageListViewModel extends AndroidViewModel {
         LiveData<List<Storage>> episodes = repository.getAllEpisodes(showName);
 
         // observe the changes of the entities from the database and forward them
-        observableEpisodes.addSource(episodes, observableEpisodes::setValue);
+        //observableEpisodes.addSource(episodes, observableEpisodes::setValue);
     }
 
     /**
@@ -71,6 +71,11 @@ public class StorageListViewModel extends AndroidViewModel {
     public void deleteEpisode(Storage episode, OnAsyncEventListener callback) {
         ((BaseApp) getApplication()).getEpisodeRepository()
                 .delete(episode, callback);
+    }
+
+    public void updateEpisode(Storage episode, OnAsyncEventListener callback) {
+        ((BaseApp) getApplication()).getEpisodeRepository()
+                .update(episode, callback);
     }
 
 

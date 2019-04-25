@@ -55,7 +55,7 @@ public class PlantationRepository {
                 });
     }
 
-    public void update(final Plantation plantation, OnAsyncEventListener callback) {
+    public void update(final Plantation plantation, final OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("plantation")
                 .child(plantation.getId())
@@ -68,7 +68,7 @@ public class PlantationRepository {
                 });
     }
 
-    public void delete(final Plantation plantation, OnAsyncEventListener callback) {
+    public void delete(final Plantation plantation, final OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("plantation")
                 .child(plantation.getId())

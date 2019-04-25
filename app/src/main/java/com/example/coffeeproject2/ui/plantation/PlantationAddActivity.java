@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.database.entity.Plantation;
+import com.example.coffeeproject2.viewmodel.plantation.PlantationViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +36,7 @@ public class PlantationAddActivity extends AppCompatActivity {
     public static EditText dateEdit;
 
     DatabaseReference databasePlantation;
+    
 
     DatePickerDialog dpd;
 

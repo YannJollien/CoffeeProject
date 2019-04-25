@@ -20,7 +20,7 @@ public class StorageViewModel extends AndroidViewModel {
     private MediatorLiveData<Storage> observableEpisode;
 
     public StorageViewModel(@NonNull Application application,
-                            final String idEpisode, final String showName, StorageRepository repository) {
+                            final String idEpisode, StorageRepository repository) {
         super(application);
 
         this.repository = repository;
@@ -28,13 +28,14 @@ public class StorageViewModel extends AndroidViewModel {
         observableEpisode = new MediatorLiveData<>();
         observableEpisode.setValue(null);
 
-       // if (idEpisode != null){
+        if (idEpisode != null){
             LiveData<Storage> account = repository.getStorage(idEpisode);
             observableEpisode.addSource(account, observableEpisode::setValue);
 
-       // }
+        }
 
     }
+
 
    /* public StorageViewModel(@NonNull Application application, String idEpisode, String showName, PlantationRepository repository) {
         super(application);
@@ -45,20 +46,18 @@ public class StorageViewModel extends AndroidViewModel {
         @NonNull
         private final Application application;
         private final String idEpisode;
-        private final String showName;
         private final StorageRepository repository;
 
-        public Factory(@NonNull Application application, String idEpisode, String showName) {
+        public Factory(@NonNull Application application, String idEpisode) {
             this.application = application;
             this.idEpisode = idEpisode;
-            this.showName = showName;
             repository = ((BaseApp) application).getEpisodeRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new StorageViewModel(application, idEpisode, showName, repository);
+            return (T) new StorageViewModel(application, idEpisode, repository);
         }
     }
 
@@ -70,16 +69,5 @@ public class StorageViewModel extends AndroidViewModel {
         ((BaseApp) getApplication()).getEpisodeRepository()
                 .insert(episode, callback);
     }
-
-    public void updateEpisode(Storage episode, OnAsyncEventListener callback) {
-        ((BaseApp) getApplication()).getEpisodeRepository()
-                .update(episode, callback);
-    }
-
-    public void deleteEpisode(Storage episode, OnAsyncEventListener callback) {
-        ((BaseApp) getApplication()).getEpisodeRepository()
-                .delete(episode, callback);
-    }
-
 
 }

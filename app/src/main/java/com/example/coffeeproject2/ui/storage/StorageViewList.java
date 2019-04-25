@@ -1,6 +1,7 @@
 package com.example.coffeeproject2.ui.storage;
 
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,7 +19,9 @@ import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.adapter.StorageAdapter;
 import com.example.coffeeproject2.adapter.StorageAdapterView;
 import com.example.coffeeproject2.database.entity.Storage;
+import com.example.coffeeproject2.util.OnAsyncEventListener;
 import com.example.coffeeproject2.viewmodel.storage.StorageListViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +43,7 @@ public class StorageViewList extends AppCompatActivity {
     StorageAdapterView adapter;
 
     StorageListViewModel model;
+
 
     DatabaseReference databaseStorage;
     //StorageAdapter storageAdapter = new StorageAdapter();
@@ -111,9 +115,10 @@ public class StorageViewList extends AppCompatActivity {
 
                 Storage storage = adapter.getStorage(position);
 
-                reference.child(storage.getId()).removeValue();
-                startActivity(new Intent(StorageViewList.this, StorageViewActivity.class));
-                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                //reference.child(storage.getId()).removeValue();
+
+                deleteStorage(storage);
+
             }
         }).attachToRecyclerView(recyclerView);
 
@@ -140,8 +145,23 @@ public class StorageViewList extends AppCompatActivity {
 
     }
 
-    public void deleteStorage(String id){
+    public void deleteStorage(Storage storage){
+        StorageListViewModel.Factory factory = new StorageListViewModel.Factory(
+                getApplication(), FirebaseAuth.getInstance().getCurrentUser().getUid());
+        model = ViewModelProviders.of(this, factory).get(StorageListViewModel.class);
+        model.deleteEpisode(storage, new OnAsyncEventListener() {
+            @Override
+            public void onSuccess() {
 
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+
+            }
+        });
+        startActivity(new Intent(StorageViewList.this, StorageViewActivity.class));
+        Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -173,100 +193,4 @@ public class StorageViewList extends AppCompatActivity {
             //storageViewModel.update(recyclerView);
         }
     }
-
-    /*@Override
-    public void onDeleteClick(int position) {
-
-    }*/
-
-    /*public final static int ADD_NOTE_REQUEST = 1;
-    public final static int EDIT_NOTE_REQUEST = 2;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_storage_view_1);
-
-        RecyclerView recyclerView = findViewById(R.id.recycler_view_storage);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-
-        final StorageAdapter adapter = new StorageAdapter();
-        recyclerView.setAdapter(adapter);
-
-        //set Titel of View
-        setTitle("Edit Coffees");
-
-
-
-        // my_child_toolbar is defined in the layout file
-        Toolbar myChildToolbar =
-                (Toolbar) findViewById(R.id.storage_toolbar);
-        setSupportActionBar(myChildToolbar);
-
-        // Get a support ActionBar corresponding to this toolbar
-        ActionBar ab = getSupportActionBar();
-
-        // Enable the Up button
-        ab.setDisplayHomeAsUpEnabled(true);
-
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-                //storageViewModel.delete(adapter.getPlantationAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(StorageViewList.this, StorageViewActivity.class));
-
-            }
-        }).attachToRecyclerView(recyclerView);
-
-        adapter.setOnItemClickListener(new StorageAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Storage storage) {
-                Intent intent = new Intent(StorageViewList.this, StorageEditActivity.class);
-                intent.putExtra(StorageEditActivity.EXTRA_ID, storage.getId());
-                intent.putExtra(StorageEditActivity.EXTRA_TYPE, storage.getType());
-                intent.putExtra(StorageEditActivity.EXTRA_AMOUNT, storage.getHectare() + "");
-                intent.putExtra(StorageEditActivity.EXTRA_DATE, storage.getDate());
-                startActivityForResult(intent, EDIT_NOTE_REQUEST);
-            }
-        });
-
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
-            String hectare = data.getStringExtra(StorageEditActivity.EXTRA_AMOUNT);
-            String date = data.getStringExtra(StorageEditActivity.EXTRA_DATE);
-            String spinner = data.getStringExtra(StorageEditActivity.EXTRA_TYPE);
-
-            Storage storage = new Storage(spinner, Double.parseDouble(hectare), date);
-            //storageViewModel.insert(recyclerView);
-        } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK) {
-            int id = data.getIntExtra(StorageEditActivity.EXTRA_ID, -1);
-
-            if (id == -1) {
-                Toast.makeText(this, "Storage updated", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // String hectare = data.getStringExtra(StorageEditActivity.EXTRA_AMOUNT);
-            String date = data.getStringExtra(StorageEditActivity.EXTRA_DATE);
-            String hectare = data.getStringExtra(StorageEditActivity.EXTRA_AMOUNT);
-            String spinner = data.getStringExtra(StorageEditActivity.EXTRA_TYPE);
-
-            //double amount2 = Double.parseDouble(hectare);
-
-            Storage storage = new Storage(spinner, Double.parseDouble(hectare), date);
-            //storageViewModel.update(recyclerView);
-        }
-    }*/
 }

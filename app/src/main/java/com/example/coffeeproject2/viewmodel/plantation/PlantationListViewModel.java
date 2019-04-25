@@ -35,7 +35,7 @@ public class PlantationListViewModel extends AndroidViewModel {
         LiveData<List<Plantation>> episodes = repository.getAllPlantation(showName);
 
         // observe the changes of the entities from the database and forward them
-        observableEpisodes.addSource(episodes, observableEpisodes::setValue);
+        //observableEpisodes.addSource(episodes, observableEpisodes::setValue);
     }
 
     /**
@@ -71,6 +71,11 @@ public class PlantationListViewModel extends AndroidViewModel {
     public void deleteEpisode(Plantation episode, OnAsyncEventListener callback) {
         ((BaseApp) getApplication()).getPlantationRepository()
                 .delete(episode, callback);
+    }
+
+    public void updateEpisode(Plantation episode, OnAsyncEventListener callback) {
+        ((BaseApp) getApplication()).getPlantationRepository()
+                .update(episode, callback);
     }
 
 

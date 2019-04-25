@@ -1,6 +1,7 @@
 package com.example.coffeeproject2.ui.storage;
 
 import android.app.DatePickerDialog;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,6 +23,8 @@ import android.widget.Toast;
 import com.example.coffeeproject2.R;
 import com.example.coffeeproject2.ScanActivity;
 import com.example.coffeeproject2.database.entity.Storage;
+import com.example.coffeeproject2.util.OnAsyncEventListener;
+import com.example.coffeeproject2.viewmodel.storage.StorageViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +45,8 @@ public class StorageAddActivity extends AppCompatActivity{
     DatabaseReference databaseStorage;
 
     DatePickerDialog dpd;
+
+    StorageViewModel viewModel;
 
 
     Button date;
@@ -90,6 +95,7 @@ public class StorageAddActivity extends AppCompatActivity{
 
         amountEdit = (EditText) findViewById(R.id.add_amount);
         dateEdit = (EditText) findViewById(R.id.add_date);
+
 
 
         storageList = new ArrayList<>();
@@ -166,7 +172,21 @@ public class StorageAddActivity extends AppCompatActivity{
 
         Storage storage = new Storage(id,type, amount, date);
 
-        databaseStorage.child(id).setValue(storage);
+
+        StorageViewModel.Factory factory = new StorageViewModel.Factory(getApplication(), id);
+        viewModel = ViewModelProviders.of(this,factory).get(StorageViewModel.class);
+        viewModel.createEpisode(storage, new OnAsyncEventListener() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+
+            }
+        });
+        //databaseStorage.child(id).setValue(storage);
         //storageViewModel.insert(recyclerView);
         startActivity(new Intent(StorageAddActivity.this, StorageViewActivity.class));
         Toast.makeText(StorageAddActivity.this, "Saved",

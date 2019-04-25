@@ -29,7 +29,7 @@ public class PlantationViewModel extends AndroidViewModel {
 
         if (idEpisode != null){
             LiveData<Plantation> account = repository.getPlantation(idEpisode);
-            observableEpisode.addSource(account, observableEpisode::setValue);
+            //observableEpisode.addSource(account, observableEpisode::setValue);
         }
     }
 
@@ -64,14 +64,5 @@ public class PlantationViewModel extends AndroidViewModel {
                 .insert(episode, callback);
     }
 
-    public void updateEpisode(Plantation episode, OnAsyncEventListener callback) {
-        ((BaseApp) getApplication()).getPlantationRepository()
-                .update(episode, callback);
-    }
-
-    public void deleteEpisode(Plantation episode, OnAsyncEventListener callback) {
-        ((BaseApp) getApplication()).getPlantationRepository()
-                .delete(episode, callback);
-    }
 
 }

@@ -30,6 +30,8 @@ import com.example.coffeeproject2.ScanActivity;
 import com.example.coffeeproject2.adapter.StorageAdapter;
 import com.example.coffeeproject2.adapter.StorageAdapterView;
 import com.example.coffeeproject2.database.entity.Storage;
+import com.example.coffeeproject2.util.OnAsyncEventListener;
+import com.example.coffeeproject2.viewmodel.storage.StorageListViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -69,6 +71,7 @@ public class StorageEditActivity extends AppCompatActivity {
     DatabaseReference databaseStorage;
     ArrayList<Storage> storageList;
 
+    StorageListViewModel model;
 
 
     @SuppressLint("WrongViewCast")
@@ -244,7 +247,20 @@ public class StorageEditActivity extends AppCompatActivity {
             }
         }
 
-        reference.child(storage.getId()).setValue(storage);
+        //reference.child(storage.getId()).setValue(storage);
+        StorageListViewModel.Factory factory = new StorageListViewModel.Factory(getApplication(), id_selected);
+        model = ViewModelProviders.of(this,factory).get(StorageListViewModel.class);
+        model.updateEpisode(storage, new OnAsyncEventListener() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+
+            }
+        });
 
         startActivity(new Intent(StorageEditActivity.this, StorageViewActivity.class));
         Toast.makeText(StorageEditActivity.this, "Saved",
@@ -254,17 +270,6 @@ public class StorageEditActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), StorageViewActivity.class));
         Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
         finish();
-
-
-/**
-        int id = getIntent().getIntExtra(EXTRA_ID, -1);
-        if (id != -1) {
-            data.putExtra(EXTRA_ID, id);
-        }
-
-        setResult(RESULT_OK, data);
-        finish();
-*/
     }
 
     //set the camera item in Actionbar
