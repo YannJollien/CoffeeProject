@@ -51,23 +51,24 @@ public class MainActivity extends AppCompatActivity {
         btnSignUp = (Button) findViewById(R.id.buttonReg);
         inputEmail = (EditText) findViewById(R.id.inMail);
         inputPassword = (EditText) findViewById(R.id.inPass);
+        progress = findViewById(R.id.load);
+        progress.setVisibility(View.INVISIBLE);
+
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
-                startActivity(intent);
-                addNotification();
-                /*progress = findViewById(R.id.load);
-                progress.setVisibility(View.VISIBLE);
+                 progress.setVisibility(View.VISIBLE);
                  email = inputEmail.getText().toString();
                  password = inputPassword.getText().toString();
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    progress.setVisibility(View.INVISIBLE);
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
                     Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    progress.setVisibility(View.INVISIBLE);
                     return;
                 }
                 //authenticate user
@@ -83,8 +84,10 @@ public class MainActivity extends AppCompatActivity {
                                     // there was an error
                                     if (password.length() < 6) {
                                         Toast.makeText(MainActivity.this, "Password to short", Toast.LENGTH_LONG).show();
+                                        progress.setVisibility(View.INVISIBLE);
                                     } else {
                                         Toast.makeText(MainActivity.this, "Authentication failed", Toast.LENGTH_LONG).show();
+                                        progress.setVisibility(View.INVISIBLE);
                                     }
                                 } else {
                                     progress.setVisibility(View.GONE);
@@ -94,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                                     finish();
                                 }
                             }
-                        });*/
+                        });
             }
         });
         btnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 .setContentTitle("CoffeStorage Application")
                 .setAutoCancel(true)
                 .setContentIntent(resultPendingIntent)
-                .setContentText("Welcome " + inputEmail);
+                .setContentText("Welcome " + email);
 
         notificationManager.notify(NOTIFICATION_ID, builder.build());
 
